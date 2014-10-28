@@ -3,4 +3,10 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
+  resources :posts, only: [:index]
+
+  resources :users do
+    resources :posts, except: [:index]
+  end
+
 end
