@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # fail
     if @user.save
-      flash[:notice] += ["Account created!"]
+      flash[:notice] = ["Account created!"]
+      login_user!(@user)
       redirect_to posts_url
     else
       flash.now[:errors] = @user.errors.full_messages

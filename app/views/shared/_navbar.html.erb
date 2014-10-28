@@ -2,8 +2,8 @@
 	<ul>
 		<li><a href="<%= posts_url %>">Dashboard</a></li>
 		
-		<% unless !!current_user %>
-		<%= link_to 'Log Out', session_url,  method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% unless !current_user %>
+		<%= link_to 'Log Out', session_url,  method: :delete %>
 		<% end %>
 	</ul>	
 </nav>
