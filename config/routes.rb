@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-
   root 'posts#index'
 
-  resources :posts, only: [:index]
+  resources :posts, only: [:index, :show]
 
   resources :users do
-    resources :posts, except: [:index]
+    resources :posts, except: [:index, :show]
   end
+  
+  resource :session, only: [:new, :create, :destroy]
 
 end

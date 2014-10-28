@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)      not null
+#  body       :text             not null
+#  user_id    :integer          not null
+#  post_type  :string(255)      not null
+#  url        :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 require 'factory_girl'
 FactoryGirl.define do
@@ -10,7 +24,7 @@ FactoryGirl.define do
 end
 
 RSpec.describe Post, :type => :model do
-  context "without title, body or type" do
+  context "without title, body or type" do 
 
     it "validates presence of title" do
       expect(FactoryGirl.build(:post, title: nil)).to_not be_valid

@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!
-
+  before_action :check_log_in
   def index
     @posts = current_user.posts
     # current_user.followed_users.each do |user|
@@ -34,6 +33,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    puts params
+    render :show
   end
 
   def destroy

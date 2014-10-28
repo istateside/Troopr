@@ -1,0 +1,26 @@
+<h1>Sign up for Troopr!</h1>
+
+<form action="<%= users_url %>" method="POST">
+	<%= auth_token %>
+	<div class="input-group">
+		<label for="user_email">Email</label>
+		<input type="text" name="user[email]" id="user_email" value="<%= @user.email %>">
+	</div>
+	
+	<div class="input-group">
+		<label for="user_username">Username</label>
+		<input type="text" name="user[username]" id="user_username" value="<%= @user.username %>">
+	</div>
+	
+	<div class="input-group">
+		<label for="user_password">Password</label>
+		<input type="text" name="user[password]" id="user_password">
+	</div>
+	<div class="input-group">
+		<label for="user_password_confirmation">Confirm Password</label>
+		<input type="text" name="user[password_confirmation]" id="password_confirmation">
+	</div>
+	<button type="submit">Sign up!</button>
+</form>
+
+<a href="<%= new_session_url %>">Already have an account? Sign in!</a>

@@ -7,4 +7,5 @@ module ApplicationHelper
       type="hidden">
     HTML
   end
+  
 end

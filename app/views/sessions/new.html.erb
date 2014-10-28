@@ -1,0 +1,18 @@
+<h1>Log in!</h1>
+
+<form action="<%= session_url %>" method="POST">
+	<%= auth_token %>
+	<div class="input-group">
+		<label for="user_email">Email</label>
+		<input type="text" name="user[email]" id="user_email">
+	</div>
+	<div class="input-group">
+		<label for="user_password">Password</label>
+		<input type="password" name="user[password]" id="user_password">
+	</div>
+<button type="submit">Log in!</button>
+</form>
+
+
+
+<a href="<%= new_user_url %>">Sign up for Troopr!</a>
