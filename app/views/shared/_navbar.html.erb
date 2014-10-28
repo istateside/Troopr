@@ -3,7 +3,7 @@
 		<li><a href="<%= posts_url %>">Dashboard</a></li>
 		
 		<% unless !current_user %>
-		<%= link_to 'Log Out', session_url,  method: :delete %>
+		Logged in as: <%= current_user.username %> - <%= link_to 'Log Out', session_url,  method: :delete %>
 		<% end %>
 	</ul>	
 </nav>

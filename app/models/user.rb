@@ -27,8 +27,12 @@ class User < ActiveRecord::Base
     foreign_key: "source_id",
     dependent: :destroy
   
-  has_many :following, through: :follows, source: :source
-  has_many :followers, through: :follows, source: :target
+  has_many :following, through: :follows, source: :target
+  has_many :followers, through: :follows, source: :source
+  
+  def is_following?(user)
+    self.following.include?(user)
+  end
   
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

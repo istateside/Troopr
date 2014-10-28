@@ -1,7 +1,7 @@
 <h1>Dashboard</h1>
 <ul>
   <% @posts.each do |post| %>
-    <li><a href="<%= post_url(post) %>"><%= post.title %> - <%= post.user.email %></a></li>
+    <li><a href="<%= post_url(post) %>"><%= post.title %></a> - <a href="<%= user_url(post.user) %>"><%= post.user.email %></a></li>
   <% end %>
 </ul>
 

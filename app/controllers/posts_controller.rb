@@ -2,9 +2,9 @@ class PostsController < ApplicationController
   before_action :check_log_in
   def index
     @posts = current_user.posts
-    # current_user.followed_users.each do |user|
-    #   @posts += user.posts
-    # end
+    current_user.following.each do |user|
+      @posts += user.posts
+    end
     @posts.sort_by { |post| post.created_at }
     render :index
   end
