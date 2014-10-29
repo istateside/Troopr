@@ -65,6 +65,7 @@ main {
 	padding: 5px 15px;
 	top: 56px;
 	background: #C9C9C9;
+	border-radius: 20px;
 }
 
 a#new-post {
@@ -72,11 +73,9 @@ a#new-post {
 }
 
 div.post-box {
-	width: 600px;
-	border-radius: 10px;
-	border: 2px solid black;
-	margin: 0px 50px 20px 50px;
+	width: 700px;	
 	display: inline-block;
+	box-sizing: border-box;
 }
 
 
@@ -89,10 +88,20 @@ figure.user-avatar {
 	vertical-align: top;
 }
 
+a.username-link {
+	font-size: 12px;
+}
+
 div.post-content {
+	box-sizing: border-box;
 	border-radius: 10px;
+	background: white;
 	float: left;
-	width: 545px;
+	width: 645px;
+}
+
+h5.username-header {
+	border-radius: 10px;
 }
 
 div.post-bottom-bar {
