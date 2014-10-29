@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @user.activation_token = SecureRandom::urlsafe_base64(16).to_s
     @user.save
-    @url = '/users/' + @user.id.to_s + '/activate?activation_token=' + @user.activation_token
+    # @url = '/users/' + @user.id.to_s + '/activate?activation_token=' + @user.activation_token
     mail(to: user.email, subject: "Welcome to Troopr!")
   end
 end
