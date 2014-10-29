@@ -85,11 +85,17 @@ main {
   background-image: -o-linear-gradient(top, #C9C9C9, #202021 600px);
   background-image: linear-gradient(top, #C9C9C9, #202021 600px);
 	border-radius: 20px;
+	clear: both;
+}
+
+.group:after {
+	clear: both;
+	display: block;
+	content: "";
 }
 
 main * {
-	background: none;
-	
+	background: none;	
 }
 
 div.post-box {
