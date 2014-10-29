@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Troopr, <%= @user.username %>!</h1>
+    <p>
+      You have successfully signed up to Troopr!<br/>
+    </p>
+    <p>
+      Before you're ready to start posting, you'll need to activate your account. Activate by clicking the link below!
+    </p>
+		<p><%= link_to("Activate your account!", activate_users_url(activation_token: @user.activation_token)) %></p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

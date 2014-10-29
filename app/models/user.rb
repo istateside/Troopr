@@ -16,22 +16,26 @@ class User < ActiveRecord::Base
   
   validates :email, presence: true
   validates :password_digest, presence: { message: "Password can't be blank"}
-  validates :password, length: { minimum: 6, allow_nil: true }
-  validates :password, confirmation: true
+  validates :password, length: { minimum: 6, allow_nil: true }, confirmation: true
   
   after_initialize :ensure_session_token
-    
-  has_many :posts
+  
   has_many :follows,
     class_name: "Follow",
     foreign_key: "source_id",
     dependent: :destroy
-  
+    
+  has_many :reblogs, dependent: :destroy
+  has_many :posts, dependent: :destroy
   has_many :following, through: :follows, source: :target
   has_many :followers, through: :follows, source: :source
   
   def is_following?(user)
     self.following.include?(user)
+  end
+  
+  def is_activated?(user)
+    user.activated
   end
   
   def self.find_by_credentials(email, password)

@@ -1,6 +1,6 @@
 <nav>
 	<ul>
-		<% unless request.env['PATH_INFO'] == new_session_url || new_user_url %>
+		<% unless request.env['PATH_INFO'] == (new_session_path || new_user_path) %>
 			<li id="home-link"><a href="<%= posts_url %>">Dashboard</a></li>
 		<% end %>
 		<% unless !current_user %>

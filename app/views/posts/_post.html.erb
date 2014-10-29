@@ -1,14 +1,15 @@
 <div class="post-box">
-	<div class="content-box">
-		<h5 class="username-header"><a href="<%= user_url(post.user) %>"><%= post.user.username %></a></h5>
-		<% if post.title %><h2 class="post-title"><a href="<%= post_url(post) %>"><%= post.title %></a></h2><% end %>
-		<p class="post-body"><%= post.body %></p>
-	</div>
-	<div class="post-bottom-bar">
-		<ul>
-			<li>Notes!</li>
-			<li>Reblog!</li>
-			<li>Like!</li>
-		</ul>
+	<figure class="user-avatar"></figure>
+	<div class="post-content">
+			<div class="content-box">
+			<h5 class="username-header"><a href="<%= user_url(post.user) %>"><%= post.user.username %></a></h5>
+			<% if post.title %><h2 class="post-title"><a href="<%= post_url(post) %>"><%= post.title %></a></h2><% end %>
+			<p class="post-body"><%= post.body %></p>
+		</div>
+		<div class="post-bottom-bar">
+				<a href="#" class="notes-display">Notes!
+				<a href="#" class="reblog-button">Reblog!</a>
+				<a href="#" class="like-button">Like!</a>
+		</div>
 	</div>	
 </div>

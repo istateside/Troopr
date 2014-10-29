@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029001103) do
+ActiveRecord::Schema.define(version: 20141029044144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,21 +27,33 @@ ActiveRecord::Schema.define(version: 20141029001103) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
-    t.text     "body",       null: false
-    t.integer  "user_id",    null: false
-    t.string   "post_type",  null: false
+    t.text     "body",                             null: false
+    t.integer  "user_id",                          null: false
+    t.string   "post_type",                        null: false
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "reblog",           default: false
+    t.integer  "original_user_id"
+  end
+
+  create_table "reblogs", force: true do |t|
+    t.integer  "source_id",    null: false
+    t.integer  "reblogger_id", null: false
+    t.integer  "post_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",           null: false
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
+    t.string   "email",                            null: false
+    t.string   "username",                         null: false
+    t.string   "password_digest",                  null: false
+    t.string   "session_token",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "activated",        default: false
+    t.string   "activation_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

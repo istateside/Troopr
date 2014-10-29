@@ -1,7 +1,4 @@
-<h1>Dashboard</h1><a href="<%= new_user_post_url(current_user) %>">New Post</a>
-<ul>
-  <% @posts.each do |post| %>
-		<%= render post %>
-    <!-- <li><a href="<%= post_url(post) %>"><%= post.title %></a> - <a href="<%= user_url(post.user) %>"><%= post.user.email %></a></li> -->
-  <% end %>
-</ul>
+<h1 id="dash-header">Dashboard</h1><a id="new-post" href="<%= new_user_post_url(current_user) %>">New Post</a>
+<% @posts.each do |post| %>
+	<%= render post %>
+<% end %>

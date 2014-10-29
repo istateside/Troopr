@@ -13,10 +13,12 @@ class SessionsController < ApplicationController
       params[:user][:email],
       params[:user][:password]
     )
-    
     if @user.nil?
       flash.now[:errors] = ["Email/Password combination not found!"]
       render :new
+    elsif !@user.activated
+      UserMailer.auth_email(@user).deliver!
+      render :mailer_fail
     else
       login_user!(@user)
       redirect_to posts_url

@@ -6,11 +6,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # fail
     if @user.save
-      flash[:notice] = ["Account created!"]
-      login_user!(@user)
-      redirect_to posts_url
+      flash[:notice] = "Account created!"
+      UserMailer.auth_email(@user).deliver!
+      render :mailer
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
@@ -33,6 +32,20 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     render :show
+  end
+  
+  def activate
+    @user = User.find_by_activation_token(params[:activation_token])
+    if @user
+      @user.toggle(:activated)
+      login_user!(@user)
+      flash[:notice] = "Account activated!"
+      redirect_to root_url
+    else
+      fail
+      flash[:errors] = "Weird!"
+      redirect_to new_session_url
+    end
   end
   
   private
