@@ -123,6 +123,6 @@ div.post-bottom-bar a.reblog-button {
 	float: right;
 }
 
-div.post-bottom-bar a.like-button{
+div.post-bottom-bar form.button_to{
 	float: right;
 }

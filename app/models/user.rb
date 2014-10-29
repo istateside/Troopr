@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
     foreign_key: "source_id",
     dependent: :destroy
     
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
   has_many :reblogs, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :following, through: :follows, source: :target
@@ -34,8 +36,12 @@ class User < ActiveRecord::Base
     self.following.include?(user)
   end
   
-  def is_activated?(user)
-    user.activated
+  def is_activated?
+    self.activated
+  end
+  
+  def has_liked?(post)
+    self.liked_posts.include?(post)
   end
   
   def self.find_by_credentials(email, password)

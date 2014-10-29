@@ -35,15 +35,15 @@ class UsersController < ApplicationController
   end
   
   def activate
-    @user = User.find_by_activation_token(params[:activation_token])
-    if @user
+    @user = User.find(params[:user_id])
+    if @user.activation_token == params[:activation_token]
       @user.toggle(:activated)
       login_user!(@user)
       flash[:notice] = "Account activated!"
       redirect_to root_url
     else
       fail
-      flash[:errors] = "Weird!"
+      flash[:errors] = "Activation token did not match!"
       redirect_to new_session_url
     end
   end
