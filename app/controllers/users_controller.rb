@@ -19,15 +19,6 @@ class UsersController < ApplicationController
   def index
     redirect_to posts_url #CHANGE THIS LATER
   end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
   
   def show
     @user = User.find(params[:id])
@@ -46,6 +37,12 @@ class UsersController < ApplicationController
       flash[:errors] = "Activation token did not match!"
       redirect_to new_session_url
     end
+  end
+  
+  def search
+    @users = User.all
+    @users.select!{|user| user.username.downcase.include?(params[:search_query])}
+    fail
   end
   
   private

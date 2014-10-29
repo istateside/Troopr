@@ -1,7 +1,8 @@
 class LikesController < ApplicationController
   before_action :check_log_in
   def create
-    current_user.likes.create!({post: Post.find(params[:post_id])})
+    post = Post.find(params[:post_id])
+    current_user.likes.create!({post: post})
     redirect_to posts_url
   end
   

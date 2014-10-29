@@ -26,18 +26,23 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def show
     @post = Post.find(params[:id])
+    @post.get_note_path
     render :show
   end
-
-  def destroy
+  
+  def reblog
+    @original_post = Post.find(params[:post_id])
+    @reblog = @original_post.dup
+    @reblog.reblog = true
+    @reblog.previous_user_id = @original_post.user_id
+    @reblog.user = current_user
+    @reblog.original_post_id = @original_post.id
+  
+    @reblog.save!
+    Reblog.create!({ post_id: @original_post.id, user_id: current_user.id, previous_user_id: @reblog.previous_user_id })
+    redirect_to posts_url
   end
 
   private

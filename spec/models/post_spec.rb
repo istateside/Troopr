@@ -12,6 +12,7 @@
 #  updated_at       :datetime
 #  reblog           :boolean          default(FALSE)
 #  previous_user_id :integer
+#  original_post_id :integer
 #
 
 require 'rails_helper'

@@ -16,7 +16,7 @@
 class User < ActiveRecord::Base
   attr_reader :password
   
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: { message: "Password can't be blank"}
   validates :password, length: { minimum: 6, allow_nil: true }, confirmation: true
   
@@ -29,7 +29,17 @@ class User < ActiveRecord::Base
     
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
-  has_many :reblogs, dependent: :destroy
+  
+  has_many :own_reblogs,
+    class_name: "Reblog",
+    foreign_key: :user_id,
+    inverse_of: :reblogger
+
+  has_many :others_reblogs,
+    class_name: "Reblog",
+    foreign_key: :previous_user_id,
+    source: :previous_user
+  
   has_many :posts, dependent: :destroy
   has_many :following, through: :follows, source: :target
   has_many :followers, through: :follows, source: :source

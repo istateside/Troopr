@@ -15,4 +15,8 @@ class Like < ActiveRecord::Base
   
   belongs_to :post
   belongs_to :user
+  
+  def render
+    return (self.user.username + " liked this post.")
+  end
 end

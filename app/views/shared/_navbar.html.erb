@@ -1,10 +1,12 @@
 <nav>
+	<div class="nav-content">
 	<ul>
 		<% unless request.env['PATH_INFO'] == (new_session_path || new_user_path) %>
-			<li id="home-link"><a href="<%= posts_url %>">Dashboard</a></li>
+			<li id="home-link"><a href="<%= posts_url %>"><%= image_tag("logo.png", height: "50") %></a></li>
 		<% end %>
 		<% unless !current_user %>
 		<li id="user-li">Logged in as: <%= current_user.username %> - <%= link_to 'Log Out', session_url,  method: :delete %></li>
 		<% end %>
-	</ul>	
+	</ul>
+</div>	
 </nav>

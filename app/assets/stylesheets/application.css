@@ -43,53 +43,75 @@ nav {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	padding: 10px;
+	
 	clear: both;
+	height: 56px;
+	box-sizing: border-box;
+	z-index: 1000;
+	overflow: hidden;
+}
+div.nav-content {
+	width: 930px;
+	margin: auto;
+	position: relative;
+	padding: 10px;
 	box-sizing: border-box;
 }
 
 li#home-link {
-	float: left;
+/*	float: left;*/
+	position: absolute;
+	top:1px;
+	left: 0px;
 }
 
 li#user-li {
-	float: right;
+/*	float: right;*/
+	position: absolute;
+	top:1px;
+	right: 0px;
 }
 
 /* CONTENT */
-
 main {
-	width: 700px;
+	width: 900px;
 	margin: auto;
 	position: relative;
 	padding: 5px 15px;
-	top: 56px;
+	top: 96px;
 	background: #C9C9C9;
+	background-image: -webkit-linear-gradient(top, #C9C9C9, #202021 600px); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+  background-image: -moz-linear-gradient(top, #C9C9C9, #202021 600px);
+  background-image: -o-linear-gradient(top, #C9C9C9, #202021 600px);
+  background-image: linear-gradient(top, #C9C9C9, #202021 600px);
 	border-radius: 20px;
 }
 
-a#new-post {
-	
+main * {
+	background: none;
 }
 
 div.post-box {
-	width: 700px;	
+	width: 900px;	
 	display: inline-block;
 	box-sizing: border-box;
+	margin-bottom: 20px;
 }
 
-
 figure.user-avatar {
-	width: 30px;
-	height: 30px;
+	width: 64px;
+	height: 64px;
 	float: left;
 	background: black;
+	border-radius: 6px;
 	margin: 10px 15px 0px 10px;
 	vertical-align: top;
 }
 
-a.username-link {
-	font-size: 12px;
+p.username-header {
+	font-size: 13px;
+	margin-bottom: 13px;
+	color: gray;
 }
 
 div.post-content {
@@ -98,10 +120,17 @@ div.post-content {
 	background: white;
 	float: left;
 	width: 645px;
+	padding: 15px 20px;
 }
 
 h5.username-header {
 	border-radius: 10px;
+}
+
+h2.post-title {
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 22px;
 }
 
 div.post-bottom-bar {
@@ -125,4 +154,23 @@ div.post-bottom-bar a.reblog-button {
 
 div.post-bottom-bar form.button_to{
 	float: right;
+}
+
+input.unlike {
+	background: red;
+}
+
+/* NOTES SHOW */
+li.note-li {
+	font-size: 10px;
+	margin-left: 20px;
+	padding: 5px 0;
+	border-bottom: 1px solid gray;
+}
+
+a.notes-display {
+	font-size: 13px;
+	color: gray;
+	position: absolute;
+	bottom: -10px;
 }

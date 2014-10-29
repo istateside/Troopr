@@ -19,7 +19,8 @@ RSpec.describe User, :type => :model do
   it { should have_many(:follows) }
   it { should have_many(:likes) }
   it { should have_many(:liked_posts) }
-  it { should have_many(:reblogs) }
+  it { should have_many(:own_reblogs) }
+  it { should have_many(:others_reblogs) }
   it { should have_many(:posts) }
   it { should have_many(:following) }
   it { should have_many(:followers) }
