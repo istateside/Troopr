@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     current_user.following.each do |user|
       @posts += user.posts
     end
-    @posts.sort_by { |post| post.created_at }
+    @posts = (@posts.sort_by {|p| p.created_at }).reverse!
     render :index
   end
 
@@ -34,7 +34,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    puts params
     render :show
   end
 
@@ -44,6 +43,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_type, )
+    params.require(:post).permit(:title, :body, :post_type)
   end
 end

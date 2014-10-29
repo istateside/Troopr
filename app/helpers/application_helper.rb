@@ -8,4 +8,12 @@ module ApplicationHelper
     HTML
   end
   
+  def follow_button(user)
+    if current_user.is_following?(user)
+    	button_to "Unfollow", {:controller => :follows, :action => 'destroy', :id => @user.id}, :method => :delete
+    elsif (user != current_user)
+    	button_to "Follow", user_follows_url(user)
+    end
+  end
+  
 end

@@ -25,11 +25,6 @@ end
 
 RSpec.describe Post, :type => :model do
   context "without title, body or type" do 
-
-    it "validates presence of title" do
-      expect(FactoryGirl.build(:post, title: nil)).to_not be_valid
-    end
-
     it "validates presence of body" do
       expect(FactoryGirl.build(:post, body: nil)).to_not be_valid
     end
