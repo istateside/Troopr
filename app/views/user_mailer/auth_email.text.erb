@@ -9,7 +9,6 @@ Welcome to Troopr, <%= @user.username %>!
   Before you're ready to start posting, you'll need to activate your account. Activate by clicking the link below!
 	
 	
-	<%= link_to("Activate your account!", activate_users_url(activation_token: @user.activation_token)) %>
- 
+	<%= link_to("Activate your account!", user_activate_url(activation_token: @user.activation_token, user_id: @user.id)) %> 
  
  Thanks for joining and have a great day!

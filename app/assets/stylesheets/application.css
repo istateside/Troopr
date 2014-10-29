@@ -89,6 +89,7 @@ main {
 
 main * {
 	background: none;
+	
 }
 
 div.post-box {
@@ -126,6 +127,9 @@ div.post-content {
 h5.username-header {
 	border-radius: 10px;
 }
+a.username-link:hover {
+	color: black;
+}
 
 h2.post-title {
 	margin-bottom: 10px;
@@ -135,6 +139,7 @@ h2.post-title {
 
 div.post-bottom-bar {
 	clear: both;
+	height: 20px;
 	padding: 5px 10px;
 }
 

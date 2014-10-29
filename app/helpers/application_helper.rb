@@ -9,10 +9,10 @@ module ApplicationHelper
   end
   
   def post_byline(post)
-    html = "<p class='username-header'><a href='#{user_url(post.user)}'>#{post.user.username}</a>"
+    html = "<p class='username-header'><a href='#{user_url(post.user)}' class='username-link'>#{post.user.username}</a>"
     if post.reblog
       user = post.previous_user
-      html += " from <a href='#{user_url(user)}'>#{ user.username }</a>"
+      html += " from <a href='#{user_url(user)}' class='username-link'>#{ user.username }</a>"
     end
     html += "</p>"
     return html.html_safe

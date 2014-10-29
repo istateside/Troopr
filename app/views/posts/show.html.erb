@@ -4,10 +4,6 @@
 		<% if @post.title %><h2 class="post-title"><%= @post.title %></h2><% end %>
 		<p class="post-body"><%= @post.body %></p>
 	</div>
-	<div class="post-bottom-bar">
-			<%= reblog_button(@post) %>
-			<%= like_button(@post) %>
-	</div>
-	
-	<%= render 'notes', notes: @post.get_notes %>
+	<%= render 'post_bottom_bar', post: @post %>
+	<%= render 'notes', notes: @post.notes %>
 </div>	
