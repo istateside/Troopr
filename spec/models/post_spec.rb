@@ -2,18 +2,20 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)      not null
-#  body       :text             not null
-#  user_id    :integer          not null
-#  post_type  :string(255)      not null
-#  url        :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id               :integer          not null, primary key
+#  title            :string(255)
+#  body             :text             not null
+#  user_id          :integer          not null
+#  post_type        :string(255)      not null
+#  url              :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  reblog           :boolean          default(FALSE)
+#  previous_user_id :integer
 #
 
 require 'rails_helper'
-require 'factory_girl'
+
 FactoryGirl.define do
   factory :post do |p|
     p.title "Test post"
@@ -24,6 +26,14 @@ FactoryGirl.define do
 end
 
 RSpec.describe Post, :type => :model do
+  context "associations" do
+    it { should belong_to(:user) }
+    it { should belong_to(:previous_user) }
+    it { should have_many(:likes) }
+    # it { should have_many(:tags) }
+  end
+  
+  
   context "without title, body or type" do 
     it "validates presence of body" do
       expect(FactoryGirl.build(:post, body: nil)).to_not be_valid

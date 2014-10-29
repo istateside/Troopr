@@ -48,5 +48,9 @@ group :development do
   gem 'spring'
   gem 'rspec-rails'
   gem 'factory_girl'
+end
+
+group :test do
   gem 'shoulda-matchers'
+  gem 'shoulda'
 end
