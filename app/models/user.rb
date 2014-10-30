@@ -10,12 +10,13 @@
 #  updated_at       :datetime
 #  activated        :boolean          default(FALSE)
 #  activation_token :string(255)
+#  current_blog_id  :integer
 #
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  attr_reader :password, :current_blog
+  attr_accessor :password, :current_blog
   
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: { message: "Password can't be blank"}
@@ -24,17 +25,29 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   
   has_many :blogs
+  # belongs_to :current_blog, class_name: "Blog", foreign_key: :current_blog_id
   
   def is_activated?
     self.activated
   end
   
-  def current_blog
-    @current_blog ||= self.blogs.first
+  def current_active_blog
+    if self.current_blog_id.nil?
+      current_active_blog=(self.blogs.first)
+    else 
+      self.blogs.first
+    end
   end
   
-  def current_blog=(blog)
-    @current_blog = blog
+  def current_active_blog=(id)
+    self.current_blog_id = id
+    self.save!
+  end
+  
+  def self.find_or_create_by_fb_auth_hash(auth_hash)
+    @user = User.find_by_email(auth_hash[:info][:email])
+    @user = User.new({email: auth_hash[:info][:email]}) if @user.nil?
+    return @user
   end
   
   def self.find_by_credentials(email, password)

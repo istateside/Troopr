@@ -6,6 +6,7 @@
 		<% end %>
 		<% unless !current_user %>
 			<li id="blog-li">Logged in as: <%= link_to current_user.email, posts_url %> - <%= link_to 'Log Out', session_url,  method: :delete %></li>
+			<li id="blogs-list-li"><a href="<%= blogs_url %>">Find New Blogs!</a></li>
 		<% end %>
 	</ul>
 </div>

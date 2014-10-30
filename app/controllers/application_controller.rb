@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_blog
-    current_user.current_blog
+    current_user.current_active_blog
   end
   
   def logged_in?(user)

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    redirect_to posts_url #CHANGE THIS LATER
+    redirect_to posts_url
   end
   
   def show
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
   
   def change_blogs
-    current_user.current_blog = Blog.find(params[:blog_id])
+    current_user.current_active_blog = (params[:blog_id])
     redirect_to posts_url
   end
   private
