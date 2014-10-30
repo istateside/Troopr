@@ -38,11 +38,17 @@ class PostsController < ApplicationController
     @reblog.reblog = true
     @reblog.previous_blog_id = @original_post.blog_id
     @reblog.blog = current_blog
-    @reblog.original_blog_id = @original_post.id
+    @reblog.original_post_id = @original_post.id
   
     @reblog.save!
     Reblog.create!({ post_id: @original_post.id, blog_id: current_blog.id, previous_blog_id: @reblog.previous_blog_id })
     redirect_to posts_url
+  end
+  
+  def destroy
+    @post = current_blog.posts.find(params[:id])
+    @post.destroy!
+    redirect_to(:back)
   end
 
   private

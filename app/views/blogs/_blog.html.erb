@@ -2,10 +2,11 @@
 	<figure class="blog-avatar"></figure>
 	<div class="blog-content">
 		<div class="content-box">
-			<h2><%= blog.blogname %></h2>
-			<p><%= blog.description %></p>
-			<p><%= blog.location %></p>
-			<%= follow_button(blog) %>
+			<div class="blog-header group"><h2><%= blog.blogname %></h2><%= follow_button(blog) %></div>
+			<div class="blog-description">
+				<p><%= blog.description %></p>
+				<p><%= blog.location %></p>
+			</div>
 		</div>
 	</div>	
 </div>

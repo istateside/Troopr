@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   resources :blogs do
     resources :follows, only: [:create, :index]
-    resources :posts, except: [:index, :show]
+    resources :posts, shallow: true
   end
   
   resources :follows, only: [:destroy]

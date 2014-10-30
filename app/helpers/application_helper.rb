@@ -31,11 +31,8 @@ module ApplicationHelper
     end
   end
   
-  def blog_select
-    @blogs = current_user.blogs
-    <<-HTML.html_safe
-    
-    HTML
+  def delete_button(post)
+     (button_to "Delete", {:controller => :posts, :action => 'destroy', :id => post.id }, {method: :delete, class: "post-delete"}) if post.blog == current_blog
   end
   
   def follow_button(blog)

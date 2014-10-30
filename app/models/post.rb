@@ -31,13 +31,13 @@ class Post < ActiveRecord::Base
 
   has_many :likes, dependent: :destroy
   
-  has_many :reblogs  
+  has_many :reblogs, dependent: :destroy
   has_many :descendents,
     class_name: "Post",
     foreign_key: :original_post_id
 
   def self.original_source(post)
-    !post.reblog ? (return post) : (return original_source(post.original_post))
+    !post.reblog ? (return post) : (return Post.original_source(post.original_post))
   end
   
   def get_notes

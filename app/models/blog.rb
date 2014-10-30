@@ -28,7 +28,10 @@ class Blog < ActiveRecord::Base
     class_name: "Reblog",
     foreign_key: :previous_blog_id,
     source: :previous_blog
-  
+    
+  has_many :reblogged_posts, 
+    through: :own_reblogs
+    
   has_many :follows,
     class_name: "Follow",
     foreign_key: "source_id",

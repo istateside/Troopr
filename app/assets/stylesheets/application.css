@@ -59,14 +59,12 @@ div.nav-content {
 }
 
 li#home-link {
-/*	float: left;*/
 	position: absolute;
 	top:1px;
 	left: 0px;
 }
 
 li#blog-li {
-/*	float: right;*/
 	position: absolute;
 	top:1px;
 	right: 0px;
@@ -184,4 +182,31 @@ a.notes-display {
 	color: gray;
 	position: absolute;
 	bottom: -10px;
+}
+
+/* BLOGS INDEX */
+div.blog-div {
+	width: 900px;	
+	display: inline-block;
+	box-sizing: border-box;
+	margin-top: 20px;
+}
+
+div.blog-content {
+	float:left;
+}
+
+div.blog-header {
+	margin-bottom: 10px;
+}
+
+div.blog-div h2 {
+	font-weight: bold;
+	font-size: 22px;
+	float: left;
+}
+
+div.blog-div input {
+	display: inline-block;
+	float: left;
 }
