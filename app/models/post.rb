@@ -29,9 +29,10 @@ class Post < ActiveRecord::Base
     class_name: "Post",
     foreign_key: :original_post_id
 
-  has_many :likes, dependent: :destroy
+  has_many :likes
   
-  has_many :reblogs, dependent: :destroy
+  has_many :reblogs
+  
   has_many :descendents,
     class_name: "Post",
     foreign_key: :original_post_id
