@@ -3,11 +3,12 @@
 # Table name: reblogs
 #
 #  id               :integer          not null, primary key
-#  post_id          :integer          not null
+#  new_post_id      :integer          not null
 #  blog_id          :integer          not null
 #  created_at       :datetime
 #  updated_at       :datetime
 #  previous_blog_id :integer          not null
+#  previous_post_id :string(255)
 #
 
 require 'rails_helper'

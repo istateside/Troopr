@@ -70,6 +70,12 @@ li#blog-li {
 	right: 0px;
 }
 
+li#new-blog-li {
+	position: absolute;
+	top: 50px;
+	right: 6px;
+}
+
 li#blogs-list-li {
 	position: absolute;
 	top:30px;
@@ -228,7 +234,9 @@ div.blog-content {
 }
 
 div.blog-header {
+	position: relative;
 	margin-bottom: 10px;
+	display: inline-block;
 }
 
 div.blog-div h2 {
@@ -271,4 +279,11 @@ div.blog-info h1 {
 }
 div.blog-info p {
 	color: #636363;
+}
+
+/* BLOG PARTIAL */
+input.follow-button {
+	position: absolute;
+	right: -64px;
+	top: 3px;
 }

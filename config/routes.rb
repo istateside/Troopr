@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
   
   resources :users do
-    resources :blogs, shallow: true 
     get :activate
     post :search, on: :collection
     post :change_blogs

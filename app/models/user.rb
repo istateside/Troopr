@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   
   has_many :blogs
-  # belongs_to :current_blog, class_name: "Blog", foreign_key: :current_blog_id
   
   def is_activated?
     self.activated

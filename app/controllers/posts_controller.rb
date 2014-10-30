@@ -41,7 +41,12 @@ class PostsController < ApplicationController
     @reblog.original_post_id = @original_post.id
   
     @reblog.save!
-    Reblog.create!({ post_id: @original_post.id, blog_id: current_blog.id, previous_blog_id: @reblog.previous_blog_id })
+    @original_post.reblogs.create!({ 
+      new_post_id: @reblog.id, 
+      blog_id: current_blog.id, 
+      previous_blog_id: @reblog.previous_blog_id, 
+      previous_post_id: @original_post.id 
+    })
     redirect_to posts_url
   end
   

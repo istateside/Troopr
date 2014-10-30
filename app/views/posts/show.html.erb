@@ -6,6 +6,6 @@
 			<p class="post-body"><%= @post.body %></p>
 		</div>
 		<%= render 'posts/post_bottom_bar', post: @post %>
-		<%= render 'posts/notes', notes: @post.notes %>
+		<%= render 'posts/notes', notes: @post.get_note_path.reverse %>
 	</div>
 </div>

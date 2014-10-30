@@ -1,7 +1,7 @@
 <div class="feed group">
 	<%= render 'blog_header', blog: @blog %>
 	<%= follow_button(@blog) %>
-
+	
 	<% @blog.posts.each do |post| %>
 		<%= render 'posts/post', post: post %>
 	<% end %>
