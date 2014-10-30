@@ -38,9 +38,17 @@ gem 'rails_12factor'
 
 # Use debugger#
 # gem 'debugger', group: [:development, :test]
+
 gem 'filepicker-rails'
+gem 'omniauth'
+gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-soundcloud', '~> 1.0.0'
+gem 'uuidtools'
+gem 'aws-sdk'
+gem 'figaro'
 gem 'backbone-on-rails'
+gem 'devise'
 gem 'seed_dump', group: [:development, :test]
 
 group :development do

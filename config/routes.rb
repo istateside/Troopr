@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'posts#index'  
+  get '/auth/facebook/callback', to: 'oauth_callbacks#facebook'
   
   resources :posts, only: [:index, :show] do
     resources :likes, only: [:create]
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     post :change_blogs
   end
   
+
   resources :blogs do
     resources :follows, only: [:create, :index]
     resources :posts, shallow: true

@@ -29,4 +29,9 @@ class SessionsController < ApplicationController
     logout_user!
     redirect_to new_session_url
   end
+  private
+  
+  def auth_hash
+    request.env['omniauth.auth']
+  end
 end
