@@ -44,6 +44,7 @@ class Blog < ActiveRecord::Base
   def is_following?(blog)
     self.following.include?(blog)
   end
+  
   def has_liked?(post)
     self.liked_posts.include?(post)
   end

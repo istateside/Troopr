@@ -49,7 +49,7 @@ Rails.application.configure do
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-  config.action_mailer.default_url_options = { host: 'trooper.herokuapp.com'}
+  config.action_mailer.default_url_options = { host: 'troopr.herokuapp.com'}
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
