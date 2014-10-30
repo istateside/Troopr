@@ -5,13 +5,13 @@
 #  id               :integer          not null, primary key
 #  title            :string(255)
 #  body             :text             not null
-#  user_id          :integer          not null
+#  blog_id          :integer          not null
 #  post_type        :string(255)      not null
 #  url              :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
 #  reblog           :boolean          default(FALSE)
-#  previous_user_id :integer
+#  previous_blog_id :integer
 #  original_post_id :integer
 #
 

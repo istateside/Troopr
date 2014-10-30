@@ -2,13 +2,14 @@
 #
 # Table name: blogs
 #
-#  id          :integer          not null, primary key
-#  blogname    :string(255)      not null
-#  user_id     :integer          not null
-#  description :text             not null
-#  location    :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id             :integer          not null, primary key
+#  blogname       :string(255)      not null
+#  user_id        :integer          not null
+#  description    :text             not null
+#  location       :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  filepicker_url :string(255)
 #
 
 require 'rails_helper'

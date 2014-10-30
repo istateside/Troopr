@@ -96,6 +96,17 @@ main * {
 	background: none;	
 }
 
+.arrow-left {
+	width: 0; 
+	height: 0; 
+	position: absolute;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent; 
+	border-right:10px solid white;
+	left: -10px;
+	top: 20px;
+}
+
 div.post-box {
 	width: 900px;	
 	display: inline-block;
@@ -126,6 +137,8 @@ div.post-content {
 	float: left;
 	width: 645px;
 	padding: 15px 20px;
+
+	position: relative;
 }
 
 h5.blogname-header {
@@ -169,6 +182,13 @@ input.unlike {
 	background: red;
 }
 
+input.post-delete {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	background: red;
+}
+
 /* NOTES SHOW */
 li.note-li {
 	font-size: 10px;
@@ -209,4 +229,35 @@ div.blog-div h2 {
 div.blog-div input {
 	display: inline-block;
 	float: left;
+}
+
+/* BLOG SHOW */
+
+div.blog-intro-div {
+}
+
+figure.blog-image-fig {
+	border-radius: 10px;
+	border: 3px solid white;
+	height: 100px;
+	width: 100px;
+	background: black;
+	margin: auto;
+	box-sizing: border-box;
+	position: relative;
+	bottom: 20px;
+}
+
+div.blog-info {
+	margin: auto;
+	position: relative;
+	text-align: center;
+}
+
+div.blog-info h1 {
+	margin: auto;
+	font-size: 42px;
+}
+div.blog-info p {
+	color: #636363;
 }

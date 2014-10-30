@@ -4,10 +4,10 @@
 #
 #  id               :integer          not null, primary key
 #  post_id          :integer          not null
-#  user_id          :integer          not null
+#  blog_id          :integer          not null
 #  created_at       :datetime
 #  updated_at       :datetime
-#  previous_user_id :integer          not null
+#  previous_blog_id :integer          not null
 #
 
 class Reblog < ActiveRecord::Base

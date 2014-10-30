@@ -38,7 +38,9 @@ gem 'rails_12factor'
 
 # Use debugger#
 # gem 'debugger', group: [:development, :test]
-gem "paperclip", "~> 2.7"
+gem 'filepicker-rails'
+gem 'omniauth-facebook'
+gem 'backbone-on-rails'
 gem 'seed_dump', group: [:development, :test]
 
 group :development do
