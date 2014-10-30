@@ -15,5 +15,9 @@ require 'rails_helper'
 RSpec.describe Reblog, :type => :model do
   it { should belong_to(:post) }
   it { should belong_to(:reblogger) }
-  it { should belong_to(:previous_user) }
+  it { should belong_to(:previous_blog) }
+  
+  describe "#render" do
+    it "returns a string describing the interaction"
+  end
 end

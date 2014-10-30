@@ -15,7 +15,7 @@ RSpec.describe Follow, :type => :model do
   it { should belong_to(:source) }
   it { should belong_to(:target) }
   
-  context "with Users" do   
+  context "with Blogs" do   
     context "#followers" do
       
       it "returns an array" do

@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029183259) do
+ActiveRecord::Schema.define(version: 20141029225859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blogs", force: true do |t|
+    t.string   "blogname",    null: false
+    t.integer  "user_id",     null: false
+    t.text     "description", null: false
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "follows", force: true do |t|
     t.integer  "source_id",  null: false
@@ -26,38 +35,37 @@ ActiveRecord::Schema.define(version: 20141029183259) do
   add_index "follows", ["source_id", "target_id"], name: "index_follows_on_source_id_and_target_id", unique: true, using: :btree
 
   create_table "likes", force: true do |t|
-    t.integer  "user_id",    null: false
+    t.integer  "blog_id",    null: false
     t.integer  "post_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "likes", ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true, using: :btree
+  add_index "likes", ["blog_id", "post_id"], name: "index_likes_on_blog_id_and_post_id", unique: true, using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "body",                             null: false
-    t.integer  "user_id",                          null: false
+    t.integer  "blog_id",                          null: false
     t.string   "post_type",                        null: false
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "reblog",           default: false
-    t.integer  "previous_user_id"
+    t.integer  "previous_blog_id"
     t.integer  "original_post_id"
   end
 
   create_table "reblogs", force: true do |t|
     t.integer  "post_id",          null: false
-    t.integer  "user_id",          null: false
+    t.integer  "blog_id",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "previous_user_id", null: false
+    t.integer  "previous_blog_id", null: false
   end
 
   create_table "users", force: true do |t|
     t.string   "email",                            null: false
-    t.string   "username",                         null: false
     t.string   "password_digest",                  null: false
     t.string   "session_token",                    null: false
     t.datetime "created_at"
@@ -68,6 +76,5 @@ ActiveRecord::Schema.define(version: 20141029183259) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

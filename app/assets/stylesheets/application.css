@@ -65,7 +65,7 @@ li#home-link {
 	left: 0px;
 }
 
-li#user-li {
+li#blog-li {
 /*	float: right;*/
 	position: absolute;
 	top:1px;
@@ -102,20 +102,20 @@ div.post-box {
 	width: 900px;	
 	display: inline-block;
 	box-sizing: border-box;
-	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
-figure.user-avatar {
+figure.blog-avatar {
 	width: 64px;
 	height: 64px;
 	float: left;
 	background: black;
 	border-radius: 6px;
-	margin: 10px 15px 0px 10px;
+	margin: 0px 15px 0px 10px;
 	vertical-align: top;
 }
 
-p.username-header {
+p.blogname-header {
 	font-size: 13px;
 	margin-bottom: 13px;
 	color: gray;
@@ -130,10 +130,10 @@ div.post-content {
 	padding: 15px 20px;
 }
 
-h5.username-header {
+h5.blogname-header {
 	border-radius: 10px;
 }
-a.username-link:hover {
+a.blogname-link:hover {
 	color: black;
 }
 

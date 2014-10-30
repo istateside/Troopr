@@ -1,0 +1,9 @@
+<div class="feed group">
+	<h1><%= @blog.blogname %></h1>
+	
+	<%= follow_button(@blog) %>
+
+	<% @blog.posts.each do |post| %>
+		<%= render 'posts/post', post: post %>
+	<% end %>
+</div>

@@ -13,5 +13,10 @@ require 'rails_helper'
 
 RSpec.describe Like, :type => :model do
   it { should belong_to(:post) }
-  it { should belong_to(:user) }
+  it { should belong_to(:blog) }
+  
+  describe "#render" do
+    it "returns a string describing the action"   
+  end
+  
 end

@@ -9,10 +9,10 @@ module ApplicationHelper
   end
   
   def post_byline(post)
-    html = "<p class='username-header'><a href='#{user_url(post.user)}' class='username-link'>#{post.user.username}</a>"
+    html = "<p class='blogname-header'><a href='#{blog_url(post.blog)}' class='blogname-link'>#{post.blog.blogname}</a>"
     if post.reblog
-      user = post.previous_user
-      html += " from <a href='#{user_url(user)}' class='username-link'>#{ user.username }</a>"
+      blog = post.previous_blog
+      html += " from <a href='#{blog_url(blog)}' class='blogname-link'>#{ blog.blogname }</a>"
     end
     html += "</p>"
     return html.html_safe
@@ -23,19 +23,26 @@ module ApplicationHelper
   end
   
   def like_button(post)
-    if current_user.has_liked?(post)
-      @like = current_user.likes.find_by_post_id(post.id)
+    if current_blog.has_liked?(post)
+      @like = current_blog.likes.find_by_post_id(post.id)
       (button_to "Unlike", { :controller => :likes, :action => 'destroy', :id => @like.id }, {method: 'delete', class: 'unlike'} )
     else
       (button_to "Like", { :controller => :likes, :action => 'create', :post_id => post.id })
     end
   end
   
-  def follow_button(user)
-    if current_user.is_following?(user)
-    	button_to "Unfollow", {:controller => :follows, :action => 'destroy', :id => @user.id}, method: 'delete'
-    elsif (user != current_user)
-    	button_to "Follow", user_follows_url(user)
+  def blog_select
+    @blogs = current_user.blogs
+    <<-HTML.html_safe
+    
+    HTML
+  end
+  
+  def follow_button(blog)
+    if current_blog.is_following?(blog)
+    	button_to "Unfollow", {:controller => :follows, :action => 'destroy', :id => blog.id}, { method: 'delete', class: "follow-button"}
+    elsif (blog != current_blog)
+    	button_to "Follow", blog_follows_url(blog), { class: "follow-button" }
     end
   end
   

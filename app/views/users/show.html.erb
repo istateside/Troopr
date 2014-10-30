@@ -1,7 +1,9 @@
-<h1><%= @user.username %>'s Blog</h1>
+<div class="feed group">
+	<h1><%= @user.username %>'s Blog</h1>
 	
-<%= follow_button(@user) %>
+	<%= follow_button(@user) %>
 
-<% @user.posts.each do |post| %>
-	<%= render post %>
-<% end %>
+	<% @user.posts.each do |post| %>
+		<%= render 'posts/post', post: post %>
+	<% end %>
+</div>

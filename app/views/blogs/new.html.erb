@@ -1,0 +1,8 @@
+<h1>Create a new blog!</h1>
+
+<% if current_user.blogs.empty? %>
+	<strong>You have not registered a blog yet! You must create at least one blog before you can access the site.</strong>
+<% end %>
+<form action="<%= user_blogs_url %>" method="POST">
+	<%= render 'form', blog: @blog %>
+</form>

@@ -10,13 +10,13 @@
 #
 
 class Like < ActiveRecord::Base
-  validates :post, :user, presence: true
-  validates_uniqueness_of :user_id, :scope => [:post_id]
+  validates :post, :blog, presence: true
+  validates_uniqueness_of :blog_id, :scope => [:post_id]
   
   belongs_to :post
-  belongs_to :user
+  belongs_to :blog
   
   def render
-    return (self.user.username + " liked this post.")
+    return (self.blog.blogname + " liked this post.")
   end
 end

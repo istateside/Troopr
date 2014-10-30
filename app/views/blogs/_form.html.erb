@@ -1,0 +1,19 @@
+<h1>Register a new blog!</h1>
+
+	<%= auth_token %>	
+	<div class="input-group">
+		<label for="blog_blogname">Blog name!</label>
+		<input type="text" name="blog[blogname]" id="blog_blogname" value="<%= @blog.blogname %>">
+	</div>
+
+	<div class="input-group">
+		<label for="blog_description">Add a description for this blog</label>
+		<textarea name="blog[description]" id="blog_blogname" placeholder="Vader's so rad"><%= @blog.description %></textarea>
+	</div>
+
+	<div class="input-group">
+		<label for="blog_location">Add a location!</label>
+		<input type="text" name="blog[location]" id="blog_location" value="<%= @blog.location %>">
+	</div>
+
+	<button type="submit">Create blog!</button>

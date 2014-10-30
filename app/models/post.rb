@@ -17,12 +17,12 @@
 
 class Post < ActiveRecord::Base
   attr_accessor :notes
-  validates :body, :post_type, :user_id, presence: true
+  validates :blog, :body, :post_type, :blog_id, presence: true
 
-  belongs_to :user  
-  belongs_to :previous_user,
-    class_name: "User",
-    foreign_key: :previous_user_id,
+  belongs_to :blog 
+  belongs_to :previous_blog,
+    class_name: "Blog",
+    foreign_key: :previous_blog_id,
     primary_key: :id    
   
   belongs_to :original_post,
@@ -30,6 +30,7 @@ class Post < ActiveRecord::Base
     foreign_key: :original_post_id
 
   has_many :likes, dependent: :destroy
+  
   has_many :reblogs  
   has_many :descendents,
     class_name: "Post",
@@ -48,25 +49,10 @@ class Post < ActiveRecord::Base
   end
   
   def get_note_path
+    self.notes = []
     get_actions.each do |action|
       self.get_notes << action.render
     end
-    
-    self.get_notes.push("#{Post.original_source(self).user.username} posted this.")
-    return self.notes
-    # actions = self.likes + self.reblogs
-#
-#
-#
-#     actions.sort_by!{|action| action.created_at }
-#     actions.uniq.each do |action|
-#       self.get_notes << action.render
-#     end
-#
-#     if !self.reblog
-#       return self.get_notes
-#     else
-#
-#
+    return self.get_notes
   end
 end

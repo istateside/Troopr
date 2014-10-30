@@ -1,11 +1,11 @@
 <div class="post-box">
-	<figure class="user-avatar"></figure>
+	<figure class="blog-avatar"></figure>
 	<div class="post-content">
 			<div class="content-box">
 			<%= post_byline(post) %>
 			<% if post.title %><h2 class="post-title"><%= post.title %></h2><% end %>
 			<p class="post-body"><%= post.body %></p>
 		</div>
-		<%= render 'post_bottom_bar', post: post %>
+		<%= render 'posts/post_bottom_bar', post: post %>
 	</div>	
 </div>

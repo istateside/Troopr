@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  before_action :check_log_in
+  before_action :check_log_in, :check_blog
   def index
-    @posts = current_user.posts
-    current_user.following.each do |user|
-      @posts += user.posts
+    @posts = current_blog.posts
+    current_blog.following.each do |blog|
+      @posts += blog.posts
     end
     @posts = (@posts.sort_by {|p| p.created_at }).reverse!
     render :index
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(post_params)
+    @post = current_blog.posts.new(post_params)
     @post.post_type = "text" # CHANGE THIS LATER!
     if @post.save!
       flash[:notice] = "Post saved."
@@ -36,12 +36,12 @@ class PostsController < ApplicationController
     @original_post = Post.find(params[:post_id])
     @reblog = @original_post.dup
     @reblog.reblog = true
-    @reblog.previous_user_id = @original_post.user_id
-    @reblog.user = current_user
-    @reblog.original_post_id = @original_post.id
+    @reblog.previous_blog_id = @original_post.blog_id
+    @reblog.blog = current_blog
+    @reblog.original_blog_id = @original_post.id
   
     @reblog.save!
-    Reblog.create!({ post_id: @original_post.id, user_id: current_user.id, previous_user_id: @reblog.previous_user_id })
+    Reblog.create!({ post_id: @original_post.id, blog_id: current_blog.id, previous_blog_id: @reblog.previous_blog_id })
     redirect_to posts_url
   end
 

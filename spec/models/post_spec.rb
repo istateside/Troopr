@@ -28,10 +28,9 @@ end
 
 RSpec.describe Post, :type => :model do
   context "associations" do
-    it { should belong_to(:user) }
-    it { should belong_to(:previous_user) }
+    it { should belong_to(:blog) }
+    it { should belong_to(:previous_blog) }
     it { should have_many(:likes) }
-    # it { should have_many(:tags) }
   end
   
   
@@ -51,7 +50,7 @@ RSpec.describe Post, :type => :model do
     end
   end
 
-  context "with users" do
+  context "with Blogs" do
     before(:each) do
 
     end

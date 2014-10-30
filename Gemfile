@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.1.2'
 gem 'activerecord'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
@@ -37,7 +38,7 @@ gem 'rails_12factor'
 
 # Use debugger#
 # gem 'debugger', group: [:development, :test]
-
+gem "paperclip", "~> 2.7"
 gem 'seed_dump', group: [:development, :test]
 
 group :development do

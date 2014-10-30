@@ -1,0 +1,13 @@
+<form action="<%= user_change_blogs_url(current_user) %>" method="POST">
+	<%= auth_token %>
+	<div class="input-group change-blog-div">
+	 	<label for="blog_id">Blogs:</label>                                              
+	
+		<select name="blog_id" id="blog_id">
+			<% current_user.blogs.each do |blog| %>
+				<option value="<%= blog.id %>" <%= "selected" if current_blog == blog %>><%= blog.blogname %></option>
+			<% end %>
+		</select>
+	</div>
+  <button type="submit">Change!</button>
+</form>

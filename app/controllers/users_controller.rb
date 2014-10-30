@@ -31,22 +31,19 @@ class UsersController < ApplicationController
       @user.toggle(:activated)
       login_user!(@user)
       flash[:notice] = "Account activated!"
-      redirect_to root_url
+      redirect_to new_user_blog_url(current_user)
     else
-      fail
       flash[:errors] = "Activation token did not match!"
       redirect_to new_session_url
     end
   end
   
-  def search
-    @users = User.all
-    @users.select!{|user| user.username.downcase.include?(params[:search_query])}
-    fail
+  def change_blogs
+    current_user.current_blog = Blog.find(params[:blog_id])
+    redirect_to posts_url
   end
-  
   private
   def user_params
-    params.require(:user).permit(:email, :username, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
