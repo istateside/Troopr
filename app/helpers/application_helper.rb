@@ -24,7 +24,9 @@ module ApplicationHelper
        "<a href='#{blog_url(note.notable.blog)}'>#{note.notable.blog.blogname}</a> liked this.".html_safe
     when 'Reblog'
       <<-HTML.html_safe
-      <a href='#{blog_url(note.notable.reblogger)}'>#{note.notable.reblogger.blogname}</a> reblogged this from <a href='#{blog_url(note.notable.previous_blog)}'>#{note.notable.previous_blog.blogname}</a>
+      <a href='#{blog_url(note.notable.reblogger)}'>#{h(note.notable.reblogger.blogname)}</a>
+     reblogged this from 
+     <a href='#{blog_url(note.notable.previous_blog)}'>#{note.notable.previous_blog.blogname}</a>
       HTML
     when 'Post'
       "<a href='#{blog_url(note.notable.blog)}'>#{note.notable.blog.blogname}</a> posted this.".html_safe

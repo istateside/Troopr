@@ -9,7 +9,7 @@ module Api
         current_blog.following.each { |blog| @posts += blog.posts }
       end
       @posts = (@posts.sort_by { |p| p.created_at }).reverse!
-      render json: @posts
+      # render json: @posts
     end
 
     def create
@@ -27,7 +27,7 @@ module Api
     def show
       @post = Post.find(params[:id])
       @post.get_notes
-      render json: @post
+      # render json: @post
     end
 
     def reblog

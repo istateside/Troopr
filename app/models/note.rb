@@ -13,5 +13,5 @@
 class Note < ActiveRecord::Base  
   belongs_to :original_post, class_name: "Post", foreign_key: :original_post_id
   
-  belongs_to :notable, polymorphic: true  
+  belongs_to :notable, polymorphic: true
 end

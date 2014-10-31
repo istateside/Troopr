@@ -4,15 +4,15 @@ window.Troopr = {
   Views: {},
   Routers: {},
   initialize: function() {
-		Trooper.posts = new Troopr.Collections.Posts();
-
-		new Troopr.Routers.TrooprRouter({
+		Troopr.posts = new Troopr.Collections.Posts();
+		Troopr.posts.fetch();
+		Troopr.router = new Troopr.Routers.TrooprRouter({
 			"$el": $('main')
 		});
-		Backbone.History.start();
+		Backbone.history.start();
   }
 };
 
 $(document).ready(function(){
-  Troopr.initialize();
+  // Troopr.initialize();
 });

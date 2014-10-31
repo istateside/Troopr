@@ -1,11 +1,11 @@
 Troopr.Routers.TrooprRouter = Backbone.Router.extend({
-	initialize: function($el) {
+	initialize: function(options) {
 		this.$el = options.$el;
 	},	
 	routes: {
-		"": "dashboard"
-		"blogs":"blogIndex"
-		"blogs/:id":"blogShow"
+		"": "dashboard",
+		"blogs":"blogIndex",
+		"blogs/:id":"blogShow",
 		"blogs/:id/:post_id":"postShow"
 	},	
 	dashboard: function () {

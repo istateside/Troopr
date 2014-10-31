@@ -1,5 +1,4 @@
 Troopr.Collections.Posts = Backbone.Collection.extend({
-
   model: Troopr.Models.Post,
 	url: '/api/posts/',
 	getOrFetch: function(id) {
@@ -16,5 +15,4 @@ Troopr.Collections.Posts = Backbone.Collection.extend({
 		}
 		return post;
 	}
-
 });

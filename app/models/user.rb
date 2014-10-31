@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     if self.current_blog_id.nil?
       current_active_blog=(self.blogs.first)
     else 
-      self.blogs.first
+      self.blogs.find(self.current_blog_id)
     end
   end
   

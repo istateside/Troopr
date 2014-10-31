@@ -40,6 +40,7 @@ class UsersController < ApplicationController
   
   def change_blogs
     current_user.current_active_blog = (params[:blog_id])
+
     redirect_to posts_url
   end
   private
