@@ -1,4 +1,6 @@
-class FollowsController < ApplicationController  
+class FollowsController < ApplicationController
+  before_action :check_log_in
+  
   def create
     @follow = current_blog.follows.new({target_id: params[:blog_id]})
     unless @follow.save!

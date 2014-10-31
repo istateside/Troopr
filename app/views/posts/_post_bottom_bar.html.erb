@@ -1,6 +1,6 @@
 <div class="post-bottom-bar">
 		<% unless post.get_notes.empty? %>
-			<a href="<%= post_url(post) %>" class="notes-display"><%= post.get_notes.length %> notes</a>
+			<a href="<%= post_url(post) %>" class="notes-display"><%= post.get_notes.length %> note<%= post.get_notes.length > 1 ? 's' : '' %></a>
 
 		<% end %>
 		<%= reblog_button(post) %>
