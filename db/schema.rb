@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030175131) do
+ActiveRecord::Schema.define(version: 20141031043023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,25 @@ ActiveRecord::Schema.define(version: 20141030175131) do
   add_index "follows", ["source_id", "target_id"], name: "index_follows_on_source_id_and_target_id", unique: true, using: :btree
 
   create_table "likes", force: true do |t|
-    t.integer  "blog_id",    null: false
-    t.integer  "post_id",    null: false
+    t.integer  "blog_id",          null: false
+    t.integer  "post_id",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "original_post_id"
   end
 
   add_index "likes", ["blog_id", "post_id"], name: "index_likes_on_blog_id_and_post_id", unique: true, using: :btree
+
+  create_table "notes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "original_post_id", null: false
+    t.integer  "notable_id",       null: false
+    t.string   "notable_type",     null: false
+  end
+
+  add_index "notes", ["notable_id"], name: "index_notes_on_notable_id", using: :btree
+  add_index "notes", ["notable_type"], name: "index_notes_on_notable_type", using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -64,6 +76,7 @@ ActiveRecord::Schema.define(version: 20141030175131) do
     t.datetime "updated_at"
     t.integer  "previous_blog_id", null: false
     t.string   "previous_post_id"
+    t.integer  "original_post_id", null: false
   end
 
   create_table "users", force: true do |t|

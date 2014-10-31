@@ -3,11 +3,11 @@
 	<div class="post-content">
 		<div class="arrow-left"></div>
 			<div class="content-box">
-			<%= post_byline(post) %>
-			<%= delete_button(post) %>
-			<% if post.title %><h2 class="post-title"><%= post.title %></h2><% end %>
-			<p class="post-body"><%= post.body %></p>
-		</div>
+				<%= post_byline(post) %>
+				<%= delete_button(post) %>
+				<% if post.title %><h2 class="post-title"><%= post.title %></h2><% end %>
+				<p class="post-body"><%= post.body %></p>
+			</div>
 		<%= render 'posts/post_bottom_bar', post: post %>
 	</div>
 </div>

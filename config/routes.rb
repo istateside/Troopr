@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   resources :posts, only: [:index, :show] do
     resources :likes, only: [:create]
+    resources :notes, only: [:create]
     post :reblog
   end
   
@@ -13,7 +14,6 @@ Rails.application.routes.draw do
     post :change_blogs
   end
   
-
   resources :blogs do
     resources :follows, only: [:create, :index]
     resources :posts, shallow: true

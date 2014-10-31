@@ -1,11 +1,15 @@
 <div class="feed group">
 	<div class="post-content">
 		<div class="content-box">
-			<%= post_byline(@post) %>
-			<% if @post.title %><h2 class="post-title"><%= @post.title %></h2><% end %>
-			<p class="post-body"><%= @post.body %></p>
+
+			<div class="content-box">
+				<%= post_byline(@post) %>
+				<%= delete_button(@post) %>
+				<% if @post.title %><h2 class="post-title"><%= @post.title %></h2><% end %>
+				<p class="post-body"><%= @post.body %></p>
+			</div>
 		</div>
 		<%= render 'posts/post_bottom_bar', post: @post %>
-		<%= render 'posts/notes', notes: @post.get_note_path.reverse %>
+		<%= render 'posts/notes', notes: @post.get_notes %>
 	</div>
 </div>

@@ -115,7 +115,7 @@ main * {
 	border-top: 10px solid transparent;
 	border-bottom: 10px solid transparent; 
 	border-right:10px solid white;
-	left: -10px;
+	left: -9px;
 	top: 20px;
 }
 
@@ -134,6 +134,7 @@ figure.blog-avatar {
 	border-radius: 6px;
 	margin: 0px 15px 0px 10px;
 	vertical-align: top;
+	box-shadow: 2px 2px 2px gray;
 }
 
 p.blogname-header {

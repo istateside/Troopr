@@ -9,6 +9,7 @@
 #  updated_at       :datetime
 #  previous_blog_id :integer          not null
 #  previous_post_id :string(255)
+#  original_post_id :integer          not null
 #
 
 require 'rails_helper'

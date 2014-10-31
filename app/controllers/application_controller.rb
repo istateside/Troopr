@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   
   def check_blog
     if current_user.blogs.empty?
-      redirect_to new_user_blog_url(current_user)
+      redirect_to new_blog_url
     end
   end
   

@@ -2,11 +2,12 @@
 #
 # Table name: likes
 #
-#  id         :integer          not null, primary key
-#  blog_id    :integer          not null
-#  post_id    :integer          not null
-#  created_at :datetime
-#  updated_at :datetime
+#  id               :integer          not null, primary key
+#  blog_id          :integer          not null
+#  post_id          :integer          not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#  original_post_id :integer
 #
 
 require 'rails_helper'

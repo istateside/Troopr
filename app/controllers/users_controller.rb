@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       @user.toggle(:activated)
       login_user!(@user)
       flash[:notice] = "Account activated!"
-      redirect_to new_user_blog_url(current_user)
+      redirect_to new_blog_url
     else
       flash[:errors] = "Activation token did not match!"
       redirect_to new_session_url

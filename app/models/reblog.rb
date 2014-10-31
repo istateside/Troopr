@@ -9,9 +9,12 @@
 #  updated_at       :datetime
 #  previous_blog_id :integer          not null
 #  previous_post_id :string(255)
+#  original_post_id :integer          not null
 #
 
 class Reblog < ActiveRecord::Base
+  has_one :note, as: :notable, dependent: :destroy 
+  
   belongs_to :reblogger,         
     class_name: "Blog",          
     foreign_key: :blog_id,       
@@ -31,8 +34,4 @@ class Reblog < ActiveRecord::Base
     class_name: "Post",
     foreign_key: :new_post_id,
     primary_key: :id
-  
-  def render
-    return (self.reblogger.blogname + " reblogged this from " + self.previous_blog.blogname)
-  end
 end

@@ -1,5 +1,8 @@
 <div class="post-bottom-bar">
-		<% unless post.get_note_path.empty? %><a href="<%= post_url(post) %>" class="notes-display"><%= post.get_note_path.length %> notes</a><% end %>
+		<% unless post.get_notes.empty? %>
+			<a href="<%= post_url(post) %>" class="notes-display"><%= post.get_notes.length %> notes</a>
+
+		<% end %>
 		<%= reblog_button(post) %>
 		<%= like_button(post) %>
 </div>

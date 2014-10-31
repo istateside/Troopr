@@ -16,7 +16,9 @@
 #
 
 class Post < ActiveRecord::Base
-  attr_accessor :notes
+  before_destroy :destroy_reblog_note
+  after_create :set_original_post_id
+  
   validates :blog, :body, :post_type, :blog_id, presence: true
 
   belongs_to :blog 
@@ -30,7 +32,7 @@ class Post < ActiveRecord::Base
     class_name: "Post",
     foreign_key: :original_post_id
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
   
   has_many :reblogs,
     class_name: "Reblog",
@@ -43,51 +45,23 @@ class Post < ActiveRecord::Base
     foreign_key: :new_post_id,
     primary_key: :id,
     inverse_of: :new_post
+    
+  has_one :note, as: :notable, dependent: :destroy
   
   has_many :descendents, through: :reblogs, source: :new_post
-    
-  def all_children
-    all_children = []
-    puts all_children
-    puts self.descendents
-    puts self
-    all_children << self.descendents << self
-    
-    self.descendents.each do |child|
-      all_children += child.descendents
+  
+  def set_original_post_id
+    if !self.reblog
+      self.original_post_id = self.id
+      self.save!
     end
-    return all_children.flatten
-  end  
-    
-  def self.original_source(post)
-    !post.reblog ? (return post) : (return Post.original_source(post.original_post))
   end
   
-  def get_actions
-    actions = []
-    source = Post.original_source(self)
-    posts = source.all_children
-    posts.each do |post|
-      actions.push(post.likes + post.reblogs)
-    end
-    
-    return actions.flatten
+  def get_notes
+    return Note.where("original_post_id = ?", self.original_post_id).order(created_at: :desc)
   end
   
-  def get_notes(actions)
-    notes = []
-    actions.each do |action|
-      notes << {msg: action.render, time: action.created_at}
-    end
-    
-    return notes
-  end  
-  
-  def get_note_path
-    notes = get_notes(self.get_actions)
-    notes = notes.sort_by {|note| note[:time]}
-    notes.map! { |note| note[:msg] }
-    notes.push(Post.original_source(self).blog.blogname + " posted this.")
-    return notes.reverse    
+  def destroy_reblog_note
+    self.past_reblog.note.destroy! if (!!self.reblog && !!self.past_reblog)
   end
 end

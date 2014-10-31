@@ -1,7 +1,7 @@
 <div class="notes-display">
 	<ul>
 		<% notes.each do |note| %>
-			<li class="note-li"><%= note %></li>
+			<li class="note-li"><%= render_note(note) %></li>
 		<% end %>
 	</ul>
 </div>
