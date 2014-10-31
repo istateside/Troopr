@@ -22,4 +22,21 @@ Rails.application.routes.draw do
   resources :follows, only: [:destroy]
   resources :likes, only: [:destroy]
   resource :session, only: [:new, :create, :destroy]
+  
+  
+  namespace :api, defaults: {format: :json} do
+    get '/search', as: :search, to: 'static_pages#search'
+    
+    resources :blogs do
+      resources :follows, only: [:create, :index]
+      resources :posts, shallow: true
+    end
+    
+    resources :posts, only: [:index, :show] do
+      resources :likes, only: [:create]
+      resources :notes, only: [:create]
+      post :reblog
+    end
+  end
+  
 end
