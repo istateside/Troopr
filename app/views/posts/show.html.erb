@@ -3,7 +3,7 @@
 		<div class="content-box">
 
 			<div class="content-box">
-				<%= post_byline(@post) %>
+				<p class="blogname-header"><%= post_byline(@post) %></p>
 				<%= delete_button(@post) %>
 				<% if @post.title %><h2 class="post-title"><%= @post.title %></h2><% end %>
 				<p class="post-body"><%= @post.body %></p>

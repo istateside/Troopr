@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'posts#index'  
   get '/auth/facebook/callback', to: 'oauth_callbacks#facebook'
+  get '/backbone', to: 'backbone#index'
   
   resources :posts, only: [:index, :show] do
     resources :likes, only: [:create]
@@ -27,9 +28,10 @@ Rails.application.routes.draw do
     get '/search', as: :search, to: 'static_pages#search'    
     resources :blogs
     resources :follows
-    resources :posts
-    resources :likes    
-    resources :notes    
+    resources :posts, only: [:index, :show, :create, :destroy]
+    resources :likes, only: [:index, :create, :destroy]
+    resources :notes, only: [:index, :create, :destroy]
+    resource :session, only: [:create, :destroy]
   end
   
 end

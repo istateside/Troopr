@@ -7,12 +7,12 @@ window.Troopr = {
 		Troopr.posts = new Troopr.Collections.Posts();
 		Troopr.posts.fetch();
 		Troopr.router = new Troopr.Routers.TrooprRouter({
-			"$el": $('main')
+			"$el": $('div.backbone')
 		});
 		Backbone.history.start();
   }
 };
 
 $(document).ready(function(){
-  // Troopr.initialize();
+  Troopr.initialize();
 });

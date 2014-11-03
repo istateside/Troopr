@@ -33,7 +33,6 @@ module ApplicationHelper
     end
   end
   
-    
   def reblog_button(post)
     (button_to "Reblog", post_reblog_url(post))
   end

@@ -7,12 +7,12 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
-	
-		<%= render 'shared/navbar' %>
-
+<script> window.current_user_id = <%= !!current_user ? current_user.id : 'false' %> </script>
+			<%= render 'shared/navbar' %>
 		<main>
+
 			<%= render 'shared/errors' %>
-			<%= yield %>		
+			<%= yield %>
 		</main>
 
 	</body>

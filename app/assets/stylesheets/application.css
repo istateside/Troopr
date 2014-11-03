@@ -108,6 +108,15 @@ main * {
 	background: none;	
 }
 
+/* INDIVIDUAL POSTS */
+
+div.post-box {
+	width: 640px;	
+	display: inline-block;
+	box-sizing: border-box;
+	margin-top: 20px;
+}
+
 .arrow-left {
 	width: 0; 
 	height: 0; 
@@ -117,13 +126,6 @@ main * {
 	border-right:10px solid white;
 	left: -9px;
 	top: 20px;
-}
-
-div.post-box {
-	width: 900px;	
-	display: inline-block;
-	box-sizing: border-box;
-	margin-top: 20px;
 }
 
 figure.blog-avatar {
@@ -148,7 +150,7 @@ div.post-content {
 	border-radius: 10px;
 	background: white;
 	float: left;
-	width: 645px;
+	width: 540px;
 	padding: 15px 20px;
 
 	position: relative;
@@ -173,15 +175,52 @@ div.post-bottom-bar {
 	padding: 5px 10px;
 }
 
+input.post-delete {
+	display: none;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+div.post-content:hover input.post-delete {
+	display: block;
+	color: black;
+}
+
+div.post-content button.post-delete {
+	display: none;
+	position: absolute;
+	border: none;
+	font-size: 25px;
+	right: 5px;
+	top: 5px;
+	cursor: pointer;
+	outline: none;
+	border-radius: 50%;
+}
+
+div.post-content:hover button.post-delete {
+	display: block;
+	font-weight: bold;
+	color: black;
+}
+
+div.post-content:hover button.post-delete:hover {
+	color: red;
+}
+
+input.post-delete {
+	color: red;
+}
+
+/* POST BOTTOM BAR */
 div.post-bottom-bar a{
 	position: relative;
 }
 
-
 div.post-bottom-bar a.notes-display {
 	float: left;
 }
-
 
 div.post-bottom-bar a.reblog-button {
 	float: right;
@@ -195,16 +234,29 @@ input.unlike {
 	background: red;
 }
 
-input.post-delete {
+button.like-btn {
 	display: none;
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	background: red;
+	float: right;
+	outline: none;
 }
 
-div.post-content:hover input.post-delete {
-	display:block;
+button.like-btn.active {
+	display: block;
+}
+
+button.unlike-btn {
+	display: none;
+	float: right;
+	outline: none;
+}
+
+button.unlike-btn.active {
+	display: block;
+}
+
+button.reblog-btn {
+	outline: none;
+	float: right;
 }
 
 /* NOTES SHOW */
@@ -249,6 +301,14 @@ div.blog-div h2 {
 div.blog-div input {
 	display: inline-block;
 	float: left;
+}
+
+form.new-post-form {
+	display: none;
+}
+
+form.new-post-form.active {
+	display: block;
 }
 
 /* BLOG SHOW */

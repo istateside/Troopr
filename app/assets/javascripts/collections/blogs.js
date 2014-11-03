@@ -1,5 +1,4 @@
 Troopr.Collections.Blogs = Backbone.Collection.extend({
-
   model: Troopr.Models.Blog,
 	url: "/api/blogs",
 	getOrFetch: function(id) {

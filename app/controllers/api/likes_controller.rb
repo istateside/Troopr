@@ -1,6 +1,5 @@
 module Api
   class LikesController < ApiController
-    before_action :check_log_in
     def create
       post = Post.find(params[:post_id])
       @like = current_blog.likes.new({post: post, original_post_id: post.original_post_id})

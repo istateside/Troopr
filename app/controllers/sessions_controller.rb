@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       render :mailer_fail
     else
       login_user!(@user)
-      redirect_to posts_url
+      redirect_to backbone_url
     end
   end
   

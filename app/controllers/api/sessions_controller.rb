@@ -1,14 +1,5 @@
 module Api
   class SessionsController < ApiController
-    def new
-      if !!current_user
-        redirect_to posts_url
-      else
-        @user = User.new
-        render :new
-      end
-    end
-  
     def create
       @user = User.find_by_credentials(
         params[:user][:email],
@@ -22,16 +13,16 @@ module Api
         render :mailer_fail
       else
         login_user!(@user)
-        redirect_to posts_url
+        redirect_to '#'
       end
     end
   
     def destroy
       logout_user!
-      redirect_to new_session_url
+      redirect_to '#/session/new'
     end
-    private
-  
+    
+    private  
     def auth_hash
       request.env['omniauth.auth']
     end

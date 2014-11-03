@@ -2,16 +2,22 @@ module Api
   class PostsController < ApiController
   
     def index
-      if !!current_blog
+      if !current_blog
         @posts = Post.all
       else
         @posts = current_blog.posts
         current_blog.following.each { |blog| @posts += blog.posts }
       end
       @posts = (@posts.sort_by { |p| p.created_at }).reverse!
-      # render json: @posts
+      render :index
     end
 
+    def show
+      @post = Post.find(params[:id])
+      @post.get_notes
+      render :show
+    end
+    
     def create
       @post = current_blog.posts.new(post_params)
       @post.post_type = "text"
@@ -22,12 +28,6 @@ module Api
         flash.now[:errors] = @post.errors
         render json: @post.errors.full_messages, status: :unprocessable_entity
       end
-    end
-
-    def show
-      @post = Post.find(params[:id])
-      @post.get_notes
-      # render json: @post
     end
 
     def reblog
