@@ -13,7 +13,6 @@ module Api
         render :mailer_fail
       else
         login_user!(@user)
-        redirect_to '#'
       end
     end
   
