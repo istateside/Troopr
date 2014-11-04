@@ -1,5 +1,7 @@
 <div class="feed group">
-	<h1 id="dash-header">Dashboard</h1><a id="new-post" href="<%= new_blog_post_url(current_blog) %>">New Post</a>
+	<div class="dash-header">
+		<h1>Dashboard</h1><a id="new-post" href="<%= new_blog_post_url(current_blog) %>">New Post</a>
+	</div>
 	<% @posts.each do |post| %>
 		<%= render post %>
 	<% end %>

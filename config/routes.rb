@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     get '/search', as: :search, to: 'static_pages#search'
     resources :blogs
-    resources :follows
+    resources :follows, only: [:index, :create, :destroy]
     resources :posts, only: [:index, :show, :create, :destroy] do
       post :reblog
     end

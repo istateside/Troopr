@@ -14,7 +14,7 @@
  *= require_self
  */
 
-body, h1, h2, h3, h4, h5, a, li, ul, div, p, figure {
+body, h1, h2, h3, h4, h5, a, li, ul, div, p, figure, button {
 	font-style: inherit;
 	color: inherit;
 	background: inherit;
@@ -38,12 +38,13 @@ body {
 }
 
 /* NAV */
-nav {
+nav.topbar {
 	background: #A6A6A6;
 	position: fixed;
 	top: 0;
+	left: 0;
 	width: 100%;
-	
+
 	clear: both;
 	height: 56px;
 	box-sizing: border-box;
@@ -105,24 +106,100 @@ main {
 }
 
 main * {
-	background: none;	
+	background: none;
 }
 
-/* INDIVIDUAL POSTS */
+.feed {
+	width: 640px;
+	float: left
+}
+
+.content-space {
+}
+
+
+/* DASHBOARD */
+div.dash {
+	margin-top: 20px;
+	width: 640px;
+}
+
+div.dash-post-panel {
+	height: 100px;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 540px;
+	border-radius: 5px;
+	background: white;
+	float: left;
+}
+
+div.dash-post-panel a {
+	float: left;
+	box-sizing: border-box;
+	cursor: pointer;
+	width: 74px;
+	height: 80px;
+	margin: auto;
+	text-align: center;
+	padding: 25px 5px 25px 5px;
+	border-right: 1px solid #ccc
+}
+
+div.dash-post-panel p {
+	font-weight: bold;
+	position: relative;
+	transition: top 150ms;
+	top: 0px;
+}
+
+div.dash-post-panel a:hover p {
+	top: -5px;
+}
+
+div.dash-post-panel a:last-child {
+	border-right: none
+}
 
 div.post-box {
-	width: 640px;	
+	width: 640px;
 	display: inline-block;
 	box-sizing: border-box;
 	margin-top: 20px;
 }
 
+/* SIDEBAR */
+nav.sidebar {
+	background: white;
+	border-radius: 5px;
+	width: 240px;
+	float: right;
+	min-height: 500px;
+	margin: 20px 5px;
+}
+
+#blog-li {
+
+}
+
+#new-blog-li {
+}
+
+/* INDIVIDUAL POSTS */
+div.post-box.full-width {
+	width: 900px
+}
+
+div.post-box.full-width .post-content{
+	width: 800px;
+}
+
 .arrow-left {
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	position: absolute;
 	border-top: 10px solid transparent;
-	border-bottom: 10px solid transparent; 
+	border-bottom: 10px solid transparent;
 	border-right:10px solid white;
 	left: -9px;
 	top: 20px;
@@ -147,7 +224,7 @@ p.blogname-header {
 
 div.post-content {
 	box-sizing: border-box;
-	border-radius: 10px;
+	border-radius: 5px;
 	background: white;
 	float: left;
 	width: 540px;
@@ -274,9 +351,121 @@ a.notes-display {
 	bottom: -10px;
 }
 
+
+/* NEW POST FORM */
+div.container {
+	padding-top: 1px;
+	height: 0;
+	transition: height 250ms;
+	overflow: hidden;
+}
+
+div.container.active {
+	height: 400px;
+}
+
+div.new-post-form {
+	position: relative;
+	left: 89px;
+	width: 540px;
+	margin-top: 19px;
+}
+
+div.new-post-form #input-arrow {
+	width: 0;
+	height: 0;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid white;
+
+	position: absolute;
+	top: -14px;
+	transition: left 250ms;
+}
+
+#input-arrow.text {
+	left: 30px;
+}
+#input-arrow.photo {
+	left: 107px;
+}
+#input-arrow.quote {
+	left: 183px;
+}
+#input-arrow.link {
+	left: 255px;
+}
+#input-arrow.chat {
+	left: 330px;
+}
+#input-arrow.audio {
+	left: 402px;
+}
+#input-arrow.video {
+	left: 475px;
+}
+
+form.new-post-form-inputs {
+	display: block;
+	box-sizing: border-box;
+	border-radius: 5px;
+	background: white;
+	float: left;
+	width: 540px;
+	padding: 15px 20px;c
+}
+
+div.input-group label {
+font-weight: bold;
+font-size: 22px;
+}
+
+div.input-group input, textarea {
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 15px;
+	outline: none;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 16px;
+	padding: 10px;
+}
+
+div.input-group input {
+	min-height: 30px;
+}
+
+div.input-group textarea {
+	min-height: 180px;
+}
+
+.submit-btn, .reblog-btn {
+	padding: 10px 20px;
+	border: 1px solid black;
+	box-shadow: 2px 1px 1px black;
+	cursor: pointer;
+	outline: none;
+	border-radius: 5px;
+	position: relative;
+}
+
+button:active {
+	top: 2px;
+	left: 1px;
+}
+
+form.new-post-form-inputs button {
+	color: black;
+	background: #fff;
+
+	font-size: 15px;
+	float: right;
+}
+
+
 /* BLOGS INDEX */
 div.blog-div {
-	width: 900px;	
+	width: 900px;
 	display: inline-block;
 	box-sizing: border-box;
 	margin-top: 20px;
@@ -301,14 +490,6 @@ div.blog-div h2 {
 div.blog-div input {
 	display: inline-block;
 	float: left;
-}
-
-form.new-post-form {
-	display: none;
-}
-
-form.new-post-form.active {
-	display: block;
 }
 
 /* BLOG SHOW */

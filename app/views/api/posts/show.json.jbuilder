@@ -1,9 +1,10 @@
 json.extract! @post, :id, :title, :body, :post_type, :url, :reblog, :previous_blog_id, :original_post_id, :created_at, :updated_at
 
 json.blogname @post.blog.blogname
+json.blog_id @post.blog_id
 
-if post.reblog 
-	json.previous_blogname post.previous_blog.blogname
+if @post.reblog
+	json.previous_blogname @post.previous_blog.blogname
 end
 
 json.notes @post.get_notes do |note|

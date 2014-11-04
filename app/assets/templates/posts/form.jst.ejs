@@ -1,20 +1,26 @@
-<form class="new-post-form">
-  <div class="input-group" id="title-div">
-    <label for="title">Title</label>
-    <input
-      type="text"
-      name="title"
-      id="title"
-      placeholder="Enter title..">
-  </div>
-	
-  <div class="input-group" id="body-div">
-    <label for="body">Body</label>
-    <textarea
-      name="body"
-      id="body"
-      placeholder="Real cool description, nerd."></textarea>
-  </div>
+<div class="container">
+  <div class="new-post-form">
+    <div id="input-arrow"></div>
+    <form class="new-post-form-inputs">
 
-  <button type="submit">Submit post!</button>
-</form>
+      <div class="input-group" id="title-div">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Enter title..">
+      </div>
+
+      <div class="input-group" id="body-div">
+        <label for="body">Body</label>
+        <textarea
+          name="body"
+          id="body"
+          placeholder="Real cool description, nerd."></textarea>
+      </div>
+
+      <button class="submit-btn" type="submit">Submit</button>
+    </form>
+  </div>
+</div>

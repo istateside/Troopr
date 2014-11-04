@@ -1,18 +1,26 @@
 <figure class="blog-avatar"></figure>
 <div class="post-content">
 	<div class="arrow-left"></div>
- 	<div class="content-box"> 
-		<p class="blogname-header"><%= byline %></p>
+ 	<div class="content-box">
+		<p class="blogname-header">
+
+			<a href="javascript:void(0)" class="blogname-link" data-id="<%= this.post.escape('blog_id') %>"><%= this.post.escape('blogname') %></a>
+				<% if (this.post.get('reblog')) { %>
+					from
+					<a href="javascript:void(0)"
+						 class="blogname-link"
+						 data-id="<%= this.post.escape('previous_blog_id') %>">
+						<%= this.post.escape('previous_blogname') %></a>
+				<% }; %></p>
 		<button class="post-delete"><%= String.fromCharCode(215) %></button>
 		<h2 class="post-title"><%= post.escape('title') %></h2>
 		<p class="post-body"><%= post.escape('body') %></p>
 	</div>
-	
-	
+
 	<div class="post-bottom-bar">
 			<button class="reblog-btn">Reblog!</button>
 			<button class="like-btn">Like!</button>
 			<button class="unlike-btn">Unlike!</button>
 	</div>
-	
+
 </div>

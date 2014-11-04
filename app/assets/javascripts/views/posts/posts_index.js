@@ -5,7 +5,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	},
 
 	events: {
-		"click #new-post": "showForm",
+		"click .dash-post-buttons": "showForm",
 		"submit .new-post-form": "submitForm"
 	},
 
@@ -32,14 +32,28 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	showForm: function(event) {
 		event.preventDefault();
-		this.$('.new-post-form').toggleClass('active');
+
+		if ($('.container').hasClass('active')) {
+			if ($(event.target).data('content') == this.$('#input-arrow').attr('class')){
+				this.$('.container').removeClass('active')
+			}
+		} else {
+			this.$('.container').addClass('active');
+		}
+
+
+		this.handleArrow($(event.target).data('content'));
+	},
+
+	handleArrow: function(contentType) {
+		$('#input-arrow').attr('class', contentType);
 	},
 
 	submitForm: function(event) {
 		event.preventDefault();
 		var formData = $(event.target).serializeJSON();
 		var that = this;
-		this.posts.create(formData, {wait: true})
+		this.posts.create(formData, { wait: true })
 		this.posts.fetch();
 	}
 });

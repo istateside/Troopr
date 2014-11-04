@@ -1,0 +1,18 @@
+<div class="blog-intro-div group">
+  <figure class="blog-image-fig"></figure>
+  <div class="blog-info">
+    <h1><%= blog.escape('blogname') %></h1>
+    <p><%= blog.escape('location') %></p>
+    <p><%= blog.escape('description') %><p>
+
+    <% if (!blog.get('is_current')) { %>
+      <button class="follow-btn">
+      <% if(blog.get('is_followed')) { %>Unfollow
+      <% } else { %>Follow<% } %>
+      </button>
+    <% } %>
+
+  </div>
+</div>
+
+<section class="posts-space"></section>
