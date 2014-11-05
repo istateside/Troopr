@@ -360,7 +360,7 @@ div.notes-display.active {
 div.notes-list {
 	max-height: 300px;
 	overflow: scroll;
-	transition: height 500ms, width: 500ms;
+	transition: height 500ms, width 500ms;
 }
 
 div.notes-list li {
