@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031043023) do
+ActiveRecord::Schema.define(version: 20141105045946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20141031043023) do
     t.boolean  "reblog",           default: false
     t.integer  "previous_blog_id"
     t.integer  "original_post_id"
+    t.string   "filepicker_url"
   end
 
   create_table "reblogs", force: true do |t|

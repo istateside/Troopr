@@ -3,13 +3,15 @@ Troopr.Views.PostShow = Backbone.View.extend({
 		this.post = options.post;
 		this.posts = options.posts;
 		this.listenTo(this.post, 'sync', this.render);
+		this.listenTo(this.post.notes(), 'remove add', this.render);
 	},
 
 	events: {
 		"click .post-delete": "deletePost",
 		"click .like-btn": "likePost",
 		"click .reblog-btn": "reblogPost",
-		"click .blogname-link": "goToBlog"
+		"click .blogname-link": "goToBlog",
+		"click a.notes-display": "showNotes"
 	},
 
 	postByline: function() {
@@ -32,12 +34,26 @@ Troopr.Views.PostShow = Backbone.View.extend({
 	template: JST['posts/show'],
 
 	likePost: function(event) {
-		like = new Troopr.Models.Like
+		event.preventDefault();
+		var that = this;
+		$(event.target).prop('disabled', true)
+		var ajaxType = (that.post.get('is_liked') ? "DELETE" : "POST")
+		console.log(that.post);
+		console.log(ajaxType);
+		$.ajax({
+			url: "/api/likes",
+			type: ajaxType,
+			data: { post_id: that.post.get('id') },
+			success: function() {
+				that.post.fetch()
+				$(event.target).prop('disabled', false)
+			}
+		})
 	},
 
 	reblogPost: function(event) {
-		var that = this;
 		event.preventDefault();
+		var that = this;
 		$.ajax({
 			url: "/api/posts/" + this.post.id + "/reblog/",
 			type: "POST",
@@ -49,9 +65,14 @@ Troopr.Views.PostShow = Backbone.View.extend({
 
 	goToBlog: function(event) {
 		event.preventDefault();
-		console.log("click");
 		var blog_id = $(event.target).data('id');
 		Backbone.history.navigate('blogs/' + blog_id, { trigger: true });
+	},
+
+	showNotes: function(event) {
+		event.preventDefault();
+		$display = $($(event.target).siblings('div.notes-display'))
+		$display.toggleClass('active');
 	},
 
 	render: function(el) {
@@ -59,7 +80,6 @@ Troopr.Views.PostShow = Backbone.View.extend({
 			post: this.post,
 			byline: this.postByline()
 		});
-
 		this.$el.html(renderedContent)
 		return this;
 	}

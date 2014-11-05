@@ -1,6 +1,5 @@
 module Api
-  class PostsController < ApiController
-  
+  class PostsController < ApiController  
     def index
       if !current_blog
         @posts = Post.all
@@ -17,7 +16,7 @@ module Api
       @post.get_notes
       render :show
     end
-    
+
     def create
       @post = current_blog.posts.new(post_params)
       @post.post_type = "text"
@@ -32,23 +31,23 @@ module Api
 
     def reblog
       @original_post = Post.find(params[:post_id])
-    
+
       @new_post = @original_post.dup
-    
+
       @new_post.reblog = true
       @new_post.previous_blog_id = @original_post.blog_id
       @new_post.blog = current_blog
       @new_post.original_post_id = @original_post.original_post_id
       @new_post.save!
-    
-      reblog = @original_post.reblogs.create!({ 
-        new_post_id: @new_post.id, 
-        blog_id: current_blog.id, 
-        previous_blog_id: @new_post.previous_blog_id, 
+
+      reblog = @original_post.reblogs.create!({
+        new_post_id: @new_post.id,
+        blog_id: current_blog.id,
+        previous_blog_id: @new_post.previous_blog_id,
         previous_post_id: @original_post.id,
         original_post_id: @original_post.original_post_id
       })
-    
+
       Note.create!({notable_id: reblog.id, notable_type: "Reblog", original_post_id: @original_post.original_post_id })
 
       render json: @new_post

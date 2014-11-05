@@ -114,9 +114,52 @@ main * {
 	float: left
 }
 
-.content-space {
+
+button.reblog-btn, button.submit-btn {
+	padding: 5px 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px black;
+	cursor: pointer;
+	outline: none;
+	float: right;
+	position: relative;
+	top: 8px;
+	left: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 12px;
+	letter-spacing: 2px;
 }
 
+button.like-btn {
+	float: right;
+	position: relative;
+	padding: 0 10px;
+	top: 11px;
+	left: 10px;
+	color: black;
+	cursor: pointer;
+}
+
+button.like-btn:hover {
+	background: red;
+}
+
+button.like-btn.liked {
+	color: red
+}
+
+button.reblog-btn:active, button.submit-btn:active {
+	top: 9px;
+	left: 13px;
+	box-shadow: none;
+}
+
+button.like-btn:active {
+	top: 12px;
+	left: 11px;
+}
 
 /* DASHBOARD */
 div.dash {
@@ -269,7 +312,7 @@ div.post-content button.post-delete {
 	position: absolute;
 	border: none;
 	font-size: 25px;
-	right: 5px;
+	right: 12px;
 	top: 5px;
 	cursor: pointer;
 	outline: none;
@@ -288,6 +331,48 @@ div.post-content:hover button.post-delete:hover {
 
 input.post-delete {
 	color: red;
+}
+
+div.notes-display {
+	display: none;
+	position: absolute;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 5px 15px;
+	background: #000;
+	left: 82px;
+	bottom: -3px;
+	z-index: 999;
+	color: white;
+}
+
+div.notes-display.active {
+	display: block;
+}
+
+div.notes-list {
+	max-height: 300px;
+	overflow: scroll;
+	transition: height 500ms, width: 500ms;
+}
+
+div.notes-list li {
+	padding-bottom: 10px;
+}
+
+div.notes-list li:last-child {
+	padding-bottom: 0px;
+}
+
+div.notes-arrow {
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right:10px solid black;
+	left: -10px;
+	bottom: 5px;
 }
 
 /* POST BOTTOM BAR */
@@ -311,30 +396,6 @@ input.unlike {
 	background: red;
 }
 
-button.like-btn {
-	display: none;
-	float: right;
-	outline: none;
-}
-
-button.like-btn.active {
-	display: block;
-}
-
-button.unlike-btn {
-	display: none;
-	float: right;
-	outline: none;
-}
-
-button.unlike-btn.active {
-	display: block;
-}
-
-button.reblog-btn {
-	outline: none;
-	float: right;
-}
 
 /* NOTES SHOW */
 li.note-li {
@@ -348,7 +409,7 @@ a.notes-display {
 	font-size: 13px;
 	color: gray;
 	position: absolute;
-	bottom: -10px;
+	bottom: -20px;
 }
 
 
@@ -437,21 +498,6 @@ div.input-group input {
 
 div.input-group textarea {
 	min-height: 180px;
-}
-
-.submit-btn, .reblog-btn {
-	padding: 10px 20px;
-	border: 1px solid black;
-	box-shadow: 2px 1px 1px black;
-	cursor: pointer;
-	outline: none;
-	border-radius: 5px;
-	position: relative;
-}
-
-button:active {
-	top: 2px;
-	left: 1px;
 }
 
 form.new-post-form-inputs button {

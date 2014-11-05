@@ -13,6 +13,7 @@
 #  reblog           :boolean          default(FALSE)
 #  previous_blog_id :integer
 #  original_post_id :integer
+#  filepicker_url   :string(255)
 #
 
 require 'rails_helper'

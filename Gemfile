@@ -48,7 +48,6 @@ gem 'backbone-on-rails'
 gem 'devise'
 gem 'pg_search'
 gem 'kaminari'
-
 gem 'seed_dump', group: [:development, :test]
 
 

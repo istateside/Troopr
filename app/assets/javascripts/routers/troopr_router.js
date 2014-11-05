@@ -3,6 +3,12 @@ Troopr.Routers.TrooprRouter = Backbone.Router.extend({
 		this.$nav = options.$nav;
 		this.$el = options.$el;
 		this.navBar();
+
+		$(document).on('click', function(event) {
+			if (!$(event.target).hasClass('notes-display')) {
+				$('div.notes-display').removeClass('active')
+			}
+		})
 	},
 
 	routes: {

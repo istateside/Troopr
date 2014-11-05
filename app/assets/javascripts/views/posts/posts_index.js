@@ -15,7 +15,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
   template: JST['posts/index'],
 
-	formTemplate: JST['posts/form'],
+	textTemplate: JST['forms/text'],
 
 	render: function($el) {
 		var renderedContent = this.template({
@@ -26,7 +26,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 			postView = new Troopr.Views.PostShow({ post: post, posts: that.posts })
 			that.$('.posts-space').append(postView.render().$el);
 		});
-		this.$('.posts-space').prepend(this.formTemplate({}));
+		this.$('.posts-space').prepend(this.textTemplate({}));
 		return this;
 	},
 

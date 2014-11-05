@@ -1,7 +1,8 @@
 Troopr.Collections.Posts = Backbone.Collection.extend({
   model: Troopr.Models.Post,
+
 	url: '/api/posts/',
-	
+
 	blog: function () {
 		if (!this._blog) {
 			this._blog = new Troopr.Models.Blog({

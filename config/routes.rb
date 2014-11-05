@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :create, :destroy] do
       post :reblog
     end
-    resources :likes, only: [:index, :create, :destroy]
+    resource :likes, only: [:create, :destroy]
     resources :notes, only: [:index, :create, :destroy]
     resource :session, only: [:create, :destroy]
   end
