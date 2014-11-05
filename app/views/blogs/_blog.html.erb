@@ -1,5 +1,9 @@
 <div class="blog-div group">
-	<figure class="blog-avatar"></figure>
+	<figure class="blog-avatar"><a href="<%= blog_url(blog) %>">
+	<% if blog.filepicker_url %>
+		<%= filepicker_image_tag blog.filepicker_url, w:64, h: 64, fit: 'clip'	%>
+	<% end %>
+	</a></figure>
 	<div class="blog-content">
 		<div class="content-box">
 			<div class="blog-header group"><h2><%= blog.blogname %></h2><%= follow_button(blog) %></div>

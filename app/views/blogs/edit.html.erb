@@ -1,7 +1,1 @@
-<h1>Change <%= @blog.blogname %></h1>
-
-<form action="<%= edit_blog_url(@blog) %>" method="POST">
-	<input type="hidden" name="_method" value="PATCH">
 <%= render 'form', blog: @blog %>
-
-</form>

@@ -1,5 +1,11 @@
 <div class="post-box">
-	<figure class="blog-avatar"></figure>
+	<figure class="blog-avatar">
+		<a href="<%= blog_url(post.blog) %>">
+		<% if post.blog.filepicker_url %>
+			<%= filepicker_image_tag post.blog.filepicker_url, w:64, h: 64, fit: 'clip'	%>
+		<% end %>
+		</a>
+	</figure>
 	<div class="post-content">
 		<div class="arrow-left"></div>
 			<div class="content-box">

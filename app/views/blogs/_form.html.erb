@@ -1,24 +1,33 @@
-<h1>Register a new blog!</h1>
+<% if @blog.new_record?
+		title = "Register a new blog!"
+		action = "create"
+else
+		title = "Update " + @blog.blogname
+		action = "update"
+end %>
+<h1><%= title %></h1>
 
-	<%= auth_token %>	
+<%= form_for @blog, url: { action: action } do |form| %>
+	<%= auth_token %>
 	<div class="input-group">
-		<label for="blog_blogname">Blog name!</label>
-		<input type="text" name="blog[blogname]" id="blog_blogname" value="<%= @blog.blogname %>">
+		<%= label_tag(:blogname, "Blogname:") %>
+		<%= form.text_field :blogname %>
 	</div>
 
 	<div class="input-group">
-		<label for="blog_description">Add a description for this blog</label>
-		<textarea name="blog[description]" id="blog_blogname" placeholder="Vader's so rad"><%= @blog.description %></textarea>
+		<%= label_tag(:description, "Description:") %>
+		<%= form.text_area :description%>
 	</div>
 
 	<div class="input-group">
-		<label for="blog_location">Add a location!</label>
-		<input type="text" name="blog[location]" id="blog_location" value="<%= @blog.location %>">
-	</div>
-	
-	<div class="input-group">
-	
-		
+		<%= label_tag(:location, "Location:") %>
+		<%= form.text_field :location %>
 	</div>
 
-	<button type="submit">Create blog!</button>
+	<div class="input-group">
+		<%= label_tag :filepicker_url %>
+		<%= form.filepicker_field :filepicker_url %>
+	</div>
+
+	<%= form.submit "Create blog!" %>
+<% end %>

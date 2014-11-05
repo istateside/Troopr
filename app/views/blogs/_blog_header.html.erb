@@ -1,5 +1,9 @@
 <div class="blog-intro-div group">
-<figure class="blog-image-fig"></figure>
+<figure class="blog-image-fig"><a href="<%= blog_url(blog) %>">
+<% if blog.filepicker_url %>
+	<%= filepicker_image_tag blog.filepicker_url, w:100, h:100, fit: 'clip'	%>
+<% end %>
+</a></figure>
 	<div class="blog-info">
 		<h1><%= blog.blogname %></h1>
 		<p><%= blog.location %></p>

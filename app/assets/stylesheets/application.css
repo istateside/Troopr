@@ -65,6 +65,12 @@ li#home-link {
 	left: 0px;
 }
 
+li#blog-settings-li {
+	position: absolute;
+	top:1px;
+	right: 340px;
+}
+
 li#blog-li {
 	position: absolute;
 	top:1px;
@@ -257,6 +263,7 @@ figure.blog-avatar {
 	margin: 0px 15px 0px 10px;
 	vertical-align: top;
 	box-shadow: 2px 2px 2px gray;
+	overflow: hidden;
 }
 
 p.blogname-header {
@@ -553,6 +560,7 @@ figure.blog-image-fig {
 	box-sizing: border-box;
 	position: relative;
 	bottom: 20px;
+	overflow: hidden;
 }
 
 div.blog-info {
