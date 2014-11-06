@@ -53,8 +53,6 @@ class PostsController < ApplicationController
       original_post_id: @original_post.original_post_id
     })
 
-    Note.create!({notable_id: reblog.id, notable_type: "Reblog", original_post_id: @original_post.original_post_id })
-
     redirect_to posts_url
   end
 

@@ -7,13 +7,13 @@ Troopr.Views.Navbar = Backbone.View.extend({
   className: 'nav-content group',
 
   events: {
-    'click .home-link': 'home'
+    "click .home-link": "home"
   },
 
   template: JST['shared/navbar'],
 
   home: function () {
-    Backbone.history.navigate('#', {trigger: true})
+    Backbone.history.navigate('#', { trigger: true })
   },
 
   render: function() {

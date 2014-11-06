@@ -50,7 +50,7 @@ body {
 /* NAV */
 
 nav.topbar {
-		background: #A6A6A6;
+		background: #202021;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -60,9 +60,12 @@ nav.topbar {
 		box-sizing: border-box;
 		z-index: 1000;
 		overflow: hidden;
+		border-bottom: 1px solid #414141;
 }
 div.nav-content {
-		width: 930px;
+		background: #202021;
+
+		width: 100%;
 		margin: auto;
 		position: relative;
 		padding: 10px;
@@ -73,6 +76,14 @@ li#home-link {
 		top: 1px;
 		left: 0px;
 }
+li.home-link {
+	width: 190px;
+}
+
+li#home-link a {
+	width: 190px;
+}
+
 li#backbone-link {
 		position: absolute;
 		left: 210px;
@@ -142,6 +153,7 @@ div.viewport.unliked, div.viewport.liked {
 div.viewport.logo-white {
 	width: 150px;
 	height: 40px;
+	bottom: 5px;
 }
 
 div.viewport.logo-black {
@@ -193,8 +205,8 @@ div.viewport.youtubeLogo {
 	width: 64px;
 	height: 40px;
 	display: inline-block;
-	left: 195px;
-	top: 11px;
+	left: 240px;
+	top: 45px;
 }
 
 img.sprite {
@@ -367,12 +379,13 @@ nav.sidebar {
 #blog-li {} #new-blog-li {}
 /* INDIVIDUAL POSTS */
 
-div.post-box.full-width {
+.blog-show div.post-box {
 		width: 900px
 }
-div.post-box.full-width .post-content {
+.blog-show div.post-box .post-content {
 		width: 800px;
 }
+
 .arrow-left {
 		width: 0;
 		height: 0;
@@ -510,7 +523,7 @@ p.chatLine {
 
 a.post-link-title {
 		cursor: pointer;
-		display: block;
+		display: inline-block;
 		font-size: 25px;
 		padding-bottom: 15px;
 		font-weight: bold;
@@ -731,7 +744,17 @@ div.blog-div input {
 }
 /* BLOG SHOW */
 
-div.blog-intro-div {} figure.blog-image-fig {
+div.blog-intro-div {
+	margin: 0 auto;
+	align: center;
+	position: relative;
+	left: 130px;
+}
+
+section.posts-space.blog-show {
+}
+
+figure.blog-image-fig {
 		border-radius: 10px;
 		border: 3px solid white;
 		height: 100px;

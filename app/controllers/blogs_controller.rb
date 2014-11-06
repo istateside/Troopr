@@ -6,7 +6,7 @@ class BlogsController < ApplicationController
 
   def create
     @blog = current_user.blogs.new(blog_params)
-    if @blog.save!
+    if @blog.save
       flash[:notice] = "Blog registered!"
       redirect_to posts_url
     else

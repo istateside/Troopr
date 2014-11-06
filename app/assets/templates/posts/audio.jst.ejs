@@ -20,15 +20,13 @@
     <button class="post-delete">
       <%= String.fromCharCode(215) %>
     </button>
-
     <iframe
       class="audio-player"
       width="500"
       height="380"
       frameborder="0"
-      allowfullscreen="true">
+      src="<%= post.get('url') %>">
     </iframe>
-
 
     <h2 class="post-title"><%= post.escape('title') %></h2>
     <p class="post-body"><%= post.escape('body') %></p>

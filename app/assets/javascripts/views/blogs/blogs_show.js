@@ -17,13 +17,12 @@ Troopr.Views.BlogsShow = Backbone.View.extend({
     var content = this.template({blog: this.blog});
     this.$el.html(content);
     var that = this;
-
     this.blog.posts().each(function(post) {
-      postView = new Troopr.Views.PostShow({
+      var postView = new Troopr.Views.PostShow({
         post: post,
         blog: that.blog,
         id: post.id,
-        className: "post-box full-width"
+        className: "post-box"
       })
 
       that.$('.posts-space').append(postView.render().$el);

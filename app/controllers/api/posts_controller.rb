@@ -33,7 +33,6 @@ module Api
         end
       end
       if @post.save!
-        Note.create!({notable_id: @post.id, notable_type: "Post", original_post_id: @post.original_post_id})
         render json: @post
       else
         flash.now[:errors] = @post.errors

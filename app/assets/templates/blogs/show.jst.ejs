@@ -1,5 +1,5 @@
-<div class="blog-intro-div group">
-  <figure class="blog-image-fig"></figure>
+<div class="blog-intro-div">
+  <figure class="blog-image-fig"><img src="<%= blog.get('filepicker_url') %>"></figure>
   <div class="blog-info">
     <h1><%= blog.escape('blogname') %></h1>
     <p><%= blog.escape('location') %></p>
@@ -15,4 +15,4 @@
   </div>
 </div>
 
-<section class="posts-space"></section>
+<section class="posts-space blog-show"></section>

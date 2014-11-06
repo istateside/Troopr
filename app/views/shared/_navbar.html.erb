@@ -2,11 +2,12 @@
 	<div class="nav-content group">
 		<ul>
 			<% unless request.env['PATH_INFO'] == (new_session_path || new_user_path) %>
-				<li id="home-link"><a href="<%= posts_url %>"><%= image_tag("logo.png", height: "50") %></a></li>
+				<li id="home-link"><a href="<%= posts_url %>">Troopr.</a></li>
 				<li id="backbone-link"><a href="/backbone">Backbone!</a>
 			<% end %>
+
 			<% unless !current_user %>
-				<li id="blog-settings-li"><%= link_to "Settings", edit_blog_url(current_blog) %></li>
+				<li id="blog-settings-li"></li>
 				<li id="blog-li">Logged in as: <%= link_to current_user.email, posts_url %> - <%= link_to 'Log Out', session_url,  method: :delete %></li>
 				<li id="blogs-list-li"><a href="<%= blogs_url %>">Find New Blogs!</a></li>
 			<% end %>

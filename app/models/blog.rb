@@ -38,7 +38,7 @@ class Blog < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
 
-  has_many :own_reblogs,\
+  has_many :own_reblogs,
     class_name: "Reblog",
     foreign_key: :blog_id,
     inverse_of: :reblogger
@@ -51,13 +51,19 @@ class Blog < ActiveRecord::Base
   has_many :reblogged_posts,
     through: :own_reblogs
 
-  has_many :follows,
+  has_many :own_follows,
     class_name: "Follow",
     foreign_key: "source_id",
     dependent: :destroy
 
-  has_many :following, through: :follows, source: :target
-  has_many :followers, through: :follows, source: :source
+  has_many :others_follows,
+    class_name: "Follow",
+    foreign_key: "target_id",
+    dependent: :destroy
+
+  has_many :following, through: :own_follows, source: :target
+  has_many :followers, through: :others_follows, source: :source
+
   def check_filepicker
     if self.filepicker_url.blank?
       self.filepicker_url = AVATAR_DEFAULTS.sample

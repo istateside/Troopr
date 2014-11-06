@@ -41,7 +41,7 @@ Troopr.Routers.TrooprRouter = Backbone.Router.extend({
 	blogShow: function(blog_id) {
 		var blog = Troopr.blogs.getOrFetch(blog_id);
 
-		blog.posts().fetch();
+		// blog.posts().fetch();
 
 		var showView = new Troopr.Views.BlogsShow({ blog: blog });
 		this._swapView(showView);

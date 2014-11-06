@@ -1,8 +1,9 @@
 <div class="feed group">
 	<%= render 'blog_header', blog: @blog %>
 	<%= follow_button(@blog) %>
-
-	<% @blog.posts.order(created_at: :desc).each do |post| %>
-		<%= render 'posts/post', post: post %>
-	<% end %>
+		<div class="blog-show">
+			<% @blog.posts.order(created_at: :desc).each do |post| %>
+				<%= render 'posts/post', post: post %>
+			<% end %>
+		</div>
 </div>
