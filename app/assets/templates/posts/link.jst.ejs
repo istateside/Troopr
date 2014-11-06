@@ -21,7 +21,7 @@
       <%= String.fromCharCode(215) %>
     </button>
 
-    <a class="post-link-title" href="<%= post.escape('url') %>">
+    <a class="post-link-title" href="http://<%= post.escape('url') %>">
       <% if (post.get('title')) { %>
         <%= post.escape('title') %>
       <% } else { %>
@@ -44,7 +44,12 @@
         <% }) %>
       </div>
     </div>
-    <button class="reblog-btn" data-post-id="<%= post.get('id') %>">Reblog</button>
-    <button class="like-btn"data-post-id="<%= post.get('id') %>"><%= String.fromCharCode(9825) %></button>
+    <div class="viewport reblog">
+      <img src="<%= Troopr.spriteUrl %>" class="reblog sprite"></img>
+    </div>
+    <% var liked= ((post.get('is_liked')) ? "liked" : "unliked") %>
+    <div class="viewport liked">
+      <img src="<%= Troopr.spriteUrl %>" class="<%= liked %> sprite"></img>
+    </div>
   </div>
 </div>

@@ -34,7 +34,7 @@
     <p class="post-body"><%= post.escape('body') %></p>
   </div>
 
-  <div class="post-bottom-bar">
+<div class="post-bottom-bar">
     <a href="javascript:void(0)" class="notes-display">
       <%= post.notes().length %> note<% if (post.notes().length > 1) { %>s<% } %>
     </a>
@@ -46,7 +46,12 @@
         <% }) %>
       </div>
     </div>
-    <button class="reblog-btn" data-post-id="<%= post.get('id') %>">Reblog</button>
-    <button class="like-btn"data-post-id="<%= post.get('id') %>"><%= String.fromCharCode(9825) %></button>
+    <div class="viewport reblog">
+      <img src="<%= Troopr.spriteUrl %>" class="reblog sprite"></img>
+    </div>
+    <% var liked= ((post.get('is_liked')) ? "liked" : "unliked") %>
+    <div class="viewport liked">
+      <img src="<%= Troopr.spriteUrl %>" class="<%= liked %> sprite"></img>
+    </div>
   </div>
 </div>

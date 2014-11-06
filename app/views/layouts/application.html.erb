@@ -6,12 +6,14 @@
 	  <%= javascript_include_tag 'application' %>
 		<%= filepicker_js_include_tag %>
 	  <%= csrf_meta_tags %>
-	</head>
-	<body>
+		<script src="http://connect.soundcloud.com/sdk.js"></script>
 		<script>
 			window.current_user_id = <%= !!current_user ? current_user.id : 'false' %>;
 			filepicker.setKey("<%= ENV['FILEPICKER_RAILS_API_KEY'] %>")
 		</script>
+
+	</head>
+	<body>
 		<nav class="topbar"></nav>
 
 		<main class="group">

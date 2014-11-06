@@ -111,6 +111,12 @@ Troopr.Views.PostShow = Backbone.View.extend({
 		this.$('iframe.player').attr('src', urlString);
 	},
 
+	renderSpotifyPlayer: function () {
+		var uri =
+
+		this.$('iframe.audio-player').attr('src', uri);
+	},
+
 	parseChat: function(body) {
 		$el = $('<p>')
 		var lines = body.replace("\r","").split("\n");

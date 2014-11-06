@@ -49,6 +49,7 @@ gem 'devise'
 gem 'pg_search'
 gem 'kaminari'
 gem 'seed_dump', group: [:development, :test]
+gem 'soundcloud'
 
 
 group :development do

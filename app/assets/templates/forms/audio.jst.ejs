@@ -1,0 +1,33 @@
+<form class="new-post-form-inputs">
+  <div class="input-group" id="image-entry-div">
+
+    <label for="audio-search-bar">Search for an audio file:</label>
+    <div class="viewport powered-by-spotify"><img src="<%= Troopr.spriteUrl %>" class="sprite powered-by-spotify"></img></div>
+    <div class="viewport powered-by-sc"><img src="<%= Troopr.spriteUrl %>" class=" sprite powered-by-sc"></img></div>
+    <button class="search-btn">Search</button>
+    <input type="text" name="search" id="audio-search-bar" placeholder="Imperial March">
+  </div>
+
+  <iframe
+    class="audio-player hidden"
+    width="500"
+    height="80"
+    frameborder="0"
+    allowfullscreen="true">
+  </iframe>
+
+  <div class="input-group" id="image-entry-div">
+    <input type="text" name="url" id="audio-url" placeholder="Audio Stream URL" disabled="true">
+  </div>
+
+  <div class="search-results">
+    <ul class="search-results-list">
+
+    </ul>
+  </div>
+
+
+
+  <input type='hidden' value="audio" name="post_type">
+  <button class="submit-btn" type="submit">Submit</button>
+</form>

@@ -27,6 +27,10 @@ module Api
           video_id = video_id[0, ampersandPos]
         end
         @post.url = video_id
+      elsif @post.post_type == 'link'
+        unless @post.url[0..6] == 'http://' || 'https:/'
+          @post.url = "http://" + @post.url
+        end
       end
       if @post.save!
         Note.create!({notable_id: @post.id, notable_type: "Post", original_post_id: @post.original_post_id})
