@@ -1,0 +1,17 @@
+<p class="blogname-header">
+
+  <a href="javascript:void(0)"
+    class="blogname-link"
+    data-id="<%= post.escape('blog_id') %>">
+  <%= post.escape('blogname') %>
+  </a>
+    <% if (post.get('reblog')) { %>
+      from
+      <a href="javascript:void(0)"
+         class="blogname-link"
+         data-id="<%= post.escape('previous_blog_id') %>">
+        <%= post.escape('previous_blogname') %></a>
+    <% }; %></p>
+<button class="post-delete">
+  <%= String.fromCharCode(215) %>
+</button>

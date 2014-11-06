@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :check_log_in, :check_blog
-  
+
   def index
     @posts = current_blog.posts
     current_blog.following.each do |blog|
@@ -36,23 +36,23 @@ class PostsController < ApplicationController
 
   def reblog
     @original_post = Post.find(params[:post_id])
-    
+
     @new_post = @original_post.dup
-    
+
     @new_post.reblog = true
     @new_post.previous_blog_id = @original_post.blog_id
     @new_post.blog = current_blog
     @new_post.original_post_id = @original_post.original_post_id
     @new_post.save!
-    
-    reblog = @original_post.reblogs.create!({ 
-      new_post_id: @new_post.id, 
-      blog_id: current_blog.id, 
-      previous_blog_id: @new_post.previous_blog_id, 
+
+    reblog = @original_post.reblogs.create!({
+      new_post_id: @new_post.id,
+      blog_id: current_blog.id,
+      previous_blog_id: @new_post.previous_blog_id,
       previous_post_id: @original_post.id,
       original_post_id: @original_post.original_post_id
     })
-    
+
     Note.create!({notable_id: reblog.id, notable_type: "Reblog", original_post_id: @original_post.original_post_id })
 
     redirect_to posts_url
@@ -66,6 +66,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :post_type)
+    params.require(:post).permit(:title, :body, :post_type, :url)
   end
 end

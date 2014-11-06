@@ -65,6 +65,11 @@ li#home-link {
 	left: 0px;
 }
 
+li#backbone-link {
+	position: absolute;
+	left: 210px;
+}
+
 li#blog-settings-li {
 	position: absolute;
 	top:1px;
@@ -146,6 +151,7 @@ button.like-btn {
 	left: 10px;
 	color: black;
 	cursor: pointer;
+	outline: none;
 }
 
 button.like-btn:hover {
@@ -382,6 +388,58 @@ div.notes-arrow {
 	bottom: 5px;
 }
 
+/* PHOTO POSTS */
+
+img.post-box-img {
+	max-width: 500px;
+	padding: 5px 0;
+	background: black;
+	margin: 0 auto;
+}
+
+/* QUOTE POSTS */
+p.chatLine {
+	margin-left: 25px;
+	font-size: 20px;
+}
+/* LINK POSTS */
+a.post-link-title {
+	cursor: pointer;
+	display: block;
+	font-size: 25px;
+	padding-bottom: 15px;
+	font-weight: bold;
+	text-decoration: underline;
+	text-overflow: ellipsis;
+}
+
+
+/* CHAT POSTS */
+textarea#title.quote-source {
+	border-top: none;
+	border-radius: 0 0 5px 5px;
+	position: relative;
+	bottom: 5px;
+	min-height: 75px;
+	text-align: right;
+	resize: none;
+}
+
+textarea#body.quote-body {
+	border-radius: 5px 5px 0 0;
+	margin-bottom: 0px;
+
+}
+
+/* AUDIO POSTS */
+
+/* VIDEO POSTS */
+
+div.video-space {
+	margin: 0 auto;
+	width: 500px;
+}
+
 /* POST BOTTOM BAR */
 div.post-bottom-bar a{
 	position: relative;
@@ -419,17 +477,16 @@ a.notes-display {
 	bottom: -20px;
 }
 
-
 /* NEW POST FORM */
 div.container {
-	padding-top: 1px;
-	height: 0;
-	transition: height 250ms;
+	padding-top: 1pxz;
+	max-height: 0;
+	transition: max-height 500ms;
 	overflow: hidden;
 }
 
 div.container.active {
-	height: 400px;
+	max-height: 700px;
 }
 
 div.new-post-form {
@@ -497,6 +554,7 @@ div.input-group input, textarea {
 	border-radius: 5px;
 	font-size: 16px;
 	padding: 10px;
+	max-height: 475px;
 }
 
 div.input-group input {
@@ -505,6 +563,7 @@ div.input-group input {
 
 div.input-group textarea {
 	min-height: 180px;
+	resize: vertical;
 }
 
 form.new-post-form-inputs button {

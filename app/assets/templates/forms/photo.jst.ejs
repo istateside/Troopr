@@ -1,4 +1,17 @@
 <form class="new-post-form-inputs">
+  <div class="input-group" id="image-entry-div">
+    <label for="filepicker">Upload image with Filepicker.io</label>
+<button id="filepicker">Upload</button>
+
+  </div>
+
+  <p>OR</p>
+
+  <div class="input-group" id="image-entry-div">
+    <label for="image-url">Enter image URL</label>
+    <input type="text" name="url" id="image-url" placeholder="URL">
+  </div>
+
   <div class="input-group" id="title-div">
     <label for="title">Title</label>
     <input
@@ -15,6 +28,6 @@
       id="body"
       placeholder="Real cool description, nerd."></textarea>
   </div>
-
+<input type="hidden" name="post_type" value="photo">
   <button class="submit-btn" type="submit">Submit</button>
 </form>

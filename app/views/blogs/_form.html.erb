@@ -1,9 +1,11 @@
 <% if @blog.new_record?
 		title = "Register a new blog!"
 		action = "create"
+		button_text = "Create blog!"
 else
 		title = "Update " + @blog.blogname
 		action = "update"
+		button_text = "Update blog!"
 end %>
 <h1><%= title %></h1>
 

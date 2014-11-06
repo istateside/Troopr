@@ -6,7 +6,9 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	events: {
 		"click .dash-post-buttons": "showForm",
-		"submit .new-post-form": "submitForm"
+		"submit .new-post-form": "submitForm",
+		"click .reblog-btn": "reblogPost",
+		"click button#filepicker": "filepicker"
 	},
 
 	tagName: 'div',
@@ -15,7 +17,13 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
   template: JST['posts/index'],
 
-	textTemplate: JST['forms/text'],
+	textForm: JST['forms/text'],
+	photoForm: JST['forms/photo'],
+	quoteForm: JST['forms/quote'],
+	linkForm: JST['forms/link'],
+	chatForm: JST['forms/chat'],
+	audioForm: JST['forms/audio'],
+	videoForm: JST['forms/video'],
 
 	render: function($el) {
 		var renderedContent = this.template({
@@ -26,13 +34,35 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 			postView = new Troopr.Views.PostShow({ post: post, posts: that.posts })
 			that.$('.posts-space').append(postView.render().$el);
 		});
-		this.$('.posts-space').prepend(this.textTemplate({}));
 		return this;
 	},
 
 	showForm: function(event) {
 		event.preventDefault();
-
+		var dataType = $(event.target).data('content')
+		switch (dataType) {
+			case "text":
+				this.$('.form-space').html(this.textForm());
+				break;
+			case "photo":
+				this.$('.form-space').html(this.photoForm());
+				break;
+			case "quote":
+				this.$('.form-space').html(this.quoteForm());
+				break;
+			case "link":
+				this.$('.form-space').html(this.linkForm());
+				break;
+			case "chat":
+				this.$('.form-space').html(this.chatForm());
+				break;
+			case "audio":
+				this.$('.form-space').html(this.audioForm());
+				break;
+			case "video":
+				this.$('.form-space').html(this.videoForm());
+				break;
+		}
 		if ($('.container').hasClass('active')) {
 			if ($(event.target).data('content') == this.$('#input-arrow').attr('class')){
 				this.$('.container').removeClass('active')
@@ -52,8 +82,36 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	submitForm: function(event) {
 		event.preventDefault();
 		var formData = $(event.target).serializeJSON();
+		console.log(formData);
 		var that = this;
 		this.posts.create(formData, { wait: true })
 		this.posts.fetch();
+	},
+
+	reblogPost: function(event) {
+		event.preventDefault();
+		var id = $(event.target).data('post-id');
+		var that = this;
+		$.ajax({
+			url: "/api/posts/" + id + "/reblog/",
+			type: "POST",
+			success: function (resp) {
+				post = that.posts.getOrFetch(resp.id)
+
+				postView = new Troopr.Views.PostShow({
+					post: post, posts: that.posts
+				})
+				that.$('.posts-space').prepend(postView.render().$el);
+			}
+		})
+	},
+
+	filepicker: function(event) {
+		event.preventDefault();
+		filepicker.pick(function(Blob){
+			var url = Blob.url;
+
+			this.$('input#image-url').val(url)
+		})
 	}
 });

@@ -1,5 +1,5 @@
 module Api
-  class PostsController < ApiController  
+  class PostsController < ApiController
     def index
       if !current_blog
         @posts = Post.all
@@ -19,7 +19,15 @@ module Api
 
     def create
       @post = current_blog.posts.new(post_params)
-      @post.post_type = "text"
+
+      if @post.post_type == 'video'
+        video_id = @post.url.split('v=')[1]
+        ampersandPos = video_id.index('&')
+        if ampersandPos && ampersandPos != -1
+          video_id = video_id[0, ampersandPos]
+        end
+        @post.url = video_id
+      end
       if @post.save!
         Note.create!({notable_id: @post.id, notable_type: "Post", original_post_id: @post.original_post_id})
         render json: @post
@@ -61,7 +69,7 @@ module Api
 
     private
     def post_params
-      params.require(:post).permit(:title, :body, :post_type)
+      params.require(:post).permit(:title, :body, :post_type, :url)
     end
   end
 end

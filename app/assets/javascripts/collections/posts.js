@@ -13,7 +13,7 @@ Troopr.Collections.Posts = Backbone.Collection.extend({
 			return this._blog;
 		}
 	},
-	
+
 	getOrFetch: function(id) {
 		var posts = this;
 		post
@@ -25,6 +25,7 @@ Troopr.Collections.Posts = Backbone.Collection.extend({
 			post.fetch({
 				success: function() { posts.add(post); }
 			})
+      posts.add(post);
 		}
 		return post;
 	}

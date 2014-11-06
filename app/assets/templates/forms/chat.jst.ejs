@@ -1,0 +1,23 @@
+<form class="new-post-form-inputs">
+  <div class="input-group" id="title-div">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      name="title"
+      id="title"-
+      placeholder="Enter title..">
+  </div>
+
+  <div class="input-group" id="body-div">
+    <label for="body">Chat</label>
+    <p>Enter dialogue in the displayed format.</p>
+    <textarea
+      name="body"
+      id="body"
+      placeholder="Lando: That wasn't part of the deal!
+Vader: I have altered the deal. Pray that I don't alter it further.
+Lando: Argh I'm such a dumb rebel!"></textarea>
+  </div>
+  <input type="hidden" name="post_type" value="chat">
+  <button class="submit-btn" type="submit">Submit</button>
+</form>

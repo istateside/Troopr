@@ -1,4 +1,13 @@
 <form class="new-post-form-inputs">
+  <div class="input-group" id="url-div">
+    <label for="url">URL</label>
+    <input
+      type="text"
+      name="url"
+      id="url"
+      placeholder="http://www.somethingrad.com">
+  </div>
+
   <div class="input-group" id="title-div">
     <label for="title">Title</label>
     <input
@@ -13,8 +22,9 @@
     <textarea
       name="body"
       id="body"
-      placeholder="Real cool description, nerd."></textarea>
+      placeholder="Check out this sweet thing!"></textarea>
   </div>
 
+  <input type="hidden" value="link" name="post_type">
   <button class="submit-btn" type="submit">Submit</button>
 </form>

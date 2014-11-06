@@ -1,7 +1,6 @@
 Troopr.Views.BlogsShow = Backbone.View.extend({
   initialize: function(options) {
     this.blog = options.blog;
-    this.blog.posts().fetch();
     this.listenTo(this.blog, 'sync', this.render);
     this.listenTo(this.blog.posts(), 'sync', this.render);
   },

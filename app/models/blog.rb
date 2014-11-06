@@ -13,6 +13,12 @@
 
 
 class Blog < ActiveRecord::Base
+  validates :blogname,
+    length: {
+      in: 6..20, wrong_length: "Blogname must be between 6-20 characters"
+      },
+    format: { without: /\s/, message: "No spaces in blognames, please!" } 
+
   belongs_to :user
 
   has_many :likes, dependent: :destroy

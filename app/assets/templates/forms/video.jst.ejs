@@ -1,0 +1,24 @@
+<form class="new-post-form-inputs">
+  <div class="input-group" id="image-entry-div">
+    <label for="youtube">Search for a video on Youtube</label>
+    <button id="youtube">Upload</button>
+  </div>
+
+  <p>OR</p>
+
+  <div class="input-group" id="image-entry-div">
+    <label for="image-url">Enter youtube URL</label>
+    <input type="text" name="url" id="image-url" placeholder="URL">
+  </div>
+
+  <div class="input-group" id="body-div">
+    <label for="body">Description</label>
+    <textarea
+      name="body"
+      id="body"
+      placeholder="You won't believe what these sith lords did!"></textarea>
+  </div>
+
+  <input type='hidden' value="video" name="post_type">
+  <button class="submit-btn" type="submit">Submit</button>
+</form>

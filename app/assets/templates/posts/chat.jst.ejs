@@ -1,0 +1,44 @@
+<figure class="blog-avatar">
+  <img src="<%= post.get('avatar_url') %>">
+</figure>
+<div class="post-content">
+  <div class="arrow-left"></div>
+   <div class="content-box">
+    <p class="blogname-header">
+      <a href="javascript:void(0)"
+        class="blogname-link"
+        data-id="<%= post.escape('blog_id') %>">
+      <%= post.escape('blogname') %>
+      </a>
+        <% if (post.get('reblog')) { %>
+          from
+          <a href="javascript:void(0)"
+             class="blogname-link"
+             data-id="<%= post.escape('previous_blog_id') %>">
+            <%= post.escape('previous_blogname') %></a>
+        <% }; %></p>
+    <button class="post-delete">
+      <%= String.fromCharCode(215) %>
+    </button>
+
+
+    <h2 class="post-title"><%= post.escape('title') %></h2>
+    <p class="post-body"><%= post.get('parsedBody') %></p>
+  </div>
+
+  <div class="post-bottom-bar">
+    <a href="javascript:void(0)" class="notes-display">
+      <%= post.notes().length %> note<% if (post.notes().length > 1) { %>s<% } %>
+    </a>
+    <div class="notes-display">
+      <div class="notes-arrow"></div>
+      <div class="notes-list">
+        <% post.notes().each(function(note) { %>
+          <li><%= note.get('render') %></li>
+        <% }) %>
+      </div>
+    </div>
+    <button class="reblog-btn" data-post-id="<%= post.get('id') %>">Reblog</button>
+    <button class="like-btn"data-post-id="<%= post.get('id') %>"><%= String.fromCharCode(9825) %></button>
+  </div>
+</div>
