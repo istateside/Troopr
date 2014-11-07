@@ -1,0 +1,20 @@
+<a href="javascript:void(0)" class="notes-display">
+  <% if (post.notes().length > 0) { %>
+    <%= post.notes().length %> note<% if (post.notes().length > 1) { %>s<% } %>
+  <% } %>
+</a>
+<div class="notes-display">
+  <div class="notes-arrow"></div>
+  <div class="notes-list">
+    <% post.notes().each(function(note) { %>
+      <li><%= note.get('render') %></li>
+    <% }) %>
+  </div>
+</div>
+<div data-post-id="<%= post.id %>" class="viewport reblog">
+  <img src="<%= Troopr.spriteUrl %>" class="reblog sprite"></img>
+</div>
+<% var isLiked = ((post.get('is_liked')) ? "liked" : "unliked") %>
+<div data-post-id="<%= post.id %>" class="viewport <%= isLiked %>" >
+  <img src="<%= Troopr.spriteUrl %>"></img>
+</div>

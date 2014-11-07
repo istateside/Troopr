@@ -14,8 +14,9 @@ Troopr.Routers.TrooprRouter = Backbone.Router.extend({
 	routes: {
 		"": "dashboard",
 		"blogs":"blogIndex",
+		"blogs/new": "newBlog",
 		"blogs/:id":"blogShow",
-		"blogs/:id/:post_id":"postShow",
+		"blogs/:id/edit":"editBlog",
 		"session/new":"logIn"
 	},
 	navBar: function() {
@@ -29,25 +30,28 @@ Troopr.Routers.TrooprRouter = Backbone.Router.extend({
 		var dashView = new Troopr.Views.PostsIndex({ posts: Troopr.posts });
 		this._swapView(dashView);
 
-		var sidebar = new Troopr.Views.Sidebar();
+		var sidebar = new Troopr.Views.Sidebar({});
 		this.$el.append(sidebar.render().$el);
 	},
 
 	blogIndex: function() {},
 
-	findBlog: function(event) {
+	newBlog: function () {
+		var newBlogView = new Troopr.Views.NewBlog({blog: new Troopr.Models.Blog()});
+		this._swapView(newBlogView);
+	},
+
+	editBlog: function(id) {
+		var blog = Troopr.blogs.get(id)
+		var editBlogView = new Troopr.Views.NewBlog({blog: blog})
+		this._swapView(editBlogView);
 	},
 
 	blogShow: function(blog_id) {
 		var blog = Troopr.blogs.getOrFetch(blog_id);
-
-		// blog.posts().fetch();
-
 		var showView = new Troopr.Views.BlogsShow({ blog: blog });
 		this._swapView(showView);
 	},
-
-	postShow: function() {},
 
 	logIn: function() {
 		var sessionView = new Troopr.Views.LogIn({});

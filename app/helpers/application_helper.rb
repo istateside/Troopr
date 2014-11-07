@@ -34,20 +34,59 @@ module ApplicationHelper
   end
 
   def reblog_button(post)
-    (button_to "Reblog", post_reblog_url(post))
+    (link_to image_tag('spritesheet.png'),
+      {
+        controller: :posts,
+        action: 'reblog',
+        post_id: post.id
+      },
+      {
+        method: :post
+      }
+    )
   end
 
   def like_button(post)
     if current_blog.has_liked?(post)
       @like = current_blog.likes.find_by_post_id(post.id)
-      (button_to "Unlike", { :controller => :likes, :action => 'destroy', :id => @like.id }, {method: 'delete', class: 'unlike'} )
+      (link_to image_tag('spritesheet.png'),
+        {
+          controller: :likes,
+          action: 'destroy',
+          id: @like.id
+        },
+        {
+          method: :delete
+        }
+      )
     else
-      (button_to "Like", { :controller => :likes, :action => 'create', :post_id => post.id })
+      (link_to image_tag('spritesheet.png'),
+        {
+          controller: :likes,
+          action: 'create',
+          post_id: post.id
+        },
+        {
+          method: :post
+        }
+      )
     end
   end
 
   def delete_button(post)
-     (button_to "Delete", {:controller => :posts, :action => 'destroy', :id => post.id }, {method: :delete, class: "post-delete"}) if current_user.blogs.include?(post.blog)
+     if current_user.blogs.include?(post.blog)
+       (link_to "×",
+       {
+         :controller => :posts,
+         :action => 'destroy',
+         :id => post.id
+       },
+       {
+         method: :delete,
+         class: "post-delete"
+        }
+      )
+    end
   end
 
   def follow_button(blog)

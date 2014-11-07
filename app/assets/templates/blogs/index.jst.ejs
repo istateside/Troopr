@@ -1,1 +1,13 @@
-BLOGS!!
+<div class="blogs-list">
+<% Troopr.blogs.each(function(blog) { %>
+  <li>
+    <a href="javascript:void(0)" data-id="<%= blog.escape('id') %>" class="blogname-link">
+      <figure class="blog-image-fig">
+        <img src="<%= blog.get('filepicker_url') %>" width="100">
+      </figure>
+    </a>
+    <%= blog.escape('blogname') %>
+    <%= blog.escape('description') %>
+  </li>
+<% }) %>
+</div>

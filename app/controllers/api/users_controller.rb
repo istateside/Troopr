@@ -33,6 +33,7 @@ module Api
 
     def change_blogs
       current_user.current_active_blog = (params[:blog_id])
+      render json: current_user.current_active_blog
     end
 
     private

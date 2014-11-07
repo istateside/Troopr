@@ -1,2 +1,31 @@
-<li id="blog-li">Change Blogs</li>
-<li id="new-blog-li">New Blog</li>
+<div class="list-container">
+  <ul class="blog-list">
+
+    <li class="blog-list-li group" data-blog-id="<%= Troopr.currentBlog.escape('id') %>">
+      <figure class="blog-avatar-small">
+        <img src="<%= Troopr.currentBlog.get('filepicker_url') %>" width="35" height="35">
+      </figure>
+      <p class="blog-list-name"><%= Troopr.currentBlog.escape('blogname') %>
+        <figure class="down"><%= "\u25BC" %></figure>
+      </p>
+    </li>
+
+    <% Troopr.currentUser.blogs().each(function(blog) { %>
+      <% if (blog.get('id') != Troopr.currentBlogID) { %>
+        <li class="blog-list-li group" data-blog-id="<%= blog.escape('id') %>">
+          <figure class="blog-avatar-small">
+            <img src="<%= blog.get('filepicker_url') %>" width="35" height="35">
+          </figure>
+          <p class="blog-list-name"><%= blog.escape('blogname') %></p>
+        </li>
+      <% } %>
+    <% }) %>
+
+    <li class="blog-list-li new-blog group">
+      <a href="javascript:void(0)" class="new-blog-href">
+        <figure class="new-blog-icon"><%= "\u002B" %></figure>
+        <p class="new-blog">Create a new blog</p>
+      </a>
+    </li>
+  </ul>
+</div>

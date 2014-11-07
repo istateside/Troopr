@@ -1,8 +1,23 @@
 <div class="post-bottom-bar">
 		<% unless post.get_notes.empty? %>
-			<a href="<%= post_url(post) %>" class="notes-display"><%= post.get_notes.length %> note<%= post.get_notes.length > 1 ? 's' : '' %></a>
-
+			<a
+				href="<%= post_url(post) %>"
+				class="notes-display">
+				<%= post.get_notes.length %>
+				 note
+				<%= post.get_notes.length > 1 ? 's' : '' %>
+			</a>
 		<% end %>
-		<%= reblog_button(post) %>
-		<%= like_button(post) %>
+
+		<div class="viewport reblog">
+			<%= reblog_button(post) %>
+		</div>
+
+		<% if (current_blog.has_liked?(post)) %>
+			<div class="viewport liked">
+		<% else %>
+			<div class="viewport unliked">
+		<% end %>
+			<%= like_button(post) %>
+		</div>
 </div>

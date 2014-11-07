@@ -3,7 +3,7 @@ Troopr.Collections.Blogs = Backbone.Collection.extend({
 	url: "/api/blogs",
 	getOrFetch: function(id) {
 		var blogs = this;
-		
+
 		var blog;
 		if (blog = blogs.get(id)){
 			blog.fetch();
@@ -14,5 +14,7 @@ Troopr.Collections.Blogs = Backbone.Collection.extend({
 			})
 		}
 		return blog;
-	}
+	},
+
+  comparator: 'created_at'
 });

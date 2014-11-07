@@ -2,12 +2,16 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	initialize: function (options) {
 		this.posts = options.posts;
 		this.listenTo(this.posts, 'sync', this.render);
+		this.listenTo(this.posts, 'add', this.addPost);
+		this.listenTo( Troopr.currentUser, 'switch', this.switch );
 	},
 
 	events: {
 		"click .dash-post-buttons": "showForm",
 		"submit .new-post-form": "submitForm",
-		"click .reblog-btn": "reblogPost",
+		"click div.viewport.reblog": "reblogPost",
+		"click div.viewport.unliked": "likePost",
+		"click div.viewport.liked": "likePost",
 		"click button#filepicker": "filepicker",
 		"click a#audio-btn": "audio",
 		"click button.search-btn": "search",
@@ -73,8 +77,6 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		} else {
 			this.$('.container').addClass('active');
 		}
-
-
 		this.handleArrow($(event.target).data('content'));
 	},
 
@@ -92,19 +94,35 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	reblogPost: function(event) {
 		event.preventDefault();
-		var id = $(event.target).data('post-id');
+		var id = $(event.currentTarget).data('post-id');
 		var that = this;
 		$.ajax({
 			url: "/api/posts/" + id + "/reblog/",
 			type: "POST",
 			success: function (resp) {
 				post = that.posts.getOrFetch(resp.id)
-
 				postView = new Troopr.Views.PostShow({
 					post: post, posts: that.posts
 				})
 
 				that.$('.posts-space').prepend(postView.render().$el);
+			}
+		})
+	},
+
+	likePost: function(event) {
+		event.preventDefault();
+		var id= $(event.currentTarget).data('post-id');
+		var post = this.posts.get(id);
+		$(event.currentTarget).prop('disabled', true)
+		var ajaxType = (post.get('is_liked') ? "DELETE" : "POST")
+		$.ajax({
+			url: "/api/likes",
+			type: ajaxType,
+			data: { post_id: id },
+			success: function() {
+				post.fetch()
+				$(event.currentTarget).prop('disabled', false)
 			}
 		})
 	},
@@ -125,11 +143,9 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		var spotifyResp;
 		this.soundCloudSearch(query, function(resp) {
 			soundCloudResp = resp;
-			console.log("soundCloudResp:",soundCloudResp);
 		});
 		this.spotifySearch(query, function(resp) {
 			spotifyResp = resp;
-			console.log("SpotifyResp:", spotifyResp);
 		});
 	},
 
@@ -146,7 +162,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 				callback(resp);
 				var $list = that.$('ul.search-results-list');
 				that.$('div.search-results').addClass('active');
-				_.each(resp.tracks.items, function(track) {
+				resp.tracks.items.each(function(track) {
 					var artist = track.artists[0].name;
 					var title = track.name;
 					var $li = $('<li>').text(artist + " - " + title);
@@ -207,5 +223,13 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		$iframe.attr('src', src)
 		this.$('iframe').removeClass('hidden');
 		this.$('input#audio-url').val(src);
+	},
+
+	switch: function() {
+		this.posts.fetch();
+	},
+
+	addPost: function() {
+
 	}
 });

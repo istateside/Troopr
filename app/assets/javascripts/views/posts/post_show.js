@@ -8,12 +8,11 @@ Troopr.Views.PostShow = Backbone.View.extend({
 		}
 
 		this.listenTo(this.post, 'sync', this.render);
-		this.listenTo(this.post.notes(), 'remove add', this.render);
+		this.listenTo(this.post.notes(), 'remove add', this.renderBottom);
 	},
 
 	events: {
 		"click .post-delete": "deletePost",
-		"click .like-btn": "likePost",
 		"click .blogname-link": "goToBlog",
 		"click a.notes-display": "showNotes"
 	},
@@ -35,6 +34,9 @@ Troopr.Views.PostShow = Backbone.View.extend({
 
 	className: 'post-box',
 
+	headerTemplate: JST['posts/postheader'],
+	bottomTemplate: JST['posts/postbottombar'],
+
 	textTemplate: JST['posts/text'],
 	photoTemplate: JST['posts/photo'],
 	quoteTemplate: JST['posts/quote'],
@@ -43,25 +45,9 @@ Troopr.Views.PostShow = Backbone.View.extend({
 	audioTemplate: JST['posts/audio'],
 	videoTemplate: JST['posts/video'],
 
-	likePost: function(event) {
-		event.preventDefault();
-		var that = this;
-		$(event.target).prop('disabled', true)
-		var ajaxType = (that.post.get('is_liked') ? "DELETE" : "POST")
-		$.ajax({
-			url: "/api/likes",
-			type: ajaxType,
-			data: { post_id: that.post.get('id') },
-			success: function() {
-				that.post.fetch()
-				$(event.target).prop('disabled', false)
-			}
-		})
-	},
-
 	goToBlog: function(event) {
 		event.preventDefault();
-		var blog_id = $(event.target).data('id');
+		var blog_id = $(event.currentTarget).data('id');
 		Backbone.history.navigate('blogs/' + blog_id, { trigger: true });
 	},
 
@@ -71,18 +57,31 @@ Troopr.Views.PostShow = Backbone.View.extend({
 		$display.toggleClass('active');
 	},
 
-	render: function(el) {
+	render: function() {
 		var template = this.templateType(this.post);
 
 		var renderedContent = template({
 			post: this.post,
 			byline: this.postByline()
 		});
+
+		var headerContent = this.headerTemplate({ post: this.post });
+
+
 		this.$el.html(renderedContent)
+		this.$('div.post-header').html(headerContent);
+
+		this.renderBottom();
+
 		if (this.post.get('post_type') === "video") {
 			this.renderVideoFrame();
 		}
 		return this;
+	},
+
+	renderBottom: function() {
+		var bottomContent = this.bottomTemplate({ post: this.post });
+		this.$('div.post-bottom-bar').html(bottomContent);
 	},
 
 	templateType: function(post) {

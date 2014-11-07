@@ -3,7 +3,8 @@ Troopr.Models.User = Backbone.Model.extend({
 
 	parse: function(resp) {
 		if (resp.blogs) {
-			this.blogs().set(resp.blogs, {parse: true} );
+			this.blogs().set(resp.blogs, { parse: true } );
+			this.blogs().trigger('sync', this.blogs());
 			delete resp.blogs;
 		}
 		return resp;

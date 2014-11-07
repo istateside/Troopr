@@ -7,9 +7,11 @@ window.Troopr = {
     Troopr.currentUser = new Troopr.Models.User({
       id: Troopr.currentUserID
     })
-    Troopr.currentUser.fetch({ success: function(){
-      Troopr.currentBlog = Troopr.currentUser.blogs().first
-    }});
+
+    Troopr.currentUser.fetch();
+
+    Troopr.currentBlog = Troopr.currentUser.blogs().getOrFetch(Troopr.currentBlogID)
+
 		Troopr.posts = new Troopr.Collections.Posts()
     Troopr.blogs = new Troopr.Collections.Blogs();
 		Troopr.router = new Troopr.Routers.TrooprRouter({

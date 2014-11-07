@@ -1,25 +1,13 @@
-<figure class="blog-avatar">
-  <img src="<%= post.get('avatar_url') %>">
-</figure>
+<a href="javascript:void(0)" data-id="<%= post.escape('blog_id') %>" class="blogname-link">
+  <figure class="blog-avatar">
+    <img src="<%= post.get('avatar_url') %>">
+  </figure>
+</a>
 <div class="post-content">
   <div class="arrow-left"></div>
    <div class="content-box">
-    <p class="blogname-header">
-      <a href="javascript:void(0)"
-        class="blogname-link"
-        data-id="<%= post.escape('blog_id') %>">
-      <%= post.escape('blogname') %>
-      </a>
-        <% if (post.get('reblog')) { %>
-          from
-          <a href="javascript:void(0)"
-             class="blogname-link"
-             data-id="<%= post.escape('previous_blog_id') %>">
-            <%= post.escape('previous_blogname') %></a>
-        <% }; %></p>
-    <button class="post-delete">
-      <%= String.fromCharCode(215) %>
-    </button>
+
+    <div class="post-header"></div>
 
     <iframe
       class="player"
@@ -34,24 +22,5 @@
     <p class="post-body"><%= post.escape('body') %></p>
   </div>
 
-<div class="post-bottom-bar">
-    <a href="javascript:void(0)" class="notes-display">
-      <%= post.notes().length %> note<% if (post.notes().length > 1) { %>s<% } %>
-    </a>
-    <div class="notes-display">
-      <div class="notes-arrow"></div>
-      <div class="notes-list">
-        <% post.notes().each(function(note) { %>
-          <li><%= note.get('render') %></li>
-        <% }) %>
-      </div>
-    </div>
-    <div class="viewport reblog">
-      <img src="<%= Troopr.spriteUrl %>" class="reblog sprite"></img>
-    </div>
-    <% var liked= ((post.get('is_liked')) ? "liked" : "unliked") %>
-    <div class="viewport liked">
-      <img src="<%= Troopr.spriteUrl %>" class="<%= liked %> sprite"></img>
-    </div>
-  </div>
+  <div class="post-bottom-bar"></div>
 </div>

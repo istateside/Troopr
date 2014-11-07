@@ -2,7 +2,9 @@
 	<div class="nav-content group">
 		<ul>
 			<% unless request.env['PATH_INFO'] == (new_session_path || new_user_path) %>
-				<li id="home-link"><a href="<%= posts_url %>">Troopr.</a></li>
+				<li class="home-link"><a href="<%= posts_url %>">
+					<div class="viewport logo-white"><img src="<%= image_url('spritesheet.png') %>" class="sprite logo-white"></div></a>
+				</li>
 				<li id="backbone-link"><a href="/backbone">Backbone!</a>
 			<% end %>
 

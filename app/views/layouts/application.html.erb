@@ -14,11 +14,10 @@
 
 	</head>
 	<body>
-		<nav class="topbar"></nav>
+		<%= render 'shared/navbar' %>
 
 		<main class="group">
 			<div class="backbone">
-				<%= render 'shared/navbar' %>
 				<%= render 'shared/errors' %>
 				<%= yield %>
 			</div>

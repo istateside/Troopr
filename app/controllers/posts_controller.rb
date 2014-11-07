@@ -53,7 +53,7 @@ class PostsController < ApplicationController
       original_post_id: @original_post.original_post_id
     })
 
-    redirect_to posts_url
+    redirect_to (:back)
   end
 
   def destroy

@@ -1,0 +1,67 @@
+<div class="left-column">
+  <p class="blogname">This is the name that you will be identified by!
+    Your name must be between 6-20 characters, and may not use spaces.</p>
+  <p class="description">Tell us about yourself, or about what this blog will be about!</p>
+  <p class="location">Where you at?</p>
+  <p class="avatar">This picture will appear on your blog, and attached to all of your posts. Pick something appropriate, ya jerk!</p>
+</div>
+<div class="right-column">
+  <% if (blog.isNew()) {
+    var title = "Register a new blog!";
+    var button_text = "Create blog!";
+  } else {
+    var title = "Update " + blog.escape('blogname');
+    var button_text = "Update blog!";
+  } %>
+
+  <form class="new-blog-form">
+    <h1><%= title %></h1>
+    <div class="input-group">
+      <label for="blogname">Blogname</label>
+      <input type="text"
+        name="blogname"
+        id="blogname"
+        value="<%= blog.escape('blogname') %>"
+        placeholder="mysweet_newblog">
+    </div>
+
+    <div class="input-group">
+      <label for="description">Description</label>
+      <textarea
+        name="description"
+        id="description"
+        value="<%= blog.escape('description') %>"
+        placeholder="What're you all about?"></textarea>
+    </div>
+
+    <div class="input-group">
+      <label for="location">Location:</label>
+      <input type="text"
+        name="location"
+        id="location"
+        value="<%= blog.escape('location') %>"
+        placeholder="Korriban">
+    </div>
+
+    <div class="input-group avatar">
+      <label for="avatar">Avatar:</label>
+      <input
+        type="text"
+        name="filepicker_url"
+        id="avatar"
+        value="<%= blog.escape('filepicker_url') %>"
+        placeholder="Enter url or use Filepicker!">
+        <br>
+      <button class="filepicker">Filepicker</button>
+      <figure class="blog-image-fig avatar-preview">
+        <img
+          src="<%= blog.get('filepicker_url') %>"
+          width="125"
+          id="avatar-preview">
+      </figure>
+
+    </div>
+
+    <button class="submit-btn">SUBMIT</button>
+  </form>
+</div>
