@@ -1,11 +1,17 @@
 <div class="blogs-list">
 <% Troopr.blogs.each(function(blog) { %>
-  <li>
+  <li class="blog-index-li">
     <a href="javascript:void(0)" data-id="<%= blog.escape('id') %>" class="blogname-link">
-      <figure class="blog-image-fig">
+      <figure class="blog-image-fig blog-index">
         <img src="<%= blog.get('filepicker_url') %>" width="100">
       </figure>
     </a>
+    <% if (!blog.get('is_current')) { %>
+      <button class="follow-btn" data-blog-id="<%= blog.id %>">
+      <% if(blog.get('is_followed')) { %>Unfollow
+      <% } else { %>Follow<% } %>
+    </button>
+    <% } %>
     <%= blog.escape('blogname') %>
     <%= blog.escape('description') %>
   </li>

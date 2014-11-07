@@ -10,7 +10,8 @@ Troopr.Views.Sidebar = Backbone.View.extend({
   className: 'sidebar group',
 
   events: {
-    'click .blog-list-li': 'changeBlog'
+    'click .blog-list-li': 'changeBlog',
+    "click a.blog-index-a": "goToIndex"
   },
 
   template: JST['shared/sidebar'],
@@ -19,6 +20,12 @@ Troopr.Views.Sidebar = Backbone.View.extend({
     var content = this.template({});
     this.$el.html(content);
     return this;
+  },
+
+  goToIndex: function(event) {
+    event.preventDefault();
+    console.log('click')
+    Backbone.history.navigate('/blogs', {trigger: true})
   },
 
   changeBlog: function(event) {

@@ -34,7 +34,11 @@ Troopr.Routers.TrooprRouter = Backbone.Router.extend({
 		this.$el.append(sidebar.render().$el);
 	},
 
-	blogIndex: function() {},
+	blogIndex: function() {
+		Troopr.blogs.fetch();
+		var blogIndexView = new Troopr.Views.BlogsIndex();
+		this._swapView(blogIndexView);
+	},
 
 	newBlog: function () {
 		var newBlogView = new Troopr.Views.NewBlog({blog: new Troopr.Models.Blog()});

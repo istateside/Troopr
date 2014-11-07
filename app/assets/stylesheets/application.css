@@ -287,7 +287,7 @@ div.viewport.search img {
 	top: -264px;
 }
 
-button.search-btn, button.filepicker, button.sign-out-btn {
+button.search-btn, button.filepicker, button.sign-out-btn, input.follow-button {
 	border: 1px solid black;
 	border-radius: 5px;
 	padding: 2px 5px;
@@ -488,6 +488,23 @@ li.new-blog figure.new-blog-icon {
 	font-size: 30px;
 	height: 35px;
 	width: 35px;
+}
+
+a.blog-index-a {
+	color: black;
+	background: white;
+	padding: 5px 10px;
+ 	cursor: pointer;
+	border: 1px solid black;
+	position: relative;
+	top: 40px;
+	left: 10px;
+	border-radius: 5px;
+}
+
+a.blog-index-a:hover {
+	color: white;
+	background: black
 }
 
 /* INDIVIDUAL POSTS */
@@ -927,6 +944,35 @@ div.right-column figure.avatar-preview.active {
 	visibility: visible;
 }
 
+/* BLOGS INDEX */
+
+li.blog-index-li {
+	background: white;
+	border-radius: 5px;
+padding: 10px 20px;
+	margin-bottom: 10px;
+}
+
+figure.blog-image-fig.blog-index {
+	position: relative;
+	margin: 0 0;
+	bottom: 0px;
+}
+
+button.follow-btn {
+	cursor: pointer;
+	border: 1px solid black;
+	background: white;
+	padding: 5px 10px;
+	font-weight: bold;
+	letter-spacing: 3px;
+	font-size: 15px;
+}
+
+button.follow-btn:hover {
+	color: white;
+	background: black;
+}
 
 
 /* BLOGS SHOW */

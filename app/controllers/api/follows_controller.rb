@@ -1,7 +1,7 @@
 module Api
   class FollowsController < ApiController
     def create
-      @follow = current_blog.follows.new({target_id: params[:blog_id]})
+      @follow = current_blog.own_follows.new({target_id: params[:blog_id]})
       if @follow.save!
         render json: @follow
       else
@@ -10,7 +10,7 @@ module Api
     end
 
     def destroy
-      @follow = current_blog.follows.find_by_target_id(params[:id])
+      @follow = current_blog.own_follows.find_by_target_id(params[:id])
       if @follow.destroy!
         render json: {}
       else

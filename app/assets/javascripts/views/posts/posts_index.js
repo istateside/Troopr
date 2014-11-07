@@ -32,6 +32,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	audioForm: JST['forms/audio'],
 	videoForm: JST['forms/video'],
 
+
 	render: function($el) {
 		var renderedContent = this.template({
 		});
