@@ -13,9 +13,10 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		"click div.viewport.unliked": "likePost",
 		"click div.viewport.liked": "likePost",
 		"click button#filepicker": "filepicker",
-		"click a#audio-btn": "audio",
-		"click button.search-btn": "search",
-		"click li.search-result-li": "buildPlayer"
+		"click button.audio.search-btn": "audioSearch",
+		"click button.video.search-btn": "videoSearch",
+		"click li.search-result-li.audio": "buildAudioPlayer",
+		"click li.search-result-li.video": "buildVideoPlayer"
 	},
 
 	tagName: 'div',
@@ -137,14 +138,10 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		})
 	},
 
-	search: function(event) {
+	audioSearch: function(event) {
 		event.preventDefault();
-		query = this.$('input#audio-search-bar').val();
-		var soundCloudResp;
+		var query = this.$('input#audio-search-bar').val();
 		var spotifyResp;
-		this.soundCloudSearch(query, function(resp) {
-			soundCloudResp = resp;
-		});
 		this.spotifySearch(query, function(resp) {
 			spotifyResp = resp;
 		});
@@ -161,14 +158,14 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 			},
 			success: function(resp) {
 				callback(resp);
-				var $list = that.$('ul.search-results-list');
-				that.$('div.search-results').addClass('active');
-				resp.tracks.items.each(function(track) {
+				var $list = that.$('ul.search-results-list.audio');
+				that.$('div.search-results.audio').addClass('active');
+				resp.tracks.items.forEach(function(track) {
 					var artist = track.artists[0].name;
 					var title = track.name;
 					var $li = $('<li>').text(artist + " - " + title);
 
-					$li.addClass("search-result-li");
+					$li.addClass("search-result-li audio");
 					$list.prepend($li);
 					var $div = $('<div class="viewport spotify-logo">')
 					var $img = $('<img class="spotify-logo sprite" src="' + Troopr.spriteUrl +'">')
@@ -182,48 +179,57 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		})
 	},
 
-	soundCloudSearch: function(query, callback) {
+	videoSearch: function(event) {
+		event.preventDefault();
+
+		var query = this.$('input#video-search-bar').val();
 		var that = this;
-		SC.initialize({client_id: "8529a0b9578d5bf8d5f429e34ec32f53"})
-		SC.get('/tracks', { q: query, limit: 5 }, function(resp) {
-			callback(resp)
-			var $list = that.$('ul.search-results-list');
-			that.$('div.search-results').addClass('active');
-			_.each(resp, function(track) {
-				var $li = $('<li>')
-				$li.append(track.title);
 
-				$li.addClass("search-result-li");
-				$list.prepend($li);
-				var $div = $('<div class="viewport sc-logo">')
-				var $img = $('<img class="sc-logo sprite" src="' + Troopr.spriteUrl +'">')
-				$li.prepend($div);
-				$div.prepend($img);
+		$.ajax({
+			url: "https://www.googleapis.com/youtube/v3/search",
+			data: {
+				part: "snippet",
+				type: "video",
+				key: "AIzaSyDY_1IrjrY6QtfMt-hmD1tkQcJwaH-VgAo",
+				q: query
+			},
 
-				$li.data('uri', track.uri);
-				$li.data('site', "soundcloud");
-			})
+			success: function(resp) {
+				var $list = that.$('ul.search-results-list.video');
+				that.$('div.search-results.video').addClass('active');
+				resp.items.forEach(function(video) {
+					var title = video.snippet.title;
+					var $li = $('<li>').text(title);
+
+					$li.addClass("search-result-li video");
+					$list.prepend($li);
+
+					var url = "http://www.youtube.com/embed/" + video.id.videoId;
+					$li.data('url', url);
+
+				})
+
+
+			}
 		})
-
 	},
 
-	buildPlayer: function(event) {
+	buildAudioPlayer: function(event) {
+		event.preventDefault()
 		var uri = $(event.currentTarget).data('uri');
-		var src;
 		var $iframe = this.$('iframe.audio-player');
-		if  ($(event.target).data('site') === 'spotify') {
-			src = "https://embed.spotify.com/?uri=" + uri
-		} else {
-			src = uri
-				+ "&amp;auto_play=false"
-				+ "&amp;hide_related=false"
-				+ "&amp;show_reposts=false"
-				+ "&amp;visual=true"
-				+ "&amp;client_id=8529a0b9578d5bf8d5f429e34ec32f53"
-		}
+		var src = "https://embed.spotify.com/?uri=" + uri
 		$iframe.attr('src', src)
-		this.$('iframe').removeClass('hidden');
+		this.$('iframe.audio-player').slideDown();
 		this.$('input#audio-url').val(src);
+	},
+
+	buildVideoPlayer: function(event) {
+		var url = $(event.currentTarget).data('url');
+		var $iframe = this.$('iframe.video-player');
+		$iframe.attr('src', url)
+		this.$('iframe.video-player').slideDown();
+		this.$('input#video-url').val(url);
 	},
 
 	switch: function() {

@@ -20,14 +20,7 @@ module Api
     def create
       @post = current_blog.posts.new(post_params)
 
-      if @post.post_type == 'video'
-        video_id = @post.url.split('v=')[1]
-        ampersandPos = video_id.index('&')
-        if ampersandPos && ampersandPos != -1
-          video_id = video_id[0, ampersandPos]
-        end
-        @post.url = video_id
-      elsif @post.post_type == 'link'
+      if @post.post_type == 'link'
         unless @post.url[0..6] == 'http://' || 'https:/'
           @post.url = "http://" + @post.url
         end

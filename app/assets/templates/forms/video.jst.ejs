@@ -1,11 +1,30 @@
 <form class="new-post-form-inputs">
+
   <div class="input-group" id="image-entry-div">
-    <label for="image-url">Enter YouTube URL
-      <div class="viewport youtubeLogo">
-        <img src="<%= Troopr.spriteUrl %>" class="sprite youtubeLogo"></img>
-      </div>
-    </label>
-    <input type="text" name="url" id="image-url" placeholder="Video ID">
+    <label for="video-search-bar">Search via YouTube:</label>
+    <div class="viewport youtubeLogo">
+      <img src="<%= Troopr.spriteUrl %>" class="sprite youtubeLogo"></img>
+    </div>
+    <button class="video search-btn">Search</button>
+    <input type="text" name="search" id="video-search-bar" placeholder="Eagles are turning people into horses">
+  </div>
+  <div class="input-group" id="image-entry-div">
+    <label for="video-url">YouTube URL</label>
+    <input type="text" name="url" id="video-url" placeholder="http://www.youtube.com/......">
+  </div>
+
+  <iframe
+    class="video-player"
+    width="500"
+    height="304"
+    frameborder="0"
+    allowfullscreen="true">
+  </iframe>
+
+  <div class="search-results video">
+    <ul class="search-results-list video">
+
+    </ul>
   </div>
 
   <div class="input-group" id="body-div">
