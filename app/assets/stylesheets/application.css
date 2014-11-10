@@ -949,7 +949,7 @@ div.right-column figure.avatar-preview.active {
 li.blog-index-li {
 	background: white;
 	border-radius: 5px;
-padding: 10px 20px;
+	padding: 10px 20px;
 	margin-bottom: 10px;
 }
 
@@ -967,6 +967,8 @@ button.follow-btn {
 	font-weight: bold;
 	letter-spacing: 3px;
 	font-size: 15px;
+	position: relative;
+	left: 9px;
 }
 
 button.follow-btn:hover {
@@ -974,6 +976,25 @@ button.follow-btn:hover {
 	background: black;
 }
 
+div.left-col {
+	float: left;
+}
+
+div.right-col {
+	float: left;
+	position: relative;
+	top: 15px;
+	margin-left: 30px;
+}
+
+p.blogname {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+p.blog-desc {
+	margin-top: 10px;
+}
 
 /* BLOGS SHOW */
 

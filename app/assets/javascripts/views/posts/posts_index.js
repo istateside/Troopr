@@ -101,12 +101,12 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 			url: "/api/posts/" + id + "/reblog/",
 			type: "POST",
 			success: function (resp) {
-				post = that.posts.getOrFetch(resp.id)
-				postView = new Troopr.Views.PostShow({
-					post: post, posts: that.posts
-				})
 
-				that.$('.posts-space').prepend(postView.render().$el);
+				var post = new Troopr.Models.Post({id: resp.id})
+				post.fetch({success: function(resp) {
+						that.posts.add(post);
+
+				}})
 			}
 		})
 	},
@@ -230,7 +230,8 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		this.posts.fetch();
 	},
 
-	addPost: function() {
-
+	addPost: function(post) {
+		postView = new Troopr.Views.PostShow({ post: post, posts: this.posts })
+		this.$('.posts-space').prepend(postView.render().$el);
 	}
 });

@@ -44,6 +44,7 @@ Troopr.Views.Sidebar = Backbone.View.extend({
         data: { blog_id: blogID },
         success: function() {
           Troopr.currentBlog = Troopr.currentUser.blogs().getOrFetch(blogID);
+          Troopr.currentBlogID = blogID;
           Troopr.currentUser.trigger('switch');
         }
       })

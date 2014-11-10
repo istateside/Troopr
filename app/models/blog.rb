@@ -24,7 +24,7 @@ class Blog < ActiveRecord::Base
     'https://www.filepicker.io/api/file/RxffJqDTSCyw4R7hgQwj'
   ]
 
-  before_save :check_filepicker
+  before_save :check_filepicker, :check_names
   validates :blogname,
     length: {
       in: 6..20, wrong_length: "Blogname must be between 6-20 characters"
@@ -67,6 +67,12 @@ class Blog < ActiveRecord::Base
   def check_filepicker
     if self.filepicker_url.blank?
       self.filepicker_url = AVATAR_DEFAULTS.sample
+    end
+  end
+
+  def check_names
+    if self.blogname.include?("\s")
+      self.blogname.gsub!(/\s/, "_")
     end
   end
 

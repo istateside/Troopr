@@ -9,8 +9,8 @@
         <figure class="down"><%= "\u25BC" %></figure>
       </p>
     </li>
-
     <% Troopr.currentUser.blogs().each(function(blog) { %>
+
       <% if (blog.get('id') != Troopr.currentBlogID) { %>
         <li class="blog-list-li group" data-blog-id="<%= blog.escape('id') %>">
           <figure class="blog-avatar-small">
