@@ -27,9 +27,9 @@ end %>
 	</div>
 
 	<div class="input-group">
-		<%= label_tag :filepicker_url %>
-		<%= form.filepicker_field :filepicker_url %>
+		<%= label_tag :filepicker_url, "Upload an avatar with Filepicker!" %>
+		<%= form.filepicker_field :filepicker_url, { button_class: "filepicker new-blog"} %>
 	</div>
 
-	<%= form.submit "Create blog!" %>
+	<%= form.submit "Create blog!", { class: "submit-btn" } %>
 <% end %>

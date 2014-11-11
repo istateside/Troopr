@@ -12,6 +12,8 @@
          data-id="<%= post.escape('previous_blog_id') %>">
         <%= post.escape('previous_blogname') %></a>
     <% }; %></p>
-<button class="post-delete">
-  <%= String.fromCharCode(215) %>
-</button>
+    <% if (post.get('user_id') === Troopr.currentUserID) { %>
+      <button class="post-delete">
+        <%= String.fromCharCode(215) %>
+      </button>
+    <% } %>

@@ -52,6 +52,8 @@ class Post < ActiveRecord::Base
 
   has_many :descendents, through: :reblogs, source: :new_post
 
+  paginates_per 10
+
   def type_checks
     case self.post_type
     when 'text'
@@ -87,5 +89,23 @@ class Post < ActiveRecord::Base
 
   def destroy_reblog_note
     self.past_reblog.note.destroy! if (!!self.reblog && !!self.past_reblog)
+  end
+
+  def parsedBody
+    lines = self.body.gsub("\r","").split("\n")
+    parsedLines = []
+
+    lines.each do |line|
+      parsedGroups = line.match(/(\w+:) (.+)/)
+      speaker = parsedGroups[1]
+      speech = parsedGroups[2]
+
+      parsedLine =
+        "<p class='chatLine'><strong>#{speaker} \t</strong>#{speech}</p>"
+      .html_safe
+      parsedLines << parsedLine
+    end
+
+    return parsedLines.join("<br>".html_safe).html_safe
   end
 end

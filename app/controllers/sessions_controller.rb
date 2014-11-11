@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       render :new
     end
   end
-  
+
   def create
     @user = User.find_by_credentials(
       params[:user][:email],
@@ -21,16 +21,20 @@ class SessionsController < ApplicationController
       render :mailer_fail
     else
       login_user!(@user)
-      redirect_to backbone_url
+      if @user.blogs.empty?
+        redirect_to new_blog_url
+      else
+        redirect_to backbone_url
+      end
     end
   end
-  
+
   def destroy
     logout_user!
     redirect_to new_session_url
   end
   private
-  
+
   def auth_hash
     request.env['omniauth.auth']
   end

@@ -1,0 +1,15 @@
+<iframe
+  class="audio-player active"
+  width="500"
+  height="380"
+  frameborder="0"
+  src="<%= post.url %>">
+</iframe>
+
+<% if post.title %>
+  <h2 class="post-title">
+    <%= post.title %>
+  </h2>
+<% end %>
+
+<p class="post-body"><%= post.body %></p>

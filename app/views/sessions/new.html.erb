@@ -1,20 +1,41 @@
-<h1>Log in!</h1>
+<div class="login-window group">
 
-<form action="<%= session_url %>" method="POST">
-	<%= auth_token %>
-	<div class="input-group">
-		<label for="user_email">Email</label>
-		<input type="text" name="user[email]" id="user_email">
-	</div>
-	<div class="input-group">
-		<label for="user_password">Password</label>
-		<input type="password" name="user[password]" id="user_password">
-	</div>
-<button type="submit">Log in!</button>
-</form>
+	<div class="viewport logo-black"><%= image_tag('spritesheet.png') %></div>
+	<h1>Welcome to Troopr.</h1>
 
-OR
-
-<a href="/auth/facebook">Login with Facebook!</a>
-
-<a href="<%= new_user_url %>">Sign up for Troopr!</a>
+	<p class="intro-text">
+		Troopr is a functional Tumblr clone created by Kevin Fleischman. Troopr was built with Ruby-on-Rails on the backend, and Backbone on the frontend.
+		<br>	<br>
+		Sign in below if you've already created an account, or follow the link to register a new account.
+		<br>	<br>
+		Don't feel like making an account? That's alright! Log in with the demo account and poke around; you can post as much as you'd like, and you can even register a new blog from the demo account.
+		<br>	<br>
+		Thanks for checking out my work. If you'd like to collaborate together:
+		<br>	<br>
+		<a href="http://www.kevinfleischman.com">check out my digital resume and personal website</a>, or <a href="mailto:kevinrfleischman@gmail.com">send me an email</a>.
+		</p>
+	<form action="<%= session_url %>" method="POST">
+		<%= auth_token %>
+		<div class="input-group">
+			<label for="user_email">Email</label>
+			<input type="text" name="user[email]" id="user_email">
+		</div>
+		<div class="input-group">
+			<label for="user_password">Password</label>
+			<input type="password" name="user[password]" id="user_password">
+		</div>
+		<button class="submit-btn" type="submit">Log in!</button>
+	</form>
+	<a class="facebook-link" href="/auth/facebook">Login with Facebook</a>
+	<%= button_to "Log In With Demo Account",
+		{
+			:controller => :sessions,
+			:action => 'create',
+			:user => {
+				:email => 'demo@troopr.com',
+				:password => 'demodemo'
+			}
+		}
+		 %>
+	<a class="submit-btn" href="<%= new_user_url %>">Sign up for Troopr!</a>
+</div>

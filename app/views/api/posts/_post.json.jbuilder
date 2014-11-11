@@ -1,5 +1,5 @@
 json.extract! post, :id, :title, :body, :post_type, :url, :reblog, :blog_id, :previous_blog_id, :original_post_id, :created_at, :updated_at
-
+json.user_id post.blog.user_id
 json.is_liked current_blog.has_liked?(post)
 
 json.blogname post.blog.blogname

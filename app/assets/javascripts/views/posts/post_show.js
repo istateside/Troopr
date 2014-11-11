@@ -13,7 +13,6 @@ Troopr.Views.PostShow = Backbone.View.extend({
 
 	events: {
 		"click .post-delete": "deletePost",
-		"click .blogname-link": "goToBlog",
 		"click a.notes-display": "showNotes"
 	},
 
@@ -44,12 +43,6 @@ Troopr.Views.PostShow = Backbone.View.extend({
 	chatTemplate: JST['posts/chat'],
 	audioTemplate: JST['posts/audio'],
 	videoTemplate: JST['posts/video'],
-
-	goToBlog: function(event) {
-		event.preventDefault();
-		var blog_id = $(event.currentTarget).data('id');
-		Backbone.history.navigate('blogs/' + blog_id, { trigger: true });
-	},
 
 	showNotes: function(event) {
 		event.preventDefault();

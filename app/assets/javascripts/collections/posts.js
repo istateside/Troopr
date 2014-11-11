@@ -28,5 +28,11 @@ Troopr.Collections.Posts = Backbone.Collection.extend({
       posts.add(post);
 		}
 		return post;
-	}
+	},
+
+  parse: function(resp) {
+    this.page_number = parseInt(resp.page_number);
+    this.total_pages = parseInt(resp.total_pages);
+    return resp
+  }
 });

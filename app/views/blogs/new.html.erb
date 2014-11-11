@@ -1,7 +1,7 @@
-<h1>Create a new blog!</h1>
-
-<% if current_user.blogs.empty? %>
-	<strong>You have not registered a blog yet! You must create at least one blog before you can access the site.</strong>
-<% end %>
-<br>
+<div class="login-window group">
+	<% if current_user.blogs.empty? %>
+		<strong>You have not registered a blog yet! You must create at least one blog before you can access the site.</strong>
+	<% end %>
+	<br>
 	<%= render 'form', blog: @blog %>
+</div>

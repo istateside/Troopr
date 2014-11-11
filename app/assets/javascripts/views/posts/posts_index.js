@@ -1,18 +1,21 @@
 Troopr.Views.PostsIndex = Backbone.View.extend({
 	initialize: function (options) {
 		this.posts = options.posts;
-		this.listenTo(this.posts, 'sync', this.render);
-		this.listenTo(this.posts, 'add', this.addPost);
+		this.listenTo(this.posts, 'sync', this.addPosts);
 		this.listenTo( Troopr.currentUser, 'switch', this.switch );
+		this.listenTo( Troopr.currentBlog, 'sync', this.loadAvatar);
+		this.pageNumber = 1;
 	},
 
 	events: {
+		"click nav.load-more": "loadMore",
+		"click .blogname-link": "goToBlog",
 		"click .dash-post-buttons": "showForm",
 		"submit .new-post-form": "submitForm",
 		"click div.viewport.reblog": "reblogPost",
 		"click div.viewport.unliked": "likePost",
 		"click div.viewport.liked": "likePost",
-		"click button#filepicker": "filepicker",
+		"click button.filepicker": "filepicker",
 		"click button.audio.search-btn": "audioSearch",
 		"click button.video.search-btn": "videoSearch",
 		"click li.search-result-li.audio": "buildAudioPlayer",
@@ -20,11 +23,8 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	},
 
 	tagName: 'div',
-
 	className: 'feed group',
-
   template: JST['posts/index'],
-
 	textForm: JST['forms/text'],
 	photoForm: JST['forms/photo'],
 	quoteForm: JST['forms/quote'],
@@ -33,17 +33,22 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	audioForm: JST['forms/audio'],
 	videoForm: JST['forms/video'],
 
-
 	render: function($el) {
 		var renderedContent = this.template({
 		});
 		this.$el.html(renderedContent)
-		var that = this
-		this.posts.each(function(post) {
-			postView = new Troopr.Views.PostShow({ post: post, posts: that.posts })
-			that.$('.posts-space').append(postView.render().$el);
-		});
+
 		return this;
+	},
+
+	loadAvatar: function(event) {
+		this.$('figure.blog-avatar img').attr('src', Troopr.currentBlog.get('filepicker_url'))
+	},
+
+	goToBlog: function(event) {
+		event.preventDefault();
+		var blog_id = $(event.currentTarget).data('id');
+		Backbone.history.navigate('blogs/' + blog_id, { trigger: true });
 	},
 
 	showForm: function(event) {
@@ -104,9 +109,9 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 			success: function (resp) {
 
 				var post = new Troopr.Models.Post({id: resp.id})
-				post.fetch({success: function(resp) {
-						that.posts.add(post);
-
+				post.fetch({silent: true, success: function(resp) {
+					postView = new Troopr.Views.PostShow({ post: post, posts: this.posts })
+					this.$('.post-list').prepend(postView.render().$el);
 				}})
 			}
 		})
@@ -157,7 +162,6 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 				limit: 5
 			},
 			success: function(resp) {
-				callback(resp);
 				var $list = that.$('ul.search-results-list.audio');
 				that.$('div.search-results.audio').addClass('active');
 				resp.tracks.items.forEach(function(track) {
@@ -236,8 +240,27 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		this.posts.fetch();
 	},
 
+	loadMore: function(event) {
+		event.preventDefault();
+		this.pageNumber++
+		var that = this;
+
+		this.posts.fetch({
+			data: { page: that.pageNumber },
+			processData: true,
+			wait: true
+		})
+	},
+
 	addPost: function(post) {
 		postView = new Troopr.Views.PostShow({ post: post, posts: this.posts })
-		this.$('.posts-space').prepend(postView.render().$el);
+		this.$('.post-list').append(postView.render().$el);
+	},
+
+	addPosts: function(resp) {
+		var that = this;
+		resp.models.forEach(function(post) {
+			that.addPost(post);
+		})
 	}
 });

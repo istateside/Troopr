@@ -127,6 +127,31 @@ li#blogs-list-li {
 		top: 30px;
 		right: 0px;
 }
+
+nav.pagination {
+	background: white;
+	border-radius: 5px;
+	width: 540px;
+	margin: 20px 0 20px 89px;
+
+	align: right;
+	text-align: center;
+}
+
+nav.load-more {
+	background: white;
+	color: black;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: pointer;
+	padding: 10px 0;
+}
+
+nav.load-more:hover {
+	background: black;
+	color: white;
+}
+
 /* CONTENT */
 
 main {
@@ -136,11 +161,6 @@ main {
 		padding: 5px 15px;
 		top: 96px;
 		background: #202021;
-		/*background: #C9C9C9;
-		background-image: -webkit-linear-gradient(top, #C9C9C9, #202021 600px);
-		background-image: -moz-linear-gradient(top, #C9C9C9, #202021 600px);
-		background-image: -o-linear-gradient(top, #C9C9C9, #202021 600px);
-		background-image: linear-gradient(top, #C9C9C9, #202021 600px);*/
 		border-radius: 20px;
 		clear: both;
 }
@@ -179,7 +199,7 @@ div.viewport.logo-white {
 
 div.viewport.logo-black {
 	width: 185px;
-	height: 30px;
+	height: 40px;
 }
 
 div.viewport.reblog {
@@ -307,12 +327,12 @@ button.filepicker {
 	left: 10px;
 }
 
-button.search-btn:hover, button.filepicker:hover, button.submit-btn:hover {
+button.search-btn:hover, button.filepicker:hover, .submit-btn:hover {
 	color: white;
 	background: black;
 }
 
-button.reblog-btn, button.submit-btn {
+button.reblog-btn, .submit-btn {
 		padding: 5px 10px;
 		border: 1px solid black;
 		border-radius: 5px;
@@ -355,6 +375,70 @@ button.like-btn:active {
 		left: 11px;
 }
 
+/* LOG IN */
+
+div.login-window {
+	background: white;
+	border-radius: 5px;
+	border: 1px solid black;
+	padding: 10px 20px;
+}
+
+div.login-window div.viewport {
+	margin: 15px auto;
+}
+
+div.login-window h1 {
+	font-size: 35px;
+	margin-bottom: 15px;
+}
+
+a.facebook-link {
+	background: #3b5998;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: 1px solid #3b5998;
+}
+
+a.facebook-link:hover {
+	color: #3b5998;
+	background: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 5px 10px;
+
+}
+
+div.login-window p {
+	padding: 0 20px 15px 20px;
+}
+
+div.login-window p a {
+	text-decoration: underline;
+}
+
+div.login-window a.facebook-link {
+	display: inline-block;
+	letter-spacing: 3px;
+	box-shadow: 1px 1px 1px black;
+}
+
+div.login-window .submit-btn {
+	top: 0;
+	left: 0;
+	margin-left: 20px;
+	font-size: 16px;
+}
+
+/* NEW BLOG */
+button.filepicker.new-blog {
+	bottom: 0;
+	left: 25px;
+}
+
 /* DASHBOARD */
 
 div.dash {
@@ -381,17 +465,14 @@ div.dash-post-panel a {
 		margin: auto;
 		text-align: center;
 		padding: 25px 5px 25px 5px;
-		border-right: 1px solid #ccc
-}
-
-div.dash-post-panel p {
+		border-right: 1px solid #ccc;
 		font-weight: bold;
 		position: relative;
 		transition: top 150ms;
 		top: 0px;
 }
 
-div.dash-post-panel a:hover p {
+div.dash-post-panel a:hover{
 		top: -5px;
 }
 
@@ -618,6 +699,17 @@ div.notes-display {
 div.notes-display.active {
 		display: block;
 }
+
+div.notes-display.rails {
+	display: block;
+	position: relative;
+	left: -20px;
+	bottom: -7px;
+	width: 100%;
+	color: gray;
+	background: none;
+	border: none;
+}
 div.notes-list {
 		max-height: 300px;
 		overflow: scroll;
@@ -643,8 +735,6 @@ div.notes-arrow {
 
 img.post-box-img {
 		max-width: 500px;
-		padding: 5px 0;
-		background: black;
 		margin: 0 auto;
 		align: center;
 }
@@ -725,6 +815,7 @@ li.search-result-li:hover {
 
 iframe {
 	display: none;
+	margin: 0 auto;
 }
 
 iframe.active {
@@ -777,6 +868,7 @@ a.notes-display {
 		position: absolute;
 		bottom: -20px;
 }
+
 /* NEW POST FORM */
 
 div.container {

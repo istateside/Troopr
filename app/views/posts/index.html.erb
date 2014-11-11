@@ -5,6 +5,8 @@
 	<% @posts.each do |post| %>
 		<%= render post %>
 	<% end %>
+	<%= paginate @posts %>
+
 	<li id="blog-li"><%= render 'shared/change_blogs' %></li>
 	<li id="new-blog-li"><a href="<%= new_blog_url %>">Create a new blog</a></li>
 </div>

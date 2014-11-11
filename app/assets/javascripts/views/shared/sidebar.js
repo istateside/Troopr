@@ -30,7 +30,6 @@ Troopr.Views.Sidebar = Backbone.View.extend({
   },
   goToIndex: function(event) {
     event.preventDefault();
-    console.log('click')
     Backbone.history.navigate('/blogs', {trigger: true})
   },
 

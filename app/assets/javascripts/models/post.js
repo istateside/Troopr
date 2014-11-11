@@ -12,7 +12,7 @@ Troopr.Models.Post = Backbone.Model.extend({
 	notes: function () {
 		this._notes = this._notes ||
 			new Troopr.Collections.Notes([], {
-				post: this
+				original_post_id: this.original_post_id
 			});
 		return this._notes;
 	}

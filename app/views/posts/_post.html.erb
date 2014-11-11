@@ -1,19 +1,23 @@
 <div class="post-box">
 	<figure class="blog-avatar">
 		<a href="<%= blog_url(post.blog) %>">
-		<% if post.blog.filepicker_url %>
-			<%= filepicker_image_tag post.blog.filepicker_url, w:64, h: 64, fit: 'clip'	%>
-		<% end %>
+			<% if post.blog.filepicker_url %>
+				<%= filepicker_image_tag post.blog.filepicker_url, w:64, h: 64, fit: 'clip'	%>
+			<% end %>
 		</a>
 	</figure>
+
+
 	<div class="post-content">
 		<div class="arrow-left"></div>
 			<div class="content-box">
-				<%= post_byline(post) %>
-				<%= delete_button(post) %>
-				<% if post.title %><h2 class="post-title"><%= post.title %></h2><% end %>
-				<p class="post-body"><%= post.body %></p>
+				<div class="post-header">
+					<%= post_byline(post) %>
+					<%= delete_button(post) %>
+				</div>
+				<%= render post.post_type, post: post %>
 			</div>
+
 		<%= render 'posts/post_bottom_bar', post: post %>
 	</div>
 </div>

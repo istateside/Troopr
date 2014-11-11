@@ -28,6 +28,12 @@ Troopr.Views.BlogsShow = Backbone.View.extend({
       that.$('.posts-space').append(postView.render().$el);
     });
 
+    if(this.blog.posts().length === 0) {
+      that.$('.posts-space').html(
+        "<div class='post-box'><div class='post-content'>No posts have been found for this blog!</div></div>"
+      )
+    }
+
     return this;
   },
 

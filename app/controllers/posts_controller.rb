@@ -2,25 +2,31 @@ class PostsController < ApplicationController
   before_action :check_log_in, :check_blog
 
   def index
-    @posts = current_blog.posts
-    current_blog.following.each do |blog|
-      @posts += blog.posts
-    end
-    @posts = (@posts.sort_by {|p| p.created_at }).reverse!
+    ids = current_blog.following.pluck(:id) << current_blog.id
+    @posts = Post.where(:blog_id => ids).order('created_at DESC').page(params[:page])
     render :index
   end
 
   def new
     @post = Post.new
-    render :new
+    render 'forms/text'
   end
 
   def create
     @post = current_blog.posts.new(post_params)
-    @post.post_type = "text"
+
+    if @post.post_type == 'link'
+      unless @post.url[0..6] == 'http://' || 'https:/'
+        @post.url = "http://" + @post.url
+      end
+    end
     if @post.save!
       flash[:notice] = "Post saved."
-      Note.create!({notable_id: @post.id, notable_type: "Post", original_post_id: @post.original_post_id})
+      Note.create!({
+        notable_id: @post.id,
+        notable_type: "Post",
+        original_post_id: @post.original_post_id
+      })
       redirect_to posts_url
     else
       flash.now[:errors] = @post.errors

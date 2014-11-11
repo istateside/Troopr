@@ -1,0 +1,9 @@
+<a class="post-link-title" href="http://<%= post.url %>">
+  <% if post.title %>
+    <%= post.title %>
+  <% else  %>
+    <%= post.url %>
+  <% end %>
+</a>
+
+<p class="post-body"><%= post.body %></p>
