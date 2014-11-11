@@ -7,13 +7,31 @@ Troopr.Views.Navbar = Backbone.View.extend({
   className: 'nav-content group',
 
   events: {
-    "click .home-link": "home"
+    "click .home-link": "home",
+    "click .sign-out-btn": "signOut"
   },
 
   template: JST['shared/navbar'],
 
   home: function () {
+    event.preventDefault();
     Backbone.history.navigate('#', { trigger: true })
+  },
+
+  signOut: function(event) {
+    event.preventDefault();
+    console.log("Signing out...");
+    $.ajax({
+      url: "/api/session",
+      type: "DELETE",
+      success: function() {
+        Troopr.currentUserID = null;
+        Troopr.currentBlogID = null;
+        Troopr.currentUser = null;
+        Troopr.currentBlog = null;
+        Backbone.history.navigate('/login', { trigger: true })
+      }
+    })
   },
 
   render: function() {

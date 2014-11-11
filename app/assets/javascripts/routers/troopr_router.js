@@ -17,8 +17,9 @@ Troopr.Routers.TrooprRouter = Backbone.Router.extend({
 		"blogs/new": "newBlog",
 		"blogs/:id":"blogShow",
 		"blogs/:id/edit":"editBlog",
-		"session/new":"logIn"
+		"login":"logIn"
 	},
+
 	navBar: function() {
 		var navView = new Troopr.Views.Navbar({ $el: this.$nav });
 		this.$nav.html(navView.render().$el);

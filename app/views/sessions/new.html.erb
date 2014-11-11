@@ -26,8 +26,9 @@
 		</div>
 		<button class="submit-btn" type="submit">Log in!</button>
 	</form>
-	<a class="facebook-link" href="/auth/facebook">Login with Facebook</a>
-	<%= button_to "Log In With Demo Account",
+	<a class="facebook-link" href="/auth/facebook">Facebook Login</a>
+
+	<%= button_to "Demo Account",
 		{
 			:controller => :sessions,
 			:action => 'create',
@@ -35,7 +36,7 @@
 				:email => 'demo@troopr.com',
 				:password => 'demodemo'
 			}
-		}
-		 %>
+		}, {class: "submit-btn demo"} %>
+
 	<a class="submit-btn" href="<%= new_user_url %>">Sign up for Troopr!</a>
 </div>

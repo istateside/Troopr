@@ -238,6 +238,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	switch: function() {
 		this.posts.fetch();
+		this.render();
 	},
 
 	loadMore: function(event) {

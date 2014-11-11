@@ -401,6 +401,7 @@ a.facebook-link {
 	padding: 5px 10px;
 	border-radius: 5px;
 	border: 1px solid #3b5998;
+	float: left;
 }
 
 a.facebook-link:hover {
@@ -431,6 +432,14 @@ div.login-window .submit-btn {
 	left: 0;
 	margin-left: 20px;
 	font-size: 16px;
+}
+
+div.login-window .submit-btn.demo {
+	float:left;
+}
+
+div.login-window .submit-btn.demo:hover {
+	background: red;
 }
 
 /* NEW BLOG */

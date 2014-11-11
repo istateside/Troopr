@@ -1,19 +1,34 @@
-<h1>Log in!  With Backbone!</h1>
+<div class="login-window group">
 
-<form class="sign-in">
-	<div class="input-group">
-		<label for="user_email">Email</label>
-		<input type="text" name="user[email]" id="user_email">
-	</div>
-	
-	<div class="input-group">
-		<label for="user_password">Password</label>
-		<input type="password" name="user[password]" id="user_password">
-	</div>
-<button type="submit">Log in!</button>
-</form>
+	<div class="viewport logo-black"><img src="<%= Troopr.spriteUrl %>"</img></div>
+	<h1>Welcome to Troopr.</h1>
 
-OR
+	<p class="intro-text">
+		Troopr is a functional Tumblr clone created by Kevin Fleischman. Troopr was built with Ruby-on-Rails on the backend, and Backbone on the frontend.
+		<br>	<br>
+		Sign in below if you've already created an account, or follow the link to register a new account.
+		<br>	<br>
+		Don't feel like making an account? That's alright! Log in with the demo account and poke around; you can post as much as you'd like, and you can even register a new blog from the demo account.
+		<br>	<br>
+		Thanks for checking out my work. If you'd like to collaborate together:
+		<br>	<br>
+		<a href="http://www.kevinfleischman.com">check out my digital resume and personal website</a>, or <a href="mailto:kevinrfleischman@gmail.com">send me an email</a>.
+		</p>
 
-<a href="#">Login with Facebook!</a>
-<a href="#">Sign up for Troopr!</a>
+	<form class="sign-in-form" method="POST">
+		<div class="input-group">
+			<label for="user_email">Email</label>
+			<input type="text" name="user[email]" id="user_email">
+		</div>
+
+		<div class="input-group">
+			<label for="user_password">Password</label>
+			<input type="password" name="user[password]" id="user_password">
+		</div>
+		<button class="submit-btn" type="submit">Log in!</button>
+	</form>
+
+	<a class="facebook-link" href="javascript:void(0)">Login with Facebook</a>
+	<button class="demo-btn">Log in with the Demo account</button>
+	<a class="submit-btn" href="javascript:void(0)">Sign up for Troopr!</a>
+</div>
