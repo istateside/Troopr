@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       @user.toggle(:activated)
       login_user!(@user)
       flash[:notice] = "Account activated!"
-      redirect_to new_blog_url
+      redirect_to backbone_url
     else
       flash[:errors] = "Activation token did not match!"
       redirect_to new_session_url
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
     redirect_to posts_url
   end
-  
+
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)

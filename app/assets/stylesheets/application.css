@@ -29,7 +29,6 @@ figure,
 button {
 		font-style: inherit;
 		color: inherit;
-		background: inherit;
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -822,7 +821,7 @@ li.search-result-li:hover {
 	background: #b1b1b1;
 }
 
-iframe {
+iframe.audio-player, iframe.video-player {
 	display: none;
 	margin: 0 auto;
 }

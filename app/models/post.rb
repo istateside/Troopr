@@ -74,8 +74,6 @@ class Post < ActiveRecord::Base
     return true
   end
 
-
-
   def set_original_post_id
     if !self.reblog
       self.original_post_id = self.id

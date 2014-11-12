@@ -9,17 +9,41 @@ Troopr.Views.LogIn = Backbone.View.extend({
 	},
 
 	events: {
-		'submit .sign-in-form': 'signIn'
+		'submit .sign-in-form': 'handleForm',
+    'click button.submit-btn.demo': "demoLogIn",
+    'click a.facebook-link': 'facebook'
 	},
 
-	signIn: function (event) {
+	handleForm: function (event) {
 		event.preventDefault();
 		var formData = $(event.target).serializeJSON();
-		$.ajax({
-			url: "/api/session",
-			type: "POST",
-			data: formData,
-			success: function (resp) {
+		this.logIn(formData);
+	},
+
+
+  demoLogIn: function(event) {
+    event.preventDefault();
+    this.logIn(
+      { user:
+        {
+            email: "demo@troopr.com",
+            password: "demodemo"
+        }
+      }
+    )
+  },
+
+  facebook: function(event) {
+    event.preventDefault();
+    window.location = "/auth/facebook"
+  },
+
+  logIn: function(formData) {
+    $.ajax({
+      url: "/api/session",
+      type: "POST",
+      data: formData,
+      success: function (resp) {
         Troopr.currentUserID = resp.id;
         Troopr.currentUser = new Troopr.Models.User({
           id: Troopr.currentUserID
@@ -29,11 +53,11 @@ Troopr.Views.LogIn = Backbone.View.extend({
         Troopr.currentBlog = Troopr.currentUser.blogs().getOrFetch(Troopr.currentBlogID);
         Backbone.history.navigate('')
         Troopr.router.dashboard();
-			},
+      },
       error: function(resp) {
         console.log(resp);
         window.history.back();
       }
-		})
-	}
+    })
+  },
 });

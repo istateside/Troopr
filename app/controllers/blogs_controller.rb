@@ -8,7 +8,7 @@ class BlogsController < ApplicationController
     @blog = current_user.blogs.new(blog_params)
     if @blog.save
       flash[:notice] = "Blog registered!"
-      redirect_to posts_url
+      redirect_to backbone_url
     else
       flash.now[:errors] = @blog.errors.full_messages
       render :new

@@ -95,8 +95,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		event.preventDefault();
 		var formData = $(event.target).serializeJSON();
 		var that = this;
-		this.posts.create(formData, { wait: true })
-		this.posts.fetch();
+		var post = this.posts.create(formData, {wait: true});
 	},
 
 	reblogPost: function(event) {
@@ -221,7 +220,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	buildAudioPlayer: function(event) {
 		event.preventDefault()
 		var uri = $(event.currentTarget).data('uri');
-		var $iframe = this.$('iframe.audio-player');
+		var $iframe = this.$('iframe.audio-player.search');
 		var src = "https://embed.spotify.com/?uri=" + uri
 		$iframe.attr('src', src)
 		this.$('iframe.audio-player').slideDown();
@@ -260,8 +259,13 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	addPosts: function(resp) {
 		var that = this;
-		resp.models.forEach(function(post) {
-			that.addPost(post);
-		})
+		if (resp.models) {
+			resp.models.forEach(function(post) {
+				that.addPost(post);
+			})
+		} else {
+			var postView = new Troopr.Views.PostShow({ post: resp, posts: this.posts })
+			this.$('.post-list').prepend(postView.render().$el);
+		}
 	}
 });

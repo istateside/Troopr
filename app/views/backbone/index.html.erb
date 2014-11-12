@@ -2,9 +2,12 @@
 </div>
 <script>
   Troopr.spriteUrl = "<%= image_url('spritesheet.png') %>"
-  Troopr.currentUserID = <%= current_user.id %>
-  Troopr.currentBlogID = <%= current_blog.id %>
+  <% if current_user && current_blog %>
+    Troopr.currentUserID = <%= current_user.id %>
+    Troopr.currentBlogID = <%= current_blog.id %>
+  <% end %>
   $(document).ready(function(){
     Troopr.initialize();
   });
+
 </script>

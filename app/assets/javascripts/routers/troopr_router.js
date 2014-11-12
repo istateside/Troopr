@@ -27,12 +27,15 @@ Troopr.Routers.TrooprRouter = Backbone.Router.extend({
 	},
 
 	dashboard: function () {
-		Troopr.posts.fetch();
-		var dashView = new Troopr.Views.PostsIndex({ posts: Troopr.posts });
-		this._swapView(dashView);
-
-		var sidebar = new Troopr.Views.Sidebar({});
-		this.$el.append(sidebar.render().$el);
+		if (Troopr.currentBlogID) {
+			Troopr.posts.fetch();
+			var dashView = new Troopr.Views.PostsIndex({ posts: Troopr.posts });
+			this._swapView(dashView);
+			var sidebar = new Troopr.Views.Sidebar({});
+			this.$el.append(sidebar.render().$el);
+		} else {
+			this.logIn();
+		}
 	},
 
 	blogIndex: function() {
