@@ -1,28 +1,16 @@
-== README
+== Troopr
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Troopr is a Tumblr clone, built from the ground up with a Rails API and Backbone.js on the frontend.
 
-Things you may want to cover:
+The site currently supports user authentication, a complex post system allowing seven different types of posts, integration with Facebook authentication, a functioning Spotify and Youtube search functionality, and pagination via Kaminari.
 
-* Ruby version
+A demo account has been provided to see the site in action.
 
-* System dependencies
+Coming soon:
+* Pgsearch to find users and posts.
 
-* Configuration
+* A private messaging system.
 
-* Database creation
+* A live-chat function with Node.js.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Post tagging.
