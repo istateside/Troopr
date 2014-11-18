@@ -157,7 +157,6 @@ main {
 		width: 900px;
 		margin: auto;
 		position: relative;
-		padding: 5px 15px;
 		top: 96px;
 		background: #202021;
 		border-radius: 20px;
@@ -377,10 +376,11 @@ button.like-btn:active {
 /* LOG IN */
 
 div.login-window {
-	background: white;
+	background: #202021;
 	border-radius: 5px;
 	border: 1px solid black;
 	padding: 10px 20px;
+	color: #bebebe;
 }
 
 div.login-window div.viewport {
@@ -435,10 +435,16 @@ div.login-window .submit-btn {
 
 div.login-window .submit-btn.demo {
 	float:left;
+	color: #bebebe;
 }
 
 div.login-window .submit-btn.demo:hover {
 	background: red;
+	color: white;
+}
+
+div.login-window input.login-inputs {
+	background:  #bebebe;
 }
 
 /* NEW BLOG */

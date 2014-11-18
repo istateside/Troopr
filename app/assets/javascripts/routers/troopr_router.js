@@ -64,6 +64,9 @@ Troopr.Routers.TrooprRouter = Backbone.Router.extend({
 	logIn: function() {
 		var sessionView = new Troopr.Views.LogIn({});
 		this._swapView(sessionView);
+		$('body').css({
+			"background-image": "url(" + window.bgUrl + ")"
+		})
 	},
 
 	_swapView: function(view) {

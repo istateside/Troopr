@@ -9,6 +9,7 @@
 		<script src="http://connect.soundcloud.com/sdk.js"></script>
 		<script>
 			window.current_user_id = <%= !!current_user ? current_user.id : 'false' %>;
+			window.bgUrl = "<%= image_path('stars-bg.jpg') %>";
 			filepicker.setKey("<%= ENV['FILEPICKER_RAILS_API_KEY'] %>")
 		</script>
 

@@ -1,28 +1,21 @@
 <div class="login-window group">
-
-	<div class="viewport logo-black"><%= image_tag('spritesheet.png') %></div>
 	<h1>Welcome to Troopr</h1>
-
 	<p class="intro-text">
-		Troopr is a functional Tumblr clone created by Kevin Fleischman. Troopr was built with Ruby-on-Rails on the backend, and Backbone on the frontend.
+		Troopr is a functional Tumblr clone created by Kevin Fleischman. Troopr was built with Rails and Backbone.
 		<br>	<br>
-		Sign in below if you've already created an account, or follow the link to register a new account.
+		Sign up for an account, or log in with the demo account; you can post as much as you'd like, and you can even register a new blog from the demo account.
 		<br>	<br>
-		Don't feel like making an account? That's alright! Log in with the demo account and poke around; you can post as much as you'd like, and you can even register a new blog from the demo account.
-		<br>	<br>
-		Thanks for checking out my work. If you'd like to collaborate together:
-		<br>	<br>
-		<a href="http://www.kevinfleischman.com">check out my digital resume and personal website</a>, or <a href="mailto:kevinrfleischman@gmail.com">send me an email</a>.
-		</p>
+		<a href="http://www.kevinfleischman.com">Check out my personal website</a>, or <a href="mailto:kevinrfleischman@gmail.com">send me an email</a>.
+	</p>
 	<form action="<%= session_url %>" method="POST">
 		<%= auth_token %>
 		<div class="input-group">
 			<label for="user_email">Email</label>
-			<input type="text" name="user[email]" id="user_email">
+			<input type="text" name="user[email]" id="user_email" class="login-inputs">
 		</div>
 		<div class="input-group">
 			<label for="user_password">Password</label>
-			<input type="password" name="user[password]" id="user_password">
+			<input type="password" name="user[password]" id="user_password" class="login-inputs">
 		</div>
 		<button class="submit-btn" type="submit">Log in!</button>
 	</form>
@@ -40,3 +33,10 @@
 
 	<a class="submit-btn" href="<%= new_user_url %>">Sign up for Troopr!</a>
 </div>
+
+<script>
+	var imgUrl = "<%= image_url('stars-bg.jpg') %>";
+	var body = document.getElementsByTagName('body')[0];
+	body.style.backgroundImage = "url(" + imgUrl + ")"
+	body.style.backgroundSize = "cover"
+</script>

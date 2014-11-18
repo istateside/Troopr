@@ -5,16 +5,16 @@
 		<%= auth_token %>
 		<div class="input-group">
 			<label for="user_email">Email</label>
-			<input type="text" name="user[email]" id="user_email" value="<%= @user.email %>">
+			<input type="text" name="user[email]" id="user_email" value="<%= @user.email %>" class="login-inputs">
 		</div>
 
 		<div class="input-group">
 			<label for="user_password">Password</label>
-			<input type="password" name="user[password]" id="user_password">
+			<input type="password" name="user[password]" id="user_password" class="login-inputs">
 		</div>
 		<div class="input-group">
 			<label for="user_password_confirmation">Confirm Password</label>
-			<input type="password" name="user[password_confirmation]" id="password_confirmation">
+			<input type="password" name="user[password_confirmation]" id="password_confirmation" class="login-inputs">
 		</div>
 		<button class="submit-btn" type="submit">Register!</button>
 	</form>
