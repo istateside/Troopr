@@ -35,14 +35,6 @@ Troopr.Views.PostShow = Backbone.View.extend({
 
 	template: JST['posts/post'],
 
-	textTemplate: JST['posts/text'],
-	photoTemplate: JST['posts/photo'],
-	quoteTemplate: JST['posts/quote'],
-	linkTemplate: JST['posts/link'],
-	chatTemplate: JST['posts/chat'],
-	audioTemplate: JST['posts/audio'],
-	videoTemplate: JST['posts/video'],
-
 	showNotes: function(event) {
 		event.preventDefault();
 		$display = $($(event.target).siblings('div.notes-display'))
@@ -50,52 +42,14 @@ Troopr.Views.PostShow = Backbone.View.extend({
 	},
 
 	render: function() {
-		// var postType = this.templateType(this.post);
-
 		var renderedContent = this.template({
 			post: this.post,
 			byline: this.postByline()
-			// type: postType
 		});
 
 		this.$el.html(renderedContent)
 
-		if (this.post.get('post_type') === "video") {
-			this.renderVideoFrame();
-		}
 		return this;
-	},
-	//
-	// templateType: function(post) {
-	// 	switch (post.get('post_type')) {
-	// 		case "text":
-	// 			return this.textTemplate;
-	// 		case "photo":
-	// 			return this.photoTemplate;
-	// 		case "quote":
-	// 			return this.quoteTemplate;
-	// 		case "link":
-	// 			return this.linkTemplate;
-	// 		case "chat":
-	// 			return this.chatTemplate;
-	// 		case "audio":
-	// 			return this.audioTemplate;
-	// 		case "video":
-	// 			return this.videoTemplate;
-	// 	}
-	// },
-
-	renderVideoFrame: function() {
-		var youtubeID = this.post.get('url');
-
-		var urlString = "//www.youtube.com/embed/" + youtubeID;
-		this.$('iframe.player').attr('src', urlString);
-	},
-
-	renderSpotifyPlayer: function () {
-		var uri =
-
-		this.$('iframe.audio-player').attr('src', uri);
 	},
 
 	parseChat: function(body) {
