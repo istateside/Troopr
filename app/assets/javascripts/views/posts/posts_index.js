@@ -7,7 +7,6 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	},
 
 	events: {
-		"click nav.load-more": "loadMore",
 		"click .blogname-link": "goToBlog",
 		"click .dash-post-buttons": "showForm",
 		"submit .new-post-form": "submitForm",
@@ -74,7 +73,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	goToBlog: function(event) {
 		event.preventDefault();
-		var blog_id = $(event.currentTarget).text();
+		var blog_id = $(event.currentTarget).data('id');
 		console.log($(event.currentTarget));
 		Backbone.history.navigate('blogs/' + blog_id, { trigger: true });
 	},

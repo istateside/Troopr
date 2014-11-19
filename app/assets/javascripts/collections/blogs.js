@@ -7,14 +7,16 @@ Troopr.Collections.Blogs = Backbone.Collection.extend({
 		var blog;
 		if (blog = blogs.get(id)){
 			blog.fetch();
-		} else {
+    } else {
 			blog = new Troopr.Models.Blog({ id: id });
-			blog.fetch({
+			blog.fetch({parse: true,
 				success: function() { blogs.add(blog); }
 			})
 		}
 		return blog;
 	},
 
-  comparator: 'created_at'
+  comparator: 'created_at',
+
+
 });

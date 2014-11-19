@@ -20,7 +20,6 @@ Troopr.Collections.Posts = Backbone.Collection.extend({
 
 	getOrFetch: function(id) {
 		var posts = this;
-		post
 		var post;
 		if (post = posts.get(id)){
 			post.fetch();

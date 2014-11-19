@@ -1,7 +1,11 @@
 module Api
   class PostsController < ApiController
     def index
-      ids = [current_blog.id] + current_blog.following.pluck(:id)
+      if params[:self_posts]
+        ids = current_blog.id
+      else
+        ids = [current_blog.id] + current_blog.following.pluck(:id)
+      end
       @posts = Post.where(blog_id: ids).order(id: :desc).page(params[:page])
       render :index
     end

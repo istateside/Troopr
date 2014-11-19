@@ -1,6 +1,7 @@
 <p class="blogname-header">
   <a href="javascript:void(0)"
-    class="blogname-link"><%= post.escape('blogname') %></a>
+    class="blogname-link"
+    data-id="<%= post.escape('blog_id') %>"><%= post.escape('blogname') %></a>
     <% if (post.get('reblog')) { %>
       from
       <a href="javascript:void(0)"
