@@ -24,13 +24,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	tagName: 'div',
 	className: 'feed group',
   template: JST['posts/index'],
-	textForm: JST['forms/text'],
-	photoForm: JST['forms/photo'],
-	quoteForm: JST['forms/quote'],
-	linkForm: JST['forms/link'],
-	chatForm: JST['forms/chat'],
-	audioForm: JST['forms/audio'],
-	videoForm: JST['forms/video'],
+	formTemplate: JST['forms/form'],
 
 	render: function($el) {
 		var that = this;
@@ -87,30 +81,8 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	showForm: function(event) {
 		event.preventDefault();
-		var dataType = $(event.target).data('content')
-		switch (dataType) {
-			case "text":
-				this.$('.form-space').html(this.textForm());
-				break;
-			case "photo":
-				this.$('.form-space').html(this.photoForm());
-				break;
-			case "quote":
-				this.$('.form-space').html(this.quoteForm());
-				break;
-			case "link":
-				this.$('.form-space').html(this.linkForm());
-				break;
-			case "chat":
-				this.$('.form-space').html(this.chatForm());
-				break;
-			case "audio":
-				this.$('.form-space').html(this.audioForm());
-				break;
-			case "video":
-				this.$('.form-space').html(this.videoForm());
-				break;
-		}
+		var postType = $(event.target).data('content');
+		this.$('.form-space').html(this.formTemplate({postType: postType}));
 		if ($('.container').hasClass('active')) {
 			if ($(event.target).data('content') == this.$('#input-arrow').attr('class')){
 				this.$('.container').removeClass('active')
@@ -127,10 +99,15 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	submitForm: function(event) {
 		event.preventDefault();
-		var formData = $(event.target).serializeJSON();
 		var that = this;
-		var post = this.posts.create(formData, {wait: true, silent: true});
-		post.fetch({success: function() { that.posts.add(post) }});
+		var formData = $(event.target).serializeJSON();
+		var post = this.posts.create(formData, {
+			wait: true,
+			success: function() {
+				post.fetch();
+			}
+		});
+
 	},
 
 	reblogPost: function(event) {

@@ -1,40 +1,36 @@
-<form class="new-post-form-inputs">
-
-  <div class="input-group" id="image-entry-div">
-    <label for="video-search-bar">Search via YouTube:</label>
-    <div class="viewport youtubeLogo">
-      <img src="<%= Troopr.spriteUrl %>" class="sprite youtubeLogo"></img>
-    </div>
-    <button class="video search-btn">Search</button>
-    <input type="text" name="search" id="video-search-bar" placeholder="Eagles are turning people into horses">
+<div class="input-group" id="image-entry-div">
+  <label for="video-search-bar">Search via YouTube:</label>
+  <div class="viewport youtubeLogo">
+    <img src="<%= Troopr.spriteUrl %>" class="sprite youtubeLogo"></img>
   </div>
-  <div class="input-group" id="image-entry-div">
-    <label for="video-url">YouTube URL</label>
-    <input type="text" name="url" id="video-url" placeholder="http://www.youtube.com/......">
-  </div>
+  <button class="video search-btn">Search</button>
+  <input type="text" name="search" id="video-search-bar" placeholder="Eagles are turning people into horses">
+</div>
+<div class="input-group" id="image-entry-div">
+  <label for="video-url">YouTube URL</label>
+  <input type="text" name="url" id="video-url" placeholder="http://www.youtube.com/......">
+</div>
 
-  <iframe
-    class="video-player"
-    width="500"
-    height="304"
-    frameborder="0"
-    allowfullscreen="true">
-  </iframe>
+<iframe
+  class="video-player"
+  width="500"
+  height="304"
+  frameborder="0"
+  allowfullscreen="true">
+</iframe>
 
-  <div class="search-results video">
-    <ul class="search-results-list video">
+<div class="search-results video">
+  <ul class="search-results-list video">
 
-    </ul>
-  </div>
+  </ul>
+</div>
 
-  <div class="input-group" id="body-div">
-    <label for="body">Description</label>
-    <textarea
-      name="body"
-      id="body"
-      placeholder="You won't believe what these sith lords did!"></textarea>
-  </div>
+<div class="input-group" id="body-div">
+  <label for="body">Description</label>
+  <textarea
+    name="body"
+    id="body"
+    placeholder="You won't believe what these sith lords did!"></textarea>
+</div>
 
-  <input type='hidden' value="video" name="post_type">
-  <button class="submit-btn" type="submit">Submit</button>
-</form>
+<input type='hidden' value="video" name="post_type">
