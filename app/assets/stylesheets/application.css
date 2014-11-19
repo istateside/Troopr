@@ -1083,8 +1083,6 @@ button.follow-btn {
 	font-weight: bold;
 	letter-spacing: 3px;
 	font-size: 15px;
-	position: relative;
-	left: 9px;
 }
 
 button.follow-btn:hover {

@@ -90,6 +90,8 @@ GEM
       thor (~> 0.14)
     filepicker-rails (1.2.0)
       rails (>= 3.2)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     hashie (3.3.1)
     hike (1.2.3)
     httmultiparty (0.3.16)
@@ -257,6 +259,7 @@ DEPENDENCIES
   factory_girl
   figaro
   filepicker-rails
+  friendly_id (~> 5.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

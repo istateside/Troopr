@@ -64,6 +64,9 @@ class Blog < ActiveRecord::Base
   has_many :following, through: :own_follows, source: :target
   has_many :followers, through: :others_follows, source: :source
 
+  extend FriendlyId
+  friendly_id :blogname, use: :slugged
+
   def check_filepicker
     if self.filepicker_url.blank?
       self.filepicker_url = AVATAR_DEFAULTS.sample
@@ -84,5 +87,14 @@ class Blog < ActiveRecord::Base
     self.liked_posts.include?(post)
   end
 
+  def dash_posts
+    all_posts = []
+    all_posts += (self.posts)
+    self.followers.each do |follower|
+      all_posts += follower.posts if follower.posts
+    end
+    all_posts.sort_by! { |post| -post.id }
+    return all_posts
+  end
 
 end

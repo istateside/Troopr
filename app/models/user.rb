@@ -23,7 +23,10 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
-  has_many :blogs
+  has_many :blogs,
+    class_name: "Blog",
+    foreign_key: :user_id,
+    primary_key: :id
 
   def is_activated?
     self.activated

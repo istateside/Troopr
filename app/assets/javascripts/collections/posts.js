@@ -3,6 +3,10 @@ Troopr.Collections.Posts = Backbone.Collection.extend({
 
 	url: '/api/posts/',
 
+  comparator: function(post) {
+    return -1 * (post.get('id'))
+  },
+
 	blog: function () {
 		if (!this._blog) {
 			this._blog = new Troopr.Models.Blog({
@@ -33,6 +37,6 @@ Troopr.Collections.Posts = Backbone.Collection.extend({
   parse: function(resp) {
     this.page_number = parseInt(resp.page_number);
     this.total_pages = parseInt(resp.total_pages);
-    return resp
+    return resp.posts
   }
 });

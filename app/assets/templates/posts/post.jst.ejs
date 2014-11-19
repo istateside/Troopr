@@ -1,0 +1,13 @@
+<%= JST['posts/avatar']({post: post}) %>
+
+<div class="post-content">
+  <div class="arrow-left"></div>
+    <div class="content-box">
+
+       <%= JST['posts/postheader']({post: post}) %>
+       <%= JST['posts/' + post.get('post_type')]({post: post}) %>
+
+    </div>
+
+  <%= JST['posts/postbottombar']({post: post}) %>
+</div>

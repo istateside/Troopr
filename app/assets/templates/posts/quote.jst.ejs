@@ -1,17 +1,2 @@
-<a href="javascript:void(0)" data-id="<%= post.escape('blog_id') %>" class="blogname-link">
-  <figure class="blog-avatar">
-    <img src="<%= post.get('avatar_url') %>">
-  </figure>
-</a>
-<div class="post-content">
-  <div class="arrow-left"></div>
-   <div class="content-box">
-    <div class="post-header"></div>
-
-
-    <p class="quote-body"><%= post.escape('body') %></p>
-    <h2 class="quote-source">- <%= post.escape('title') %></h2>
-  </div>
-
-  <div class="post-bottom-bar"></div>
-</div>
+<p class="quote-body"><%= post.escape('body') %></p>
+<h2 class="quote-source">- <%= post.escape('title') %></h2>

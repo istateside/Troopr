@@ -1,10 +1,9 @@
 Troopr.Views.PostsIndex = Backbone.View.extend({
 	initialize: function (options) {
 		this.posts = options.posts;
-		this.listenTo(this.posts, 'sync', this.addPosts);
+		this.listenTo(this.posts, 'add', this.render);
 		this.listenTo( Troopr.currentUser, 'switch', this.switch );
 		this.listenTo( Troopr.currentBlog, 'sync', this.loadAvatar);
-		this.pageNumber = 1;
 	},
 
 	events: {
@@ -34,11 +33,45 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	videoForm: JST['forms/video'],
 
 	render: function($el) {
+		var that = this;
 		var renderedContent = this.template({
 		});
 		this.$el.html(renderedContent)
 
+		this.posts.forEach(function(post) {
+			that.addPost(post);
+		})
+		this.listenForScroll();
 		return this;
+	},
+
+	addPost: function(post) {
+		postView = new Troopr.Views.PostShow({ post: post, posts: this.posts })
+
+		this.$('.post-list').append(postView.render().$el);
+	},
+
+	switch: function() {
+		this.posts.fetch();
+	},
+
+	listenForScroll: function() {
+		$(window).off('scroll');
+		var throttledCallback = _.throttle(this.nextPage.bind(this), 200);
+		$(window).on('scroll', throttledCallback);
+	},
+
+	nextPage: function() {
+		var that = this;
+		if ($(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+			if (that.posts.page_number < that.posts.total_pages) {
+				that.posts.fetch({
+					data: { page: that.posts.page_number + 1},
+					remove: false,
+					wait: true
+				});
+			}
+		}
 	},
 
 	loadAvatar: function(event) {
@@ -47,7 +80,8 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	goToBlog: function(event) {
 		event.preventDefault();
-		var blog_id = $(event.currentTarget).data('id');
+		var blog_id = $(event.currentTarget).text();
+		console.log($(event.currentTarget));
 		Backbone.history.navigate('blogs/' + blog_id, { trigger: true });
 	},
 
@@ -95,7 +129,8 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		event.preventDefault();
 		var formData = $(event.target).serializeJSON();
 		var that = this;
-		var post = this.posts.create(formData, {wait: true});
+		var post = this.posts.create(formData, {wait: true, silent: true});
+		post.fetch({success: function() { that.posts.add(post) }});
 	},
 
 	reblogPost: function(event) {
@@ -233,39 +268,6 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		$iframe.attr('src', url)
 		this.$('iframe.video-player').slideDown();
 		this.$('input#video-url').val(url);
-	},
-
-	switch: function() {
-		this.posts.fetch();
-		this.render();
-	},
-
-	loadMore: function(event) {
-		event.preventDefault();
-		this.pageNumber++
-		var that = this;
-
-		this.posts.fetch({
-			data: { page: that.pageNumber },
-			processData: true,
-			wait: true
-		})
-	},
-
-	addPost: function(post) {
-		postView = new Troopr.Views.PostShow({ post: post, posts: this.posts })
-		this.$('.post-list').append(postView.render().$el);
-	},
-
-	addPosts: function(resp) {
-		var that = this;
-		if (resp.models) {
-			resp.models.forEach(function(post) {
-				that.addPost(post);
-			})
-		} else {
-			var postView = new Troopr.Views.PostShow({ post: resp, posts: this.posts })
-			this.$('.post-list').prepend(postView.render().$el);
-		}
 	}
+
 });

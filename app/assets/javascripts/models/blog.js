@@ -1,6 +1,6 @@
 Troopr.Models.Blog = Backbone.Model.extend({
 	urlRoot: '/api/blogs',
-
+	
 	parse: function(resp) {
 		if (resp.posts) {
 			this.posts().set(resp.posts, { parse: true} );

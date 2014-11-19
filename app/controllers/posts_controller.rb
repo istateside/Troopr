@@ -2,8 +2,8 @@ class PostsController < ApplicationController
   before_action :check_log_in, :check_blog
 
   def index
-    ids = current_blog.following.pluck(:id) << current_blog.id
-    @posts = Post.where(:blog_id => ids).order('created_at DESC').page(params[:page])
+    ids = [current_blog.id] + current_blog.following.pluck(:id)
+    @posts = Post.where(blog_id: ids).order(id: :desc).page(params[:page])
     render :index
   end
 

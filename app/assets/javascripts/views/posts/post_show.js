@@ -33,8 +33,7 @@ Troopr.Views.PostShow = Backbone.View.extend({
 
 	className: 'post-box',
 
-	headerTemplate: JST['posts/postheader'],
-	bottomTemplate: JST['posts/postbottombar'],
+	template: JST['posts/post'],
 
 	textTemplate: JST['posts/text'],
 	photoTemplate: JST['posts/photo'],
@@ -51,50 +50,40 @@ Troopr.Views.PostShow = Backbone.View.extend({
 	},
 
 	render: function() {
-		var template = this.templateType(this.post);
+		// var postType = this.templateType(this.post);
 
-		var renderedContent = template({
+		var renderedContent = this.template({
 			post: this.post,
 			byline: this.postByline()
+			// type: postType
 		});
 
-		var headerContent = this.headerTemplate({ post: this.post });
-
-
 		this.$el.html(renderedContent)
-		this.$('div.post-header').html(headerContent);
-
-		this.renderBottom();
 
 		if (this.post.get('post_type') === "video") {
 			this.renderVideoFrame();
 		}
 		return this;
 	},
-
-	renderBottom: function() {
-		var bottomContent = this.bottomTemplate({ post: this.post });
-		this.$('div.post-bottom-bar').html(bottomContent);
-	},
-
-	templateType: function(post) {
-		switch (post.get('post_type')) {
-			case "text":
-				return this.textTemplate;
-			case "photo":
-				return this.photoTemplate;
-			case "quote":
-				return this.quoteTemplate;
-			case "link":
-				return this.linkTemplate;
-			case "chat":
-				return this.chatTemplate;
-			case "audio":
-				return this.audioTemplate;
-			case "video":
-				return this.videoTemplate;
-		}
-	},
+	//
+	// templateType: function(post) {
+	// 	switch (post.get('post_type')) {
+	// 		case "text":
+	// 			return this.textTemplate;
+	// 		case "photo":
+	// 			return this.photoTemplate;
+	// 		case "quote":
+	// 			return this.quoteTemplate;
+	// 		case "link":
+	// 			return this.linkTemplate;
+	// 		case "chat":
+	// 			return this.chatTemplate;
+	// 		case "audio":
+	// 			return this.audioTemplate;
+	// 		case "video":
+	// 			return this.videoTemplate;
+	// 	}
+	// },
 
 	renderVideoFrame: function() {
 		var youtubeID = this.post.get('url');

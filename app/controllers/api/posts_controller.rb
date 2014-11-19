@@ -1,8 +1,8 @@
 module Api
   class PostsController < ApiController
     def index
-      ids = current_blog.following.pluck(:id) << current_blog.id
-      @posts = Post.where(:blog_id => ids).order('created_at DESC').page(params[:page].to_i)
+      ids = [current_blog.id] + current_blog.following.pluck(:id)
+      @posts = Post.where(blog_id: ids).order(id: :desc).page(params[:page])
       render :index
     end
 
@@ -20,7 +20,7 @@ module Api
           @post.url = "http://" + @post.url
         end
       end
-      
+
       if @post.save!
         render json: @post
       else

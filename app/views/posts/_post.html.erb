@@ -15,7 +15,7 @@
 					<%= post_byline(post) %>
 					<%= delete_button(post) %>
 				</div>
-				<%= render post.post_type, post: post %>
+				<%= render 'posts/' + post.post_type, post: post %>
 			</div>
 
 		<%= render 'posts/post_bottom_bar', post: post %>
