@@ -34,6 +34,7 @@ Troopr.Collections.Posts = Backbone.Collection.extend({
 	},
 
   parse: function(resp) {
+    console.log("Posts parse collection", resp);
     this.page_number = parseInt(resp.page_number);
     this.total_pages = parseInt(resp.total_pages);
     return resp.posts

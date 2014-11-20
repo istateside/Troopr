@@ -1,8 +1,8 @@
 module Api
   class PostsController < ApiController
     def index
-      if params[:self_posts]
-        ids = current_blog.id
+      if params[:blog_id]
+        ids = params[:blog_id]
       else
         ids = [current_blog.id] + current_blog.following.pluck(:id)
       end

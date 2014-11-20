@@ -9,7 +9,7 @@ Troopr.Collections.Blogs = Backbone.Collection.extend({
 			blog.fetch();
     } else {
 			blog = new Troopr.Models.Blog({ id: id });
-			blog.fetch({parse: true,
+			blog.fetch({
 				success: function() { blogs.add(blog); }
 			})
 		}
