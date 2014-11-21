@@ -1,5 +1,6 @@
 Troopr.Views.DashPanel = Backbone.View.extend({
-  initialize: function() {
+  initialize: function(options) {
+    this.posts = options.posts;
     this.listenTo( Troopr.currentBlog, 'sync', this.loadAvatar);
   },
 
@@ -58,9 +59,9 @@ Troopr.Views.DashPanel = Backbone.View.extend({
       wait: true,
       success: function() {
         post.fetch();
+        $('div.cover').removeClass('active');
       }
     });
-
   },
 
   filepicker: function(event) {

@@ -24,7 +24,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		});
 		this.$el.html(renderedContent)
 
-		dashView = new Troopr.Views.DashPanel()
+		dashView = new Troopr.Views.DashPanel({ posts: this.posts })
 		this.$('.dash').append(dashView.render().$el);
 
 		this.posts.forEach(function(post) {

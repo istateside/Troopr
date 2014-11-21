@@ -534,7 +534,7 @@ div.container {
 	display: block;
 	padding-top: 1px;
 	max-height: 0;
-	transition: max-height 700ms;
+	transition: max-height 500ms;
 	overflow: hidden;
 	float: left;
 	position: relative;
