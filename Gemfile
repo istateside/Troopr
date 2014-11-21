@@ -12,7 +12,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor'
 
-
 gem 'filepicker-rails'
 gem 'omniauth'
 gem 'omniauth-oauth2'
@@ -20,12 +19,11 @@ gem 'omniauth-facebook'
 gem 'uuidtools'
 gem 'aws-sdk'
 gem 'figaro'
-gem 'backbone-on-rails'
 gem 'devise'
+gem 'ejs'
 gem 'pg_search'
 gem 'kaminari'
 gem 'seed_dump', group: [:development, :test]
-gem 'soundcloud'
 gem 'friendly_id', '~> 5.0.0'
 
 group :development do

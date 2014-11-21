@@ -6,7 +6,6 @@ Troopr.Models.Post = Backbone.Model.extend({
 			this.notes().set(resp.notes);
 			delete resp.notes;
 		}
-		console.log("Post parse model");
 		return resp;
 	},
 

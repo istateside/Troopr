@@ -44,41 +44,62 @@ li {
 /* STYLES */
 
 body {
-		background: #202021;
+	background: #202021;
 }
+
+div.cover {
+	position: absolute;
+	top: 0;
+	left: 0 ;
+	right: 0;
+	bottom: 0;
+	opacity: 0.75;
+	background: rgba(0,0,0,0.8);
+	z-index: 999;
+	opacity: 0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+div.cover.active {
+	opacity: 1;
+}
+
+
 /* NAV */
 
 nav.topbar {
-		background: #202021;
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		clear: both;
-		height: 56px;
-		box-sizing: border-box;
-		z-index: 1000;
-		overflow: hidden;
-		border-bottom: 1px solid #414141;
+	background: #202021;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	clear: both;
+	height: 56px;
+	box-sizing: border-box;
+	z-index: 1000;
+	overflow: hidden;
+	border-bottom: 1px solid #414141;
 }
 div.nav-content {
-		background: #202021;
-
-		width: 100%;
-		margin: auto;
-		position: relative;
-		padding: 10px;
-		box-sizing: border-box;
+	background: #202021;
+	width: 100%;
+	margin: auto;
+	position: relative;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
 button.sign-out-btn {
-		color: white;
-		background: black;
-		font-weight: bold;
-		padding: 5px 10px;
-		position: absolute;
-		right: 30px;
-		top: 20px;
+	color: white;
+	background: black;
+	font-weight: bold;
+	padding: 5px 10px;
+	position: absolute;
+	right: 30px;
+	top: 20px;
 }
 
 li#logout-li {
@@ -88,9 +109,9 @@ li#logout-li {
 }
 
 li#home-link {
-		position: absolute;
-		top: 1px;
-		left: 0px;
+	position: absolute;
+	top: 1px;
+	left: 0px;
 }
 li.home-link {
 	width: 190px;
@@ -107,24 +128,24 @@ li#backbone-link {
 	color: white;
 }
 li#blog-settings-li {
-		position: absolute;
-		top: 1px;
-		right: 340px;
+	position: absolute;
+	top: 1px;
+	right: 340px;
 }
 li#blog-li {
-		position: absolute;
-		top: 1px;
-		right: 0px;
+	position: absolute;
+	top: 1px;
+	right: 0px;
 }
 li#new-blog-li {
-		position: absolute;
-		top: 50px;
-		right: 6px;
+	position: absolute;
+	top: 50px;
+	right: 6px;
 }
 li#blogs-list-li {
-		position: absolute;
-		top: 30px;
-		right: 0px;
+	position: absolute;
+	top: 30px;
+	right: 0px;
 }
 
 nav.pagination {
@@ -154,25 +175,25 @@ nav.load-more:hover {
 /* CONTENT */
 
 main {
-		width: 900px;
-		margin: auto;
-		position: relative;
-		top: 96px;
-		background: #202021;
-		border-radius: 20px;
-		clear: both;
+	width: 900px;
+	margin: auto;
+	position: relative;
+	top: 96px;
+	background: #202021;
+	border-radius: 20px;
+	clear: both;
 }
 .group:after {
-		clear: both;
-		display: block;
-		content: "";
+	clear: both;
+	display: block;
+	content: "";
 }
 main * {
-		background: none;
+	background: none;
 }
 .feed {
-		width: 640px;
-		float: left
+	width: 640px;
+	float: left
 }
 
 div.viewport {
@@ -331,46 +352,46 @@ button.search-btn:hover, button.filepicker:hover, .submit-btn:hover {
 }
 
 button.reblog-btn, .submit-btn {
-		padding: 5px 10px;
-		border: 1px solid black;
-		border-radius: 5px;
-		box-shadow: 1px 1px 1px black;
-		cursor: pointer;
-		outline: none;
-		float: right;
-		position: relative;
-		top: 8px;
-		left: 12px;
-		font-weight: bold;
-		text-transform: uppercase;
-		font-size: 12px;
-		letter-spacing: 2px;
+	padding: 5px 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px black;
+	cursor: pointer;
+	outline: none;
+	float: right;
+	position: relative;
+	top: 8px;
+	left: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 12px;
+	letter-spacing: 2px;
 }
 button.like-btn {
-		float: right;
-		position: relative;
-		padding: 0 10px;
-		top: 11px;
-		left: 10px;
-		color: black;
-		cursor: pointer;
-		outline: none;
+	float: right;
+	position: relative;
+	padding: 0 10px;
+	top: 11px;
+	left: 10px;
+	color: black;
+	cursor: pointer;
+	outline: none;
 }
 button.like-btn:hover {
-		background: red;
+	background: red;
 }
 button.like-btn.liked {
-		color: red
+	color: red
 }
 button.reblog-btn:active,
 button.submit-btn:active {
-		top: 9px;
-		left: 13px;
-		box-shadow: none;
+	top: 9px;
+	left: 13px;
+	box-shadow: none;
 }
 button.like-btn:active {
-		top: 12px;
-		left: 11px;
+	top: 12px;
+	left: 11px;
 }
 
 /* LOG IN */
@@ -455,51 +476,159 @@ button.filepicker.new-blog {
 
 /* DASHBOARD */
 
+div.dashboard {
+	position: relative;
+	z-index: 1000;
+}
+
 div.dash {
-		margin-top: 20px;
-		width: 640px;
+	margin-top: 20px;
+	width: 640px;
 }
 
-div.dash-post-panel {
-		height: 100px;
-		box-sizing: border-box;
-		padding: 10px;
-		width: 540px;
-		border-radius: 5px;
-		background: white;
-		float: left;
+ul.dash-post-buttons {
+	display: block;
+	height: 100px;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 538px;
+	border-radius: 5px;
+	background: white;
+	float: left;
 }
 
-div.dash-post-panel a {
-		float: left;
-		box-sizing: border-box;
-		cursor: pointer;
-		width: 74px;
-		height: 80px;
-		margin: auto;
-		text-align: center;
-		padding: 25px 5px 25px 5px;
-		border-right: 1px solid #ccc;
-		font-weight: bold;
-		position: relative;
-		transition: top 150ms;
-		top: 0px;
+ul.dash-post-buttons a {
+	float: left;
+	box-sizing: border-box;
+	cursor: pointer;
+	width: 74px;
+	height: 80px;
+	text-align: center;
+	padding: 25px 5px 25px 5px;
+	border-right: 1px solid #ccc;
+	font-weight: bold;
 }
 
-div.dash-post-panel a:hover{
-		top: -5px;
+ul.dash-post-buttons a p {
+	position: relative;
+	top: 0;
+	transition: top 150ms;
 }
 
-div.dash-post-panel a:last-child {
-		border-right: none
+ul.dash-post-buttons a:hover p{
+	top: -5px;
 }
 
-div.post-box {
-		width: 640px;
-		display: inline-block;
-		box-sizing: border-box;
-		margin-top: 20px;
+ul.dash-post-buttons a:last-child {
+	border-right: none
 }
+
+.dash.blogname-link {
+	display: block;
+}
+
+
+/* NEW POST FORM */
+
+div.container {
+	display: block;
+	padding-top: 1px;
+	max-height: 0;
+	transition: max-height 700ms;
+	overflow: hidden;
+	float: left;
+	position: relative;
+	left: 89px;
+}
+
+div.container.active {
+	max-height: 1200px
+}
+
+div.new-post-form {
+	width: 540px;
+	margin-top: 19px;
+}
+
+div.new-post-form #input-arrow {
+	width: 0;
+	height: 0;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid white;
+	position: absolute;
+	top: 5px;
+	transition: left 250ms;
+}
+#input-arrow.text {
+	left: 30px;
+}
+#input-arrow.photo {
+	left: 107px;
+}
+#input-arrow.quote {
+	left: 183px;
+}
+#input-arrow.link {
+	left: 255px;
+}
+#input-arrow.chat {
+	left: 330px;
+}
+#input-arrow.audio {
+	left: 402px;
+}
+#input-arrow.video {
+	left: 475px;
+}
+form.new-post-form-inputs {
+	display: block;
+	box-sizing: border-box;
+	border-radius: 5px;
+	background: white;
+	float: left;
+	width: 540px;
+	padding: 15px 20px;
+}
+div.input-group label {
+	font-weight: bold;
+	font-size: 22px;
+}
+
+div.input-group input,
+textarea {
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 15px;
+	outline: none;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 16px;
+	padding: 10px;
+	max-height: 475px;
+}
+div.input-group input {
+	min-height: 30px;
+}
+div.input-group textarea {
+	min-height: 180px;
+	resize: vertical;
+}
+form.new-post-form-inputs button {
+	color: black;
+	background: #fff;
+	font-size: 15px;
+	float: right;
+}
+p.explanation {
+	color: #aaaaaa;
+	padding: 0 20px;
+}
+p.explanation strong{
+	text-align: center;
+	font-size: 22px;
+}
+
 /* SIDEBAR */
 
 nav.sidebar {
@@ -610,33 +739,41 @@ a.blog-index-a:hover {
 
 /* INDIVIDUAL POSTS */
 
+div.post-box {
+	width: 640px;
+	display: inline-block;
+	box-sizing: border-box;
+	margin-top: 20px;
+}
+
 .blog-show div.post-box {
-		width: 900px
+	width: 900px
 }
 .blog-show div.post-box .post-content {
-		width: 800px;
+	width: 800px;
 }
 
 .arrow-left {
-		width: 0;
-		height: 0;
-		position: absolute;
-		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent;
-		border-right: 10px solid white;
-		left: -9px;
-		top: 20px;
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid white;
+	left: -9px;
+	top: 20px;
 }
+
 figure.blog-avatar {
-		width: 64px;
-		height: 64px;
-		float: left;
-		background: black;
-		border-radius: 6px;
-		margin: 0px 15px 0px 10px;
-		vertical-align: top;
-		box-shadow: 2px 2px 2px gray;
-		overflow: hidden;
+	width: 64px;
+	height: 64px;
+	float: left;
+	background: black;
+	border-radius: 6px;
+	margin: 0px 15px 0px 10px;
+	vertical-align: top;
+	box-shadow: 2px 2px 2px gray;
+	overflow: hidden;
 }
 
 figure.blog-avatar-small {
@@ -649,69 +786,69 @@ figure.blog-avatar-small {
 }
 
 p.blogname-header {
-		font-size: 13px;
-		margin-bottom: 13px;
-		color: gray;
+	font-size: 13px;
+	margin-bottom: 13px;
+	color: gray;
 }
 div.post-content {
-		box-sizing: border-box;
-		border-radius: 5px;
-		background: white;
-		float: left;
-		width: 540px;
-		padding: 15px 20px;
-		position: relative;
+	box-sizing: border-box;
+	border-radius: 5px;
+	background: white;
+	float: left;
+	width: 540px;
+	padding: 15px 20px;
+	position: relative;
 }
 h5.blogname-header {
-		border-radius: 10px;
+	border-radius: 10px;
 }
 a.blogname-link:hover {
-		color: black;
+	color: black;
 }
 h2.post-title {
-		margin-bottom: 10px;
-		font-weight: bold;
-		font-size: 22px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 22px;
 }
 div.post-bottom-bar {
-		clear: both;
-		height: 20px;
-		padding: 5px 10px;
+	clear: both;
+	height: 20px;
+	padding: 5px 10px;
 }
 div.post-content .post-delete {
-		display: none;
-		position: absolute;
-		border: none;
-		font-size: 25px;
-		right: 12px;
-		top: 5px;
-		cursor: pointer;
-		outline: none;
-		border-radius: 50%;
+	display: none;
+	position: absolute;
+	border: none;
+	font-size: 25px;
+	right: 12px;
+	top: 5px;
+	cursor: pointer;
+	outline: none;
+	border-radius: 50%;
 }
 div.post-content:hover .post-delete {
-		display: block;
-		font-weight: bold;
-		color: black;
+	display: block;
+	font-weight: bold;
+	color: black;
 }
 div.post-content:hover .post-delete:hover {
-		color: red;
+	color: red;
 }
 
 div.notes-display {
-		display: none;
-		position: absolute;
-		border: 1px solid black;
-		border-radius: 5px;
-		padding: 5px 15px;
-		background: #000;
-		left: 82px;
-		bottom: -3px;
-		z-index: 999;
-		color: white;
+	display: none;
+	position: absolute;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 5px 15px;
+	background: #000;
+	left: 82px;
+	bottom: -3px;
+	z-index: 999;
+	color: white;
 }
 div.notes-display.active {
-		display: block;
+	display: block;
 }
 
 div.notes-display.rails {
@@ -725,32 +862,32 @@ div.notes-display.rails {
 	border: none;
 }
 div.notes-list {
-		max-height: 300px;
-		overflow: scroll;
-		transition: height 500ms, width 500ms;
+	max-height: 300px;
+	overflow: scroll;
+	transition: height 500ms, width 500ms;
 }
 div.notes-list li {
-		padding-bottom: 10px;
+	padding-bottom: 10px;
 }
 div.notes-list li:last-child {
-		padding-bottom: 0px;
+	padding-bottom: 0px;
 }
 div.notes-arrow {
-		width: 0;
-		height: 0;
-		position: absolute;
-		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent;
-		border-right: 10px solid black;
-		left: -10px;
-		bottom: 5px;
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid black;
+	left: -10px;
+	bottom: 5px;
 }
 /* PHOTO POSTS */
 
 img.post-box-img {
-		max-width: 500px;
-		margin: 0 auto;
-		align: center;
+	max-width: 500px;
+	margin: 0 auto;
+	align: center;
 }
 
 /* QUOTE POSTS */
@@ -771,33 +908,33 @@ h2.quote-source {
 /* LINK POSTS */
 
 a.post-link-title {
-		cursor: pointer;
-		display: inline-block;
-		font-size: 25px;
-		padding-bottom: 15px;
-		font-weight: bold;
-		text-decoration: underline;
-		text-overflow: ellipsis;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 25px;
+	padding-bottom: 15px;
+	font-weight: bold;
+	text-decoration: underline;
+	text-overflow: ellipsis;
 }
 /* CHAT POSTS */
 
 textarea#title.quote-source {
-		border-top: none;
-		border-radius: 0 0 5px 5px;
-		position: relative;
-		bottom: 5px;
-		min-height: 75px;
-		text-align: right;
-		resize: none;
+	border-top: none;
+	border-radius: 0 0 5px 5px;
+	position: relative;
+	bottom: 5px;
+	min-height: 75px;
+	text-align: right;
+	resize: none;
 }
 textarea#body.quote-body {
-		border-radius: 5px 5px 0 0;
-		margin-bottom: 0px;
+	border-radius: 5px 5px 0 0;
+	margin-bottom: 0px;
 }
 
 p.chatLine {
-		margin-left: 25px;
-		font-size: 20px;
+	margin-left: 25px;
+	font-size: 20px;
 }
 /* AUDIO POSTS/FORM */
 
@@ -848,138 +985,41 @@ input#audio-url {
 /* VIDEO POSTS/FORM */
 
 div.video-space {
-		margin: 0 auto;
-		width: 500px;
+	margin: 0 auto;
+	width: 500px;
 }
 /* POST BOTTOM BAR */
 
 div.post-bottom-bar a {
-		position: relative;
+	position: relative;
 }
 div.post-bottom-bar a.notes-display {
-		float: left;
+	float: left;
 }
 div.post-bottom-bar a.reblog-button {
-		float: right;
+	float: right;
 }
 div.post-bottom-bar form.button_to {
-		float: right;
+	float: right;
 }
 input.unlike {
-		background: red;
+	background: red;
 }
 /* NOTES SHOW */
 
 li.note-li {
-		font-size: 10px;
-		margin-left: 20px;
-		padding: 5px 0;
-		border-bottom: 1px solid gray;
+	font-size: 10px;
+	margin-left: 20px;
+	padding: 5px 0;
+	border-bottom: 1px solid gray;
 }
 a.notes-display {
-		font-size: 13px;
-		color: gray;
-		position: absolute;
-		bottom: -20px;
+	font-size: 13px;
+	color: gray;
+	position: absolute;
+	bottom: -20px;
 }
 
-/* NEW POST FORM */
-
-div.container {
-		padding-top: 1pxz;
-		max-height: 0;
-		transition: max-height 500ms;
-		overflow: hidden;
-}
-
-div.container.active {
-		max-height: 1200px;
-}
-
-div.new-post-form {
-		position: relative;
-		left: 89px;
-		width: 540px;
-		margin-top: 19px;
-}
-
-div.new-post-form #input-arrow {
-		width: 0;
-		height: 0;
-		border-left: 15px solid transparent;
-		border-right: 15px solid transparent;
-		border-bottom: 15px solid white;
-		position: absolute;
-		top: -14px;
-		transition: left 250ms;
-}
-#input-arrow.text {
-		left: 30px;
-}
-#input-arrow.photo {
-		left: 107px;
-}
-#input-arrow.quote {
-		left: 183px;
-}
-#input-arrow.link {
-		left: 255px;
-}
-#input-arrow.chat {
-		left: 330px;
-}
-#input-arrow.audio {
-		left: 402px;
-}
-#input-arrow.video {
-		left: 475px;
-}
-form.new-post-form-inputs {
-		display: block;
-		box-sizing: border-box;
-		border-radius: 5px;
-		background: white;
-		float: left;
-		width: 540px;
-		padding: 15px 20px;
-}
-div.input-group label {
-		font-weight: bold;
-		font-size: 22px;
-}
-div.input-group input,
-textarea {
-		width: 100%;
-		box-sizing: border-box;
-		margin-bottom: 15px;
-		outline: none;
-		border: 1px solid black;
-		border-radius: 5px;
-		font-size: 16px;
-		padding: 10px;
-		max-height: 475px;
-}
-div.input-group input {
-		min-height: 30px;
-}
-div.input-group textarea {
-		min-height: 180px;
-		resize: vertical;
-}
-form.new-post-form-inputs button {
-		color: black;
-		background: #fff;
-		font-size: 15px;
-		float: right;
-}
-p.explanation {
-		color: #aaaaaa;
-		padding: 0 20px;
-}
-p.explanation strong{
-	text-align: center;
-	font-size: 22px;
-}
 
 /* BLOGS NEW */
 
@@ -1113,30 +1153,30 @@ p.blog-desc {
 /* BLOGS SHOW */
 
 div.blog-div {
-		width: 900px;
-		display: inline-block;
-		box-sizing: border-box;
-		margin-top: 20px;
-		background: white;
-		border-radius: 5px;
-		padding: 15px;
+	width: 900px;
+	display: inline-block;
+	box-sizing: border-box;
+	margin-top: 20px;
+	background: white;
+	border-radius: 5px;
+	padding: 15px;
 }
 div.blog-content {
-		float: left;
+	float: left;
 }
 div.blog-header {
-		position: relative;
-		margin-bottom: 10px;
-		display: inline-block;
+	position: relative;
+	margin-bottom: 10px;
+	display: inline-block;
 }
 div.blog-div h2 {
-		font-weight: bold;
-		font-size: 22px;
-		float: left;
+	font-weight: bold;
+	font-size: 22px;
+	float: left;
 }
 div.blog-div input {
-		display: inline-block;
-		float: left;
+	display: inline-block;
+	float: left;
 }
 
 div.blog-intro-div {
@@ -1146,37 +1186,34 @@ div.blog-intro-div {
 	left: 130px;
 }
 
-section.posts-space.blog-show {
-}
-
 figure.blog-image-fig {
-		border-radius: 10px;
-		border: 3px solid white;
-		height: 100px;
-		width: 100px;
-		background: black;
-		margin: auto;
-		position: relative;
-		bottom: 20px;
-		overflow: hidden;
+	border-radius: 10px;
+	border: 3px solid white;
+	height: 100px;
+	width: 100px;
+	background: black;
+	margin: auto;
+	position: relative;
+	bottom: 20px;
+	overflow: hidden;
 }
 div.blog-info {
-		margin: auto;
-		position: relative;
-		text-align: center;
+	margin: auto;
+	position: relative;
+	text-align: center;
 }
 div.blog-info h1 {
-		margin: auto;
-		font-size: 42px;
-		color: white;
+	margin: auto;
+	font-size: 42px;
+	color: white;
 }
 div.blog-info p {
-		color: #636363;
+	color: #636363;
 }
 /* BLOG PARTIAL */
 
 input.follow-button {
-		position: absolute;
-		right: -64px;
-		top: 3px;
+	position: absolute;
+	right: -64px;
+	top: 3px;
 }

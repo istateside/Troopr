@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  root 'backbone#index'
   get '/auth/facebook/callback', to: 'oauth_callbacks#facebook'
   get '/backbone', to: 'backbone#index'
 

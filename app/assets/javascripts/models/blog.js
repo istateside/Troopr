@@ -4,7 +4,6 @@ Troopr.Models.Blog = Backbone.Model.extend({
 	parse: function(resp) {
 		if (resp.posts) {
 			this.posts().set(resp.posts, { parse: true} );
-			console.log("Blog parse", resp.posts);
 			delete resp.posts;
 		}
 		return resp;

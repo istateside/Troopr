@@ -21,10 +21,6 @@ GEM
       activemodel (= 4.1.5)
       activesupport (= 4.1.5)
       arel (~> 5.0.0)
-    activeresource (4.0.0)
-      activemodel (~> 4.0)
-      activesupport (~> 4.0)
-      rails-observers (~> 0.1.1)
     activesupport (4.1.5)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
@@ -41,15 +37,6 @@ GEM
     aws-sdk-v1 (1.57.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
-    backbone-on-rails (1.1.1.0)
-      actionmailer
-      actionpack
-      activemodel
-      activeresource
-      eco
-      ejs
-      jquery-rails
-      railties
     bcrypt (3.1.7)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
@@ -74,11 +61,6 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    eco (1.0.0)
-      coffee-script
-      eco-source
-      execjs
-    eco-source (1.1.0.rc.1)
     ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.2.2)
@@ -94,13 +76,6 @@ GEM
       activerecord (>= 4.0.0)
     hashie (3.3.1)
     hike (1.2.3)
-    httmultiparty (0.3.16)
-      httparty (>= 0.7.3)
-      mimemagic
-      multipart-post
-    httparty (0.13.2)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.6.11)
     jbuilder (2.2.4)
       activesupport (>= 3.0.0, < 5)
@@ -121,7 +96,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    mimemagic (0.2.1)
     mini_portile (0.6.0)
     minitest (5.4.2)
     multi_json (1.10.1)
@@ -165,8 +139,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.5)
       sprockets-rails (~> 2.0)
-    rails-observers (0.1.2)
-      activemodel (~> 4.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -214,10 +186,6 @@ GEM
     shoulda-context (1.2.1)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
-    soundcloud (0.3.1)
-      hashie
-      httmultiparty (>= 0.3)
-      httparty (>= 0.7.3)
     spring (1.1.3)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -250,12 +218,12 @@ DEPENDENCIES
   activerecord
   annotate
   aws-sdk
-  backbone-on-rails
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
   devise
+  ejs
   factory_girl
   figaro
   filepicker-rails
@@ -277,7 +245,6 @@ DEPENDENCIES
   seed_dump
   shoulda
   shoulda-matchers
-  soundcloud
   spring
   uglifier (>= 1.3.0)
   uuidtools
