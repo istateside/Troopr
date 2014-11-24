@@ -8,12 +8,13 @@ Troopr.Views.PostShow = Backbone.View.extend({
 		}
 
 		this.listenTo(this.post, 'sync', this.render);
-		this.listenTo(this.post.notes(), 'remove add', this.renderBottom);
 	},
 
 	events: {
 		"click .post-delete": "deletePost",
-		"click a.notes-display": "showNotes"
+		"click a.notes-display": "showNotes",
+		"click div.viewport.unliked": "likePost",
+		"click div.viewport.liked": "likePost"
 	},
 
 	postByline: function() {
@@ -67,5 +68,23 @@ Troopr.Views.PostShow = Backbone.View.extend({
 		})
 		this.post.set('parsedBody', $el.html());
 		return $el
+	},
+
+	likePost: function(event) {
+		event.preventDefault();
+		var id   = $(event.currentTarget).data('post-id');
+		var post = this.posts.get(id);
+		var that = this;
+		$(event.currentTarget).prop('disabled', true)
+		var ajaxType = (post.get('is_liked') ? "DELETE" : "POST")
+		$.ajax({
+			url: "/api/likes",
+			type: ajaxType,
+			data: { post_id: id },
+			success: function() {
+				post.fetch();
+				$(event.currentTarget).prop('disabled', false);
+			}
+		})
 	}
 });

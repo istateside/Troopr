@@ -48,7 +48,7 @@ body {
 }
 
 div.cover {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0 ;
 	right: 0;
@@ -79,7 +79,7 @@ nav.topbar {
 	clear: both;
 	height: 56px;
 	box-sizing: border-box;
-	z-index: 1000;
+	z-index: 10000;
 	overflow: hidden;
 	border-bottom: 1px solid #414141;
 }
@@ -527,6 +527,25 @@ ul.dash-post-buttons a:last-child {
 	display: block;
 }
 
+.loading {
+	box-sizing: border-box;
+	border-radius: 5px;
+	background: white;
+	width: 540px;
+	padding: 15px 20px;
+	margin: 20px 0;
+	position: relative;
+	left: 87px;
+	text-align: center;
+	letter-spacing: 3px;
+	opacity: 0;
+	transition: opacity 200ms linear;
+}
+
+.loading.active {
+	opacity: 1;
+}
+
 
 /* NEW POST FORM */
 
@@ -637,7 +656,8 @@ nav.sidebar {
 	width: 240px;
 	float: right;
 	min-height: 500px;
-	margin: 20px 5px;
+	margin: 20px 0;
+	margin-right: 10px;
 	padding: 5px;
 }
 
@@ -1025,13 +1045,11 @@ a.notes-display {
 
 div.new-blog-page {
 	position: relative;
-	transition: left 500ms;
 	border-radius: 5px;
 	background: white;
 	width: 900px;
 	padding: 15px 20px;
-
-	left: 0px;
+	margin-bottom: 20px;
 }
 
 div.left-column, div.right-column {

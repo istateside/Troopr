@@ -20,7 +20,6 @@ Troopr.Views.Navbar = Backbone.View.extend({
 
   signOut: function(event) {
     event.preventDefault();
-    console.log("Signing out...");
     $.ajax({
       url: "/api/session",
       type: "DELETE",

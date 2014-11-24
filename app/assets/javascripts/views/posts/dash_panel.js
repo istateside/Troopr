@@ -37,7 +37,7 @@ Troopr.Views.DashPanel = Backbone.View.extend({
     this.$('.form-space').html(this.formTemplate({postType: postType}));
     if ($('.container').hasClass('active')) {
       if (postType == this.$('#input-arrow').attr('class')){
-        this.$('.container').removeClass('active')
+        this.$('.container').removeClass('active');
         modalCover.removeClass('active');
       }
     } else {

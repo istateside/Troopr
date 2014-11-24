@@ -16,7 +16,7 @@
     <img src="<%= Troopr.spriteUrl %>" class="reblog sprite"></img>
   </div>
   <% var isLiked = ((post.get('is_liked')) ? "liked" : "unliked") %>
-  <div data-post-id="<%= post.id %>" class="viewport <%= isLiked %>" >
+  <div data-post-id="<%= post.id %>" class="viewport <%= isLiked %>" id="like-heart">
     <img src="<%= Troopr.spriteUrl %>"></img>
   </div>
 </div>

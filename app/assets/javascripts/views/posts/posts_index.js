@@ -8,9 +8,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	events: {
 		"click .blogname-link": "goToBlog",
-		"click div.viewport.reblog": "reblogPost",
-		"click div.viewport.unliked": "likePost",
-		"click div.viewport.liked": "likePost"
+		"click div.viewport.reblog": "reblogPost"
 	},
 
 	tagName: 'div',
@@ -19,10 +17,11 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	formTemplate: JST['forms/form'],
 
 	render: function($el) {
+		$('body').css("background-image", "none");
 		var that = this;
 		var renderedContent = this.template({
 		});
-		this.$el.html(renderedContent)
+		this.$el.html(renderedContent);
 
 		dashView = new Troopr.Views.DashPanel({ posts: this.posts })
 		this.$('.dash').append(dashView.render().$el);
@@ -30,6 +29,7 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		this.posts.forEach(function(post) {
 			that.addPost(post);
 		})
+		$('.cover').removeClass('active');
 		this.listenForScroll();
 		return this;
 	},
@@ -41,7 +41,11 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 	},
 
 	switch: function() {
-		this.posts.fetch();
+		this.$('.post-list').empty();
+		var that = this;
+		this.posts.fetch({success: function() {
+			that.render();
+		}});
 	},
 
 	listenForScroll: function() {
@@ -52,6 +56,8 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 
 	nextPage: function() {
 		var that = this;
+
+		that.$('.loading').addClass('active');
 		if ($(window).scrollTop() > $(document).height() - $(window).height() - 50) {
 			if (that.posts.page_number < that.posts.total_pages) {
 				that.posts.fetch({
@@ -59,6 +65,8 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 					remove: false,
 					wait: true
 				});
+			} else {
+				that.$('.loading').text("No more posts!");
 			}
 		}
 	},
@@ -77,7 +85,6 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 			url: "/api/posts/" + id + "/reblog/",
 			type: "POST",
 			success: function (resp) {
-
 				var post = new Troopr.Models.Post({id: resp.id})
 				post.fetch({silent: true, success: function(resp) {
 					postView = new Troopr.Views.PostShow({ post: post, posts: this.posts })
@@ -87,20 +94,4 @@ Troopr.Views.PostsIndex = Backbone.View.extend({
 		})
 	},
 
-	likePost: function(event) {
-		event.preventDefault();
-		var id= $(event.currentTarget).data('post-id');
-		var post = this.posts.get(id);
-		$(event.currentTarget).prop('disabled', true)
-		var ajaxType = (post.get('is_liked') ? "DELETE" : "POST")
-		$.ajax({
-			url: "/api/likes",
-			type: ajaxType,
-			data: { post_id: id },
-			success: function() {
-				post.fetch()
-				$(event.currentTarget).prop('disabled', false)
-			}
-		})
-	}
 });
