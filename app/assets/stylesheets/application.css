@@ -1040,9 +1040,7 @@ a.notes-display {
 	bottom: -20px;
 }
 
-
 /* BLOGS NEW */
-
 div.new-blog-page {
 	position: relative;
 	border-radius: 5px;
@@ -1064,7 +1062,6 @@ div.left-column {
 div.left-column p {
 	position: relative;
 	font-size: 14px;
-
 }
 
 div.left-column p.blogname {
